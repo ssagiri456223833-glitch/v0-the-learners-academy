@@ -8,6 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { ACADEMY_LEVELS } from "@/lib/constants"
 import { Search } from "lucide-react"
 
 interface Filters {
@@ -22,12 +23,8 @@ interface QuestionFiltersProps {
 }
 
 const subjects = [
-  { value: "all", label: "All Subjects" },
-  { value: "mathematics", label: "Mathematics" },
-  { value: "physics", label: "Physics" },
-  { value: "chemistry", label: "Chemistry" },
-  { value: "biology", label: "Biology" },
-  { value: "english", label: "English" },
+  { value: "all", label: "All Levels" },
+  ...ACADEMY_LEVELS.map(level => ({ value: level.value, label: level.label }))
 ]
 
 const difficulties = [

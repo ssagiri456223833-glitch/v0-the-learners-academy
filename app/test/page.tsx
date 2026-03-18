@@ -20,59 +20,59 @@ import {
 } from "@/components/ui/alert-dialog"
 
 const mockTest = {
-  title: "Mathematics - Chapter 5",
-  subject: "Mathematics",
-  duration: 30, // minutes
+  title: "Level One - Trimester Assessment 1",
+  subject: "Level One",
+  duration: 45, // minutes
   questions: [
     {
       id: "1",
-      text: "What is the derivative of x² + 3x + 5?",
-      options: ["2x + 3", "x² + 3", "2x + 5", "3x + 3"],
+      text: "Which of the following is the correct past tense of the verb 'go'?",
+      options: ["Goes", "Gone", "Went", "Going"],
     },
     {
       id: "2",
-      text: "Solve: If 2x + 5 = 15, what is x?",
-      options: ["3", "4", "5", "10"],
+      text: "Choose the word that best completes the sentence: 'She is very _______ about her upcoming trip.'",
+      options: ["Exciting", "Excited", "Excite", "Excitement"],
     },
     {
       id: "3",
-      text: "What is the value of π (pi) to two decimal places?",
-      options: ["3.12", "3.14", "3.16", "3.18"],
+      text: "Identify the antonym of 'Generous':",
+      options: ["Kind", "Selfish", "Happy", "Strong"],
     },
     {
       id: "4",
-      text: "What is the square root of 144?",
-      options: ["10", "11", "12", "13"],
+      text: "Which sentence uses the correct punctuation?",
+      options: ["Where are you going.", "Where are you going?", "Where are you going!", "Where are you going;"],
     },
     {
       id: "5",
-      text: "In a right triangle, if the two legs are 3 and 4 units long, what is the hypotenuse?",
-      options: ["5", "6", "7", "8"],
+      text: "Fill in the blank: 'Neither the teacher nor the students _______ happy with the decision.'",
+      options: ["Is", "Are", "Was", "Be"],
     },
     {
       id: "6",
-      text: "What is 15% of 200?",
-      options: ["25", "30", "35", "40"],
+      text: "Choose the correct synonym for 'Rapid':",
+      options: ["Slow", "Fast", "Quiet", "Heavy"],
     },
     {
       id: "7",
-      text: "Simplify: 3x + 2x - x",
-      options: ["4x", "5x", "6x", "3x"],
+      text: "Which of these is a compound sentence?",
+      options: ["I like coffee.", "I like coffee and she likes tea.", "The sun is hot.", "Running is fun."],
     },
     {
       id: "8",
-      text: "What is the area of a circle with radius 7? (Use π = 22/7)",
-      options: ["144", "154", "164", "174"],
+      text: "What is the collective noun for a group of lions?",
+      options: ["Pack", "Herd", "Pride", "Flock"],
     },
     {
       id: "9",
-      text: "What is the integral of 2x?",
-      options: ["x²", "x² + C", "2x²", "2x² + C"],
+      text: "Identify the preposition in the sentence: 'The cat jumped over the fence.'",
+      options: ["Jumped", "Over", "Fence", "The"],
     },
     {
       id: "10",
-      text: "What is the sum of interior angles of a hexagon?",
-      options: ["540°", "600°", "720°", "900°"],
+      text: "Which of the following sounds like 'Know'?",
+      options: ["Now", "New", "No", "Knew"],
     },
   ],
 }

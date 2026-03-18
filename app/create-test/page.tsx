@@ -16,11 +16,18 @@ export interface Question {
   correctAnswer: number
 }
 
+export interface SkillConfig {
+  skillId: string
+  marks: number
+  questionCount: number
+}
+
 export interface TestDetails {
   title: string
   subject: string
   duration: number
   description: string
+  selectedSkills: SkillConfig[]
 }
 
 export default function CreateTestPage() {
@@ -29,6 +36,7 @@ export default function CreateTestPage() {
     subject: "",
     duration: 30,
     description: "",
+    selectedSkills: [],
   })
   const [questions, setQuestions] = useState<Question[]>([])
   const [editingQuestion, setEditingQuestion] = useState<Question | null>(null)

@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { FileText, Users, CheckCircle, TrendingUp } from "lucide-react"
+import { FileText, Users, CheckCircle, Clock } from "lucide-react"
 
 const stats = [
   {
@@ -27,10 +27,10 @@ const stats = [
     iconColor: "text-accent",
   },
   {
-    title: "Avg. Score",
-    value: "76%",
-    change: "+5% from last month",
-    icon: TrendingUp,
+    title: "Trimester Progress",
+    value: "Month 2",
+    change: "Cycle: Mar - May",
+    icon: Clock,
     iconBg: "bg-[#F59E0B]/10",
     iconColor: "text-[#F59E0B]",
   },
