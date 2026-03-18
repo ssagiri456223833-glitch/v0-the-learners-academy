@@ -11,9 +11,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { ACADEMY_LEVELS, SKILLS } from "@/lib/constants"
+import { ACADEMY_LEVELS, SKILLS, TEACHERS } from "@/lib/constants"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Badge } from "@/components/ui/badge"
+import { Switch } from "@/components/ui/switch"
+import { ShieldCheck, UserCheck, MapPin } from "lucide-react"
 
 interface SkillConfig {
   skillId: string
@@ -24,9 +26,14 @@ interface SkillConfig {
 interface TestDetails {
   title: string
   subject: string
+  teacher: string
+  room: string
   duration: number
   description: string
   selectedSkills: SkillConfig[]
+  shuffleQuestions: boolean
+  shuffleOptions: boolean
+  preventTabSwitch: boolean
 }
 
 interface TestDetailsFormProps {
@@ -105,7 +112,88 @@ export function TestDetailsForm({ details, onChange }: TestDetailsFormProps) {
           </div>
         </div>
 
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Label htmlFor="teacher" className="flex items-center gap-2">
+              <UserCheck className="h-4 w-4 text-primary" />
+              Assigned Teacher
+            </Label>
+            <Select
+              value={details.teacher}
+              onValueChange={(value) => onChange({ ...details, teacher: value })}
+            >
+              <SelectTrigger className="focus:ring-primary">
+                <SelectValue placeholder="Select a teacher" />
+              </SelectTrigger>
+              <SelectContent>
+                {TEACHERS.map((teacher) => (
+                  <SelectItem key={teacher} value={teacher}>
+                    {teacher}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="room" className="flex items-center gap-2">
+              <MapPin className="h-4 w-4 text-primary" />
+              Room Number
+            </Label>
+            <Select
+              value={details.room}
+              onValueChange={(value) => onChange({ ...details, room: value })}
+            >
+              <SelectTrigger className="focus:ring-primary">
+                <SelectValue placeholder="Select a room" />
+              </SelectTrigger>
+              <SelectContent>
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((room) => (
+                  <SelectItem key={room} value={room.toString()}>
+                    Room {room}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+
+        <div className="space-y-4 pt-4 border-t">
+          <div className="flex items-center gap-2 mb-2">
+            <ShieldCheck className="h-5 w-5 text-primary" />
+            <Label className="text-lg font-bold">Anti-Cheat Settings</Label>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-4 rounded-xl bg-primary/5 border border-primary/10">
+            <div className="flex items-center justify-between space-x-2">
+              <Label htmlFor="shuffle-questions" className="font-medium cursor-pointer">Shuffle Questions</Label>
+              <Switch 
+                id="shuffle-questions"
+                checked={details.shuffleQuestions}
+                onCheckedChange={(checked) => onChange({ ...details, shuffleQuestions: checked })}
+              />
+            </div>
+            <div className="flex items-center justify-between space-x-2">
+              <Label htmlFor="shuffle-options" className="font-medium cursor-pointer">Shuffle Options</Label>
+              <Switch 
+                id="shuffle-options"
+                checked={details.shuffleOptions}
+                onCheckedChange={(checked) => onChange({ ...details, shuffleOptions: checked })}
+              />
+            </div>
+            <div className="flex items-center justify-between space-x-2">
+              <div className="space-y-0.5">
+                <Label htmlFor="tab-switch" className="font-medium cursor-pointer">Tab-Switch Warning</Label>
+                <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-tight">Prevents tab cheating</p>
+              </div>
+              <Switch 
+                id="tab-switch"
+                checked={details.preventTabSwitch}
+                onCheckedChange={(checked) => onChange({ ...details, preventTabSwitch: checked })}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-4 pt-4">
           <Label>Select Skills to Include</Label>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {SKILLS.map((skill) => (

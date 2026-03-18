@@ -25,18 +25,28 @@ export interface SkillConfig {
 export interface TestDetails {
   title: string
   subject: string
+  teacher: string
+  room: string
   duration: number
   description: string
   selectedSkills: SkillConfig[]
+  shuffleQuestions: boolean
+  shuffleOptions: boolean
+  preventTabSwitch: boolean
 }
 
 export default function CreateTestPage() {
   const [testDetails, setTestDetails] = useState<TestDetails>({
     title: "",
     subject: "",
+    teacher: "",
+    room: "",
     duration: 30,
     description: "",
     selectedSkills: [],
+    shuffleQuestions: false,
+    shuffleOptions: false,
+    preventTabSwitch: false,
   })
   const [questions, setQuestions] = useState<Question[]>([])
   const [editingQuestion, setEditingQuestion] = useState<Question | null>(null)

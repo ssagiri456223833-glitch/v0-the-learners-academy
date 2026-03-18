@@ -1,4 +1,5 @@
 export const ACADEMY_LEVELS = [
+  { value: "pre-foundation", label: "Pre-Foundation" },
   { value: "foundation-one", label: "Foundation One" },
   { value: "foundation-two", label: "Foundation Two" },
   { value: "foundation-three", label: "Foundation Three" },
@@ -11,6 +12,9 @@ export const ACADEMY_LEVELS = [
   { value: "level-six", label: "Level Six" },
   { value: "level-advance", label: "Level Advance" },
   { value: "professional-advance", label: "Professional Advance" },
+  { value: "speaking-class", label: "Speaking Class" },
+  { value: "grammar-speaking", label: "Grammar Speaking Class" },
+  { value: "ielts-prep", label: "IELTS Preparatory Course" },
 ] as const
 
 export const SKILLS = [
@@ -20,4 +24,38 @@ export const SKILLS = [
   { id: "writing", label: "Writing" },
   { id: "speaking", label: "Speaking" },
   { id: "reading", label: "Reading" },
+] as const
+
+export const TEACHERS = [
+  "Sir Ali Haider",
+  "Ms. Noor Zahra",
+  "Sir Muhammad Basit",
+  "Ms. Howra Fatima",
+  "Sir Abbas Ali",
+  "Ms. Sobia Batool",
+  "Ms. Hadisa",
+  "Sir Zaheer Hassan",
+  "Sir Mehdi Hassani",
+  "Sir Mushtaq Hussain",
+  "Ms. Saima",
+  "Sir Itrat Ali",
+  "Ms. Shakeela",
+  "Sir Sharafat Ali",
+  "Sir Asif Ali",
+  "Ms. Abida Ali",
+  "Ms. Marzia Ali",
+  "Ms. Tahira Batool",
+  "Ms. Razia",
+  "Sir Qurban Ali",
+  "Ms. Roqayya Azimi",
+  "Ms. Iqra Fatima",
+] as const
+
+export const TIMETABLE_SLOTS = [
+  { id: 1, standard: "02:15 - 03:00", eid: "03:00 - 04:00" },
+  { id: 2, standard: "03:00 - 03:45", eid: "04:00 - 05:00" },
+  { id: 3, standard: "03:45 - 04:30", eid: "05:00 - 06:00" },
+  { id: 4, standard: "04:30 - 05:15", eid: "06:00 - 07:00" },
+  { id: 5, standard: "05:15 - 06:00", eid: "07:00 - 08:00" },
+  { id: 6, standard: "06:00 - 06:45", eid: "08:00 - 09:00" },
 ] as const
