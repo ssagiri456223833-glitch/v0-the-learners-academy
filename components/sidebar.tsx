@@ -72,51 +72,63 @@ export function Sidebar() {
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed left-0 top-0 z-40 h-screen w-64 bg-sidebar transition-transform duration-300 ease-in-out lg:translate-x-0",
+          "fixed left-0 top-0 z-40 h-screen w-64 glass-effect transition-transform duration-300 ease-in-out lg:translate-x-0 border-r border-sidebar-border bg-sidebar/95 backdrop-blur-xl shadow-2xl shadow-sidebar/20",
           mobileOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
         <div className="flex h-full flex-col">
           {/* Logo */}
-          <div className="flex items-center gap-3 px-6 py-6 border-b border-sidebar-border">
-            <Image
-              src="/logo.jpeg"
-              alt="The Learners Academy"
-              width={48}
-              height={48}
-              className="rounded-lg"
-            />
+          <div className="flex items-center gap-3 px-6 py-8 border-b border-sidebar-border/30">
+            <div className="relative group">
+              <div className="absolute inset-0 bg-primary/20 rounded-xl blur-lg group-hover:bg-primary/40 transition-all duration-500" />
+              <Image
+                src="/logo.jpeg"
+                alt="The Learners Academy"
+                width={48}
+                height={48}
+                className="rounded-xl relative z-10 shadow-lg shadow-black/20"
+              />
+            </div>
             <div className="flex flex-col">
-              <span className="font-heading text-lg font-bold text-sidebar-foreground leading-tight">
+              <span className="font-heading text-lg font-black text-sidebar-foreground leading-tight tracking-tighter uppercase italic">
                 The Learners
               </span>
-              <span className="font-heading text-sm font-semibold text-sidebar-foreground/80">
+              <span className="font-heading text-xs font-bold text-sidebar-foreground/60 uppercase tracking-widest pt-0.5">
                 Academy
               </span>
             </div>
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 px-4 py-6">
-            <ul className="space-y-2">
+          <nav className="flex-1 px-4 py-8 overflow-y-auto custom-scrollbar">
+            <ul className="space-y-4">
               {navItems.map((item) => {
                 const isActive = pathname === item.href || pathname.startsWith(item.href + "/")
                 return (
-                  <li key={item.href}>
+                  <li key={item.href} className="relative">
                     <Link
                       href={item.href}
                       onClick={() => setMobileOpen(false)}
                       className={cn(
-                        "flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all duration-200",
+                        "flex items-center gap-4 px-5 py-3.5 rounded-2xl font-bold transition-all duration-300 group overflow-hidden relative",
                         isActive
-                          ? "bg-sidebar-accent text-sidebar-accent-foreground shadow-md"
-                          : "text-sidebar-foreground/70 hover:bg-sidebar-accent/50 hover:text-sidebar-foreground"
+                          ? "bg-sidebar-accent text-sidebar-accent-foreground shadow-lg shadow-primary/20 scale-[1.02]"
+                          : "text-sidebar-foreground/60 hover:bg-sidebar-accent/10 hover:text-sidebar-foreground hover:scale-[1.02]"
                       )}
                     >
-                      <item.icon className="h-5 w-5" />
-                      <span>{item.title}</span>
+                      {/* Active Indicator Bar */}
                       {isActive && (
-                        <div className="ml-auto h-2 w-2 rounded-full bg-white" />
+                        <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-primary rounded-r-full shadow-lg shadow-primary" />
+                      )}
+                      
+                      <item.icon className={cn(
+                        "h-5 w-5 transition-transform duration-300 group-hover:scale-110",
+                        isActive ? "text-sidebar-accent-foreground" : "text-sidebar-foreground/40 group-hover:text-primary"
+                      )} />
+                      <span className="text-sm tracking-tight">{item.title}</span>
+                      
+                      {isActive && (
+                        <div className="ml-auto w-1.5 h-1.5 rounded-full bg-sidebar-accent-foreground/50 animate-pulse" />
                       )}
                     </Link>
                   </li>

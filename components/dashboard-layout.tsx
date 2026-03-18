@@ -15,7 +15,7 @@ export function DashboardLayout({ children, title, subtitle }: DashboardLayoutPr
       <Sidebar />
       <div className="lg:pl-64">
         <Navbar title={title} subtitle={subtitle} />
-        <main className="p-6 lg:p-8">
+        <main className="p-6 lg:p-8 animate-in fade-in slide-in-from-bottom-2 duration-700">
           {children}
         </main>
       </div>

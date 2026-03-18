@@ -12,42 +12,42 @@ import {
 const recentTests = [
   {
     id: 1,
-    name: "Mathematics - Chapter 5",
-    subject: "Mathematics",
+    name: "Level One - Grammar Quiz 1",
+    subject: "Level One",
     questions: 20,
-    duration: "30 mins",
+    duration: "45 mins",
     status: "active",
-    submissions: 45,
+    submissions: 124,
     created: "2 hours ago",
   },
   {
     id: 2,
-    name: "Physics Fundamentals",
-    subject: "Physics",
+    name: "IELTS Listening Practice - Set A",
+    subject: "IELTS Course",
     questions: 15,
-    duration: "25 mins",
+    duration: "30 mins",
     status: "draft",
     submissions: 0,
     created: "1 day ago",
   },
   {
     id: 3,
-    name: "English Grammar Test",
-    subject: "English",
-    questions: 25,
-    duration: "40 mins",
+    name: "Foundation Three - Speaking Test",
+    subject: "Foundation Three",
+    questions: 10,
+    duration: "15 mins",
     status: "completed",
     submissions: 52,
     created: "3 days ago",
   },
   {
     id: 4,
-    name: "Chemistry - Periodic Table",
-    subject: "Chemistry",
+    name: "Pre-Foundation - Object Naming",
+    subject: "Pre-Foundation",
     questions: 30,
-    duration: "45 mins",
+    duration: "60 mins",
     status: "active",
-    submissions: 28,
+    submissions: 89,
     created: "5 days ago",
   },
 ]
@@ -60,7 +60,7 @@ const statusStyles = {
 
 export function RecentTests() {
   return (
-    <Card className="border-0 shadow-sm">
+    <Card className="premium-card border-0 shadow-sm overflow-hidden">
       <CardHeader className="flex flex-row items-center justify-between pb-4">
         <CardTitle className="font-heading text-lg font-semibold">
           Recent Tests

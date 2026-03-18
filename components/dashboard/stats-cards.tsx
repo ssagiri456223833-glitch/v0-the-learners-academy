@@ -42,7 +42,7 @@ export function StatsCards() {
       {stats.map((stat) => (
         <Card 
           key={stat.title} 
-          className="hover:shadow-lg transition-shadow duration-300 border-0 shadow-sm"
+          className="premium-card border-0 shadow-sm"
         >
           <CardContent className="p-6">
             <div className="flex items-start justify-between">

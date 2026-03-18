@@ -125,10 +125,52 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   * {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in oklch, var(--primary), transparent 70%);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+  }
+
+  /* Global Animations & Selection */
+  ::selection {
+    background: color-mix(in oklch, var(--primary), transparent 80%);
+    color: var(--primary);
+  }
+}
+
+@layer components {
+  /* Premium Card Hover Effect */
+  .premium-card {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 cursor-pointer;
+  }
+
+  /* Glassmorphism Utilities */
+  .glass-effect {
+    @apply bg-card/80 backdrop-blur-md border border-white/20;
+  }
+
+  /* Animated Page Entrance */
+  .page-entrance {
+    @apply animate-in fade-in slide-in-from-bottom-2 duration-700;
   }
 }

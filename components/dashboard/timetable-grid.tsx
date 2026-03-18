@@ -84,7 +84,7 @@ export function TimetableGrid() {
   const [isEidMode, setIsEidMode] = useState(false)
 
   return (
-    <Card className="border-0 shadow-sm overflow-hidden">
+    <Card className="premium-card border-0 shadow-sm overflow-hidden">
       <CardHeader className="bg-primary/5 border-b flex flex-col md:flex-row md:items-center justify-between gap-4 py-6">
         <div className="space-y-1">
           <CardTitle className="font-heading text-2xl font-bold flex items-center gap-2">
