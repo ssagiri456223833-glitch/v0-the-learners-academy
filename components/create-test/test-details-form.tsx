@@ -15,7 +15,7 @@ import { ACADEMY_LEVELS, SKILLS, TEACHERS } from "@/lib/constants"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Badge } from "@/components/ui/badge"
 import { Switch } from "@/components/ui/switch"
-import { ShieldCheck, UserCheck, MapPin } from "lucide-react"
+import { ShieldCheck, UserCheck, MapPin, Clock } from "lucide-react"
 
 interface SkillConfig {
   skillId: string
@@ -250,18 +250,45 @@ export function TestDetailsForm({ details, onChange }: TestDetailsFormProps) {
           </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="duration">Duration (minutes)</Label>
-            <Input
-              id="duration"
-              type="number"
-              min={5}
-              max={180}
-              value={details.duration}
-              onChange={(e) => onChange({ ...details, duration: parseInt(e.target.value) || 30 })}
-              className="focus-visible:ring-primary"
-            />
+        <div className="space-y-4 pt-4 border-t">
+          <div className="flex items-center gap-2 mb-2">
+            <Clock className="h-5 w-5 text-primary" />
+            <Label className="text-lg font-bold">Scheduling & Timing</Label>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 rounded-xl bg-secondary/10 border border-secondary/20">
+            <div className="space-y-2">
+              <Label htmlFor="duration">Test Duration (Minutes)</Label>
+              <Input
+                id="duration"
+                type="number"
+                min={5}
+                max={180}
+                value={details.duration}
+                onChange={(e) => onChange({ ...details, duration: parseInt(e.target.value) || 30 })}
+                className="focus-visible:ring-primary h-10 font-bold"
+              />
+              <p className="text-[10px] text-muted-foreground">Standard duration for all students.</p>
+            </div>
+            
+            <div className="space-y-2">
+              <Label>Test Window</Label>
+              <div className="flex items-center gap-2">
+                <Input type="date" className="h-10 text-xs" />
+                <span className="text-muted-foreground">to</span>
+                <Input type="date" className="h-10 text-xs" />
+              </div>
+              <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-tight">Access window for candidate login</p>
+            </div>
+
+            <div className="col-span-full pt-2 border-t border-secondary/20">
+               <div className="flex items-center justify-between">
+                  <div className="space-y-0.5">
+                    <Label className="font-semibold text-sm">Individual Time Overrides</Label>
+                    <p className="text-xs text-muted-foreground italic">Allow extra time for specific students (e.g., SEN students)</p>
+                  </div>
+                  <Switch />
+               </div>
+            </div>
           </div>
         </div>
         <div className="space-y-2">

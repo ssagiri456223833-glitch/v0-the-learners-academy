@@ -77,13 +77,29 @@ const mockTest = {
   ],
 }
 
-export default function TestPage() {
+import { useSearchParams } from "next/navigation"
+import { Suspense } from "react"
+
+function TestContent() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const studentName = searchParams.get("studentName") || "Student"
+  
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<Record<string, number>>({})
   const [timeLeft, setTimeLeft] = useState(mockTest.duration * 60) // in seconds
   const [showSubmitDialog, setShowSubmitDialog] = useState(false)
   const [markedForReview, setMarkedForReview] = useState<Set<string>>(new Set())
+
+  // Prevent accidental back/refresh
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault()
+      e.returnValue = ""
+    }
+    window.addEventListener("beforeunload", handleBeforeUnload)
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload)
+  }, [])
 
   // Timer
   useEffect(() => {
@@ -244,5 +260,20 @@ export default function TestPage() {
         </AlertDialogContent>
       </AlertDialog>
     </div>
+  )
+}
+
+export default function TestPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="text-center space-y-4">
+          <div className="h-12 w-12 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto" />
+          <p className="text-muted-foreground font-heading animate-pulse">Loading assessment environment...</p>
+        </div>
+      </div>
+    }>
+      <TestContent />
+    </Suspense>
   )
 }
