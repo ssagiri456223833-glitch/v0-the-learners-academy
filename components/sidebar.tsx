@@ -13,42 +13,66 @@ import {
   Menu,
   X,
   BookOpen,
-  GraduationCap
+  GraduationCap,
+  CalendarDays,
+  UserCircle,
+  Shapes,
+  History
 } from "lucide-react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 
-const navItems = [
+const adminItems = [
   {
-    title: "Admin Portal",
-    href: "/admin",
+    title: "Timetable",
+    href: "/admin/timetable",
+    icon: CalendarDays,
+  },
+  {
+    title: "Classes",
+    href: "/admin/classes",
+    icon: Shapes,
+  },
+  {
+    title: "Admin Profile",
+    href: "/admin/profile",
+    icon: UserCircle,
+  },
+]
+
+const teacherItems = [
+  {
+    title: "Dashboard",
+    href: "/teacher",
     icon: LayoutDashboard,
   },
   {
-    title: "Teacher Portal",
-    href: "/teacher",
-    icon: BookOpen,
-  },
-  {
     title: "Question Bank",
-    href: "/question-bank",
+    href: "/teacher/question-bank",
     icon: Library,
   },
   {
     title: "Create Test",
-    href: "/create-test",
+    href: "/teacher/create-test",
     icon: FilePlus,
   },
   {
-    title: "Student Portal",
-    href: "/student",
-    icon: GraduationCap,
+    title: "Class Results",
+    href: "/teacher/results",
+    icon: History,
+  },
+  {
+    title: "My Profile",
+    href: "/teacher/profile",
+    icon: UserCircle,
   },
 ]
 
 export function Sidebar() {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
+
+  const navItems = pathname.startsWith('/admin') ? adminItems : teacherItems
 
   return (
     <>
@@ -104,8 +128,15 @@ export function Sidebar() {
           {/* Navigation */}
           <nav className="flex-1 px-4 py-8 overflow-y-auto custom-scrollbar">
             <ul className="space-y-4">
+              {/* Branding Context Item */}
+              <li className="px-5 pb-2">
+                 <span className="text-[10px] font-black uppercase tracking-[0.2em] text-sidebar-foreground/40 font-heading">
+                   {pathname.startsWith('/admin') ? "Institutional Admin" : "Assessor Portal"}
+                 </span>
+              </li>
+
               {navItems.map((item) => {
-                const isActive = pathname === item.href || pathname.startsWith(item.href + "/")
+                const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href + "/"))
                 return (
                   <li key={item.href} className="relative">
                     <Link
