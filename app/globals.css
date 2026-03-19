@@ -10,28 +10,28 @@
   --card-foreground: #0F172A;
   --popover: #FFFFFF;
   --popover-foreground: #0F172A;
-  --primary: #1D4ED8; /* Royal Blue from logo */
+  --primary: #0284C7; /* Unified Azure Hero Color */
   --primary-foreground: #FFFFFF;
-  --secondary: #EFF6FF;
-  --secondary-foreground: #1E40AF;
+  --secondary: #F0F9FF; /* Pale Azure */
+  --secondary-foreground: #0369A1;
   --muted: #F1F5F9;
   --muted-foreground: #64748B;
-  --accent: #0EA5E9; /* Azure Cyan from logo */
+  --accent: #0284C7;
   --accent-foreground: #FFFFFF;
   --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
   --border: #E2E8F0;
   --input: #E2E8F0;
-  --ring: #1D4ED8;
+  --ring: #0284C7;
   --radius: 0.75rem;
-  --sidebar: #0F172A; /* Deep Navy from logo */
+  --sidebar: #0F172A; /* Deep Slate Base */
   --sidebar-foreground: #FFFFFF;
-  --sidebar-primary: #1D4ED8;
+  --sidebar-primary: #0284C7;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #1E3A8A;
+  --sidebar-accent: #0C4A6E; /* Deep Azure Accent */
   --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: #1E3A8A;
-  --sidebar-ring: #0EA5E9;
+  --sidebar-border: #1E293B;
+  --sidebar-ring: #0284C7;
   --success: #10B981;
   --success-foreground: #FFFFFF;
   --warning: #F59E0B;

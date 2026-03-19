@@ -59,10 +59,10 @@ export default function TeacherDashboard() {
             </Card>
           </Link>
           <div className="group cursor-default">
-            <Card className="border-0 shadow-sm bg-orange-500/5 transition-colors border-l-4 border-orange-500 h-full opacity-50">
+            <Card className="border-0 shadow-sm bg-slate-500/5 transition-colors border-l-4 border-slate-300 h-full opacity-60">
               <CardContent className="p-6 flex flex-col items-center text-center gap-3">
-                <CalendarCheck className="h-8 w-8 text-orange-500" />
-                <h3 className="font-heading font-bold uppercase tracking-widest text-xs">Term 2 Schedule</h3>
+                <CalendarCheck className="h-8 w-8 text-slate-400" />
+                <h3 className="font-heading font-bold uppercase tracking-widest text-xs text-slate-500">Term 2 Schedule</h3>
               </CardContent>
             </Card>
           </div>
