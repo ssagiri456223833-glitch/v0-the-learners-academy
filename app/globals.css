@@ -10,11 +10,11 @@
   --card-foreground: #0F172A;
   --popover: #FFFFFF;
   --popover-foreground: #0F172A;
-  --primary: #1d8ae2; /* Brand Color Specified by User */
+  --primary: #1d8ae2;
   --primary-foreground: #FFFFFF;
-  --secondary: #F0F9FF; /* Very Light Brand Blue */
-  --secondary-foreground: #1066B3;
-  --muted: #F1F5F9;
+  --secondary: #F1F5F9;
+  --secondary-foreground: #475569;
+  --muted: #F8FAFC;
   --muted-foreground: #64748B;
   --accent: #1d8ae2;
   --accent-foreground: #FFFFFF;
@@ -23,14 +23,14 @@
   --border: #E2E8F0;
   --input: #E2E8F0;
   --ring: #1d8ae2;
-  --radius: 0.75rem;
-  --sidebar: #051930; /* Deep Branded Sapphire */
-  --sidebar-foreground: #FFFFFF;
+  --radius: 0.5rem; /* 8px rounding per instruction */
+  --sidebar: #0F172A;
+  --sidebar-foreground: #F8FAFC;
   --sidebar-primary: #1d8ae2;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #1066B3; /* Deep Brand Blue Accent */
+  --sidebar-accent: #1E293B;
   --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: rgba(255,255,255,0.05);
+  --sidebar-border: #1E293B;
   --sidebar-ring: #1d8ae2;
   --success: #10B981;
   --success-foreground: #FFFFFF;
@@ -38,34 +38,10 @@
   --warning-foreground: #FFFFFF;
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-}
-
 @theme inline {
-  --font-sans: var(--font-inter), 'Inter', system-ui, sans-serif;
-  --font-heading: var(--font-outfit), 'Outfit', system-ui, sans-serif;
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --font-serif: var(--font-serif), 'Cormorant Garamond', serif;
+  --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
   --color-success: var(--success);
   --color-success-foreground: var(--success-foreground);
   --color-warning: var(--warning);
@@ -89,18 +65,11 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 4px);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 }
 
 @layer base {
@@ -111,39 +80,72 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary font-sans;
   }
 
-  /* Custom Scrollbar */
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+  /* Typography Hierarchy */
+  h1 {
+    @apply font-sans font-semibold text-[32px] leading-[1.5];
   }
-  ::-webkit-scrollbar-track {
-    background: transparent;
+  h2 {
+    @apply font-sans font-semibold text-[24px] leading-[1.5];
   }
-  ::-webkit-scrollbar-thumb {
-    background: color-mix(in oklch, var(--primary), transparent 85%);
-    border-radius: 10px;
+  h3 {
+    @apply font-sans font-medium text-[20px] leading-[1.6];
   }
-  ::-webkit-scrollbar-thumb:hover {
-    background: color-mix(in oklch, var(--primary), transparent 60%);
+  p {
+    @apply font-sans font-normal text-[16px] leading-[1.7];
+  }
+
+  /* Section and Classification Titles (Serif) */
+  .page-title, .classification-label {
+    @apply font-serif;
   }
 }
 
 @layer components {
-  /* Premium Institutional Glassmorphism */
-  .glass-effect {
-    @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
+  /* Controlled Institutional Container */
+  .institutional-container {
+    @apply max-w-[1100px] mx-auto;
   }
 
-  /* Animated Entrance */
-  .page-entrance {
-    @apply animate-in fade-in slide-in-from-bottom-2 duration-1000 ease-out;
+  .question-container {
+    @apply max-w-[800px] mx-auto border border-border bg-white p-8 rounded-lg;
   }
 
-  /* Card Consistency */
-  .premium-card {
-    @apply transition-all duration-500 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-primary/10 border-0 bg-white/80 backdrop-blur-sm;
+  /* Answer Options */
+  .answer-option {
+    @apply w-full text-left p-4 border border-border bg-white rounded-md transition-all duration-200 hover:bg-slate-50 relative overflow-hidden text-[16px] font-normal leading-[1.7];
+  }
+
+  .answer-option-selected {
+    @apply border-primary bg-primary text-white hover:bg-primary;
+  }
+
+  .answer-option-locked {
+    @apply opacity-60 cursor-not-allowed hover:bg-white;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply bg-primary text-white font-medium py-3 px-6 rounded-md hover:opacity-90 transition-all duration-200 active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply border border-border bg-white text-foreground font-medium py-3 px-6 rounded-md hover:bg-slate-50 transition-all duration-200 active:scale-[0.98];
+  }
+
+  /* Labels and Micro */
+  .label-text {
+    @apply text-[14px] font-normal text-muted-foreground leading-[1.7];
+  }
+
+  .micro-text {
+    @apply text-[12px] md:text-[13px] font-medium uppercase tracking-wide leading-[1.7];
+  }
+
+  /* Sidebar secondary feel */
+  .sidebar-secondary {
+    @apply opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all;
   }
 }

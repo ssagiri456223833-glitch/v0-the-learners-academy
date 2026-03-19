@@ -25,26 +25,26 @@ export function QuestionNavigation({
   onNavigate,
 }: QuestionNavigationProps) {
   return (
-    <Card className="border-0 shadow-sm sticky top-24">
+    <Card className="border border-border bg-white shadow-sm rounded-lg sticky top-24 sidebar-secondary">
       <CardHeader className="pb-4">
-        <CardTitle className="font-heading text-lg font-semibold">
-          Questions
+        <CardTitle className="text-[16px] font-semibold text-foreground uppercase tracking-wide">
+          Question Grid
         </CardTitle>
       </CardHeader>
       <CardContent>
         {/* Legend */}
-        <div className="flex flex-wrap gap-4 mb-4 text-xs">
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-[#10B981]" />
+        <div className="flex flex-col gap-2 mb-6">
+          <div className="flex items-center gap-2 text-[12px] font-medium transition-opacity">
+            <div className="w-3 h-3 rounded-sm bg-success" />
             <span className="text-muted-foreground">Answered</span>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-muted border border-border" />
-            <span className="text-muted-foreground">Unanswered</span>
+          <div className="flex items-center gap-2 text-[12px] font-medium transition-opacity">
+            <div className="w-3 h-3 rounded-sm bg-warning" />
+            <span className="text-muted-foreground">Marked for Review</span>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-[#F59E0B]" />
-            <span className="text-muted-foreground">Review</span>
+          <div className="flex items-center gap-2 text-[12px] font-medium transition-opacity">
+            <div className="w-3 h-3 rounded-sm bg-slate-100 border border-border" />
+            <span className="text-muted-foreground">Unanswered</span>
           </div>
         </div>
 
@@ -60,41 +60,20 @@ export function QuestionNavigation({
                 key={question.id}
                 onClick={() => onNavigate(index)}
                 className={cn(
-                  "w-full aspect-square rounded-lg flex items-center justify-center text-sm font-semibold transition-all",
-                  isCurrent && "ring-2 ring-primary ring-offset-2",
-                  isReview
-                    ? "bg-[#F59E0B] text-white"
+                  "w-full aspect-square rounded-md flex items-center justify-center text-[13px] font-semibold transition-all border",
+                  isCurrent 
+                    ? "border-primary bg-primary text-white shadow-sm ring-1 ring-primary ring-offset-1" 
+                    : isReview
+                    ? "bg-warning text-white border-warning"
                     : isAnswered
-                    ? "bg-[#10B981] text-white"
-                    : "bg-muted text-muted-foreground hover:bg-muted/80"
+                    ? "bg-success text-white border-success"
+                    : "bg-slate-50 text-muted-foreground border-border hover:bg-white hover:text-foreground"
                 )}
               >
                 {index + 1}
               </button>
             )
           })}
-        </div>
-
-        {/* Summary */}
-        <div className="mt-6 pt-4 border-t border-border space-y-2">
-          <div className="flex items-center justify-between text-sm">
-            <span className="text-muted-foreground">Answered</span>
-            <span className="font-semibold text-[#10B981]">
-              {Object.keys(answers).length}
-            </span>
-          </div>
-          <div className="flex items-center justify-between text-sm">
-            <span className="text-muted-foreground">Unanswered</span>
-            <span className="font-semibold text-foreground">
-              {questions.length - Object.keys(answers).length}
-            </span>
-          </div>
-          <div className="flex items-center justify-between text-sm">
-            <span className="text-muted-foreground">Marked for Review</span>
-            <span className="font-semibold text-[#F59E0B]">
-              {markedForReview.size}
-            </span>
-          </div>
         </div>
       </CardContent>
     </Card>

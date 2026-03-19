@@ -20,8 +20,8 @@ import {
 } from "@/components/ui/alert-dialog"
 
 const mockTest = {
-  title: "Level One - Trimester Assessment 1",
-  subject: "Level One",
+  title: "English Proficiency Protocol 101",
+  subject: "Institutional Assessment",
   duration: 45, // minutes
   questions: [
     {
@@ -135,7 +135,6 @@ function TestContent() {
   }
 
   const handleSubmit = useCallback(() => {
-    // Calculate score and navigate to results
     const correctAnswers: Record<string, number> = {
       "1": 0, "2": 2, "3": 1, "4": 2, "5": 0,
       "6": 1, "7": 0, "8": 1, "9": 1, "10": 2,
@@ -159,20 +158,20 @@ function TestContent() {
   const isLastQuestion = currentQuestion === mockTest.questions.length - 1
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background font-sans selection:bg-primary/10">
       {/* Test Header */}
       <TestHeader 
         title={mockTest.title}
         timeLeft={timeLeft}
         onSubmit={() => setShowSubmitDialog(true)}
         studentId={studentId || "L-1025"}
-        level={searchParams.get("level") || "General"}
+        level={searchParams.get("level") || "LEVEL B2"}
       />
 
-      <div className="max-w-6xl mx-auto px-4 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="institutional-container px-4 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
           {/* Main Content */}
-          <div className="lg:col-span-3 space-y-6">
+          <div className="lg:col-span-3 space-y-12">
             {/* Progress */}
             <TestProgress 
               current={currentQuestion + 1}
@@ -180,45 +179,49 @@ function TestContent() {
               answered={answeredCount}
             />
 
-            {/* Question Card */}
-            <QuestionCard
-              questionNumber={currentQuestion + 1}
-              question={question}
-              selectedAnswer={answers[question.id]}
-              isMarkedForReview={markedForReview.has(question.id)}
-              onSelectAnswer={(index) => handleSelectAnswer(question.id, index)}
-              onToggleReview={() => handleToggleReview(question.id)}
-            />
+            {/* Question Card Area */}
+            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-300">
+              <QuestionCard
+                questionNumber={currentQuestion + 1}
+                question={question}
+                selectedAnswer={answers[question.id]}
+                isMarkedForReview={markedForReview.has(question.id)}
+                onSelectAnswer={(index) => handleSelectAnswer(question.id, index)}
+                onToggleReview={() => handleToggleReview(question.id)}
+              />
 
-            {/* Navigation Buttons */}
-            <div className="flex items-center justify-between">
-              <Button
-                variant="outline"
-                onClick={() => setCurrentQuestion((prev) => Math.max(0, prev - 1))}
-                disabled={currentQuestion === 0}
-                className="gap-2"
-              >
-                <ChevronLeft className="h-4 w-4" />
-                Previous
-              </Button>
+              {/* Navigation Buttons Row */}
+              <div className="flex items-center justify-between border-t border-border pt-8">
+                <Button
+                  variant="outline"
+                  onClick={() => setCurrentQuestion((prev) => Math.max(0, prev - 1))}
+                  disabled={currentQuestion === 0}
+                  className="btn-secondary gap-2"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                  Previous
+                </Button>
 
-              {isLastQuestion ? (
-                <Button
-                  onClick={() => setShowSubmitDialog(true)}
-                  className="gap-2 bg-primary hover:bg-primary/90"
-                >
-                  <Send className="h-4 w-4" />
-                  Submit Test
-                </Button>
-              ) : (
-                <Button
-                  onClick={() => setCurrentQuestion((prev) => Math.min(mockTest.questions.length - 1, prev + 1))}
-                  className="gap-2 bg-primary hover:bg-primary/90"
-                >
-                  Next
-                  <ChevronRight className="h-4 w-4" />
-                </Button>
-              )}
+                <div className="flex items-center gap-4">
+                  {isLastQuestion ? (
+                    <Button
+                      onClick={() => setShowSubmitDialog(true)}
+                      className="btn-primary gap-2"
+                    >
+                      <Send className="h-4 w-4" />
+                      Submit Assessment
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={() => setCurrentQuestion((prev) => Math.min(mockTest.questions.length - 1, prev + 1))}
+                      className="btn-primary gap-2"
+                    >
+                      Continue
+                      <ChevronRight className="h-4 w-4" />
+                    </Button>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
 
@@ -237,26 +240,25 @@ function TestContent() {
 
       {/* Submit Confirmation Dialog */}
       <AlertDialog open={showSubmitDialog} onOpenChange={setShowSubmitDialog}>
-        <AlertDialogContent>
+        <AlertDialogContent className="max-w-md rounded-lg">
           <AlertDialogHeader>
-            <AlertDialogTitle className="font-heading">Submit Test?</AlertDialogTitle>
-            <AlertDialogDescription>
-              You have answered {answeredCount} out of {mockTest.questions.length} questions.
+            <AlertDialogTitle className="page-title text-[24px]">Complete Assessment?</AlertDialogTitle>
+            <AlertDialogDescription className="text-[16px] leading-[1.6]">
+              You have recorded {answeredCount} responses for {mockTest.questions.length} questions.
               {answeredCount < mockTest.questions.length && (
-                <span className="block mt-2 text-destructive">
-                  {mockTest.questions.length - answeredCount} questions are still unanswered.
+                <span className="block mt-4 text-destructive font-semibold">
+                  Warning: {mockTest.questions.length - answeredCount} questions remain unanswered.
                 </span>
               )}
-              Are you sure you want to submit?
             </AlertDialogDescription>
           </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Continue Test</AlertDialogCancel>
+          <AlertDialogFooter className="mt-6 border-t border-border pt-4">
+            <AlertDialogCancel className="btn-secondary">Return to Test</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleSubmit}
-              className="bg-primary hover:bg-primary/90"
+              className="btn-primary"
             >
-              Submit Test
+              Verify & Submit
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -269,9 +271,9 @@ export default function TestPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="text-center space-y-4">
-          <div className="h-12 w-12 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto" />
-          <p className="text-muted-foreground font-heading animate-pulse">Loading assessment environment...</p>
+        <div className="text-center space-y-6">
+          <div className="h-10 w-10 border-[3px] border-primary border-t-transparent rounded-full animate-spin mx-auto" />
+          <p className="micro-text text-muted-foreground animate-pulse tracking-widest">Constructing Secure Environment...</p>
         </div>
       </div>
     }>

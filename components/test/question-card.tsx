@@ -31,14 +31,14 @@ export function QuestionCard({
   onToggleReview,
 }: QuestionCardProps) {
   return (
-    <Card className="border-0 shadow-sm">
-      <CardHeader className="pb-4">
+    <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden">
+      <CardHeader className="pb-4 bg-slate-50 border-b border-border">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
-            <span className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold">
+            <span className="flex items-center justify-center w-8 h-8 rounded-md bg-foreground text-background text-[14px] font-semibold">
               {questionNumber}
             </span>
-            <span className="text-sm text-muted-foreground">
+            <span className="text-[14px] text-muted-foreground font-medium uppercase tracking-wide">
               Question {questionNumber}
             </span>
           </div>
@@ -47,22 +47,22 @@ export function QuestionCard({
             size="sm"
             onClick={onToggleReview}
             className={cn(
-              "gap-2",
+              "gap-2 text-[13px] font-medium transition-colors",
               isMarkedForReview
-                ? "text-[#F59E0B] hover:text-[#F59E0B]/80"
-                : "text-muted-foreground hover:text-foreground"
+                ? "text-warning hover:text-warning/80"
+                : "text-muted-foreground hover:text-foreground hover:bg-white"
             )}
           >
             <Flag className={cn("h-4 w-4", isMarkedForReview && "fill-current")} />
-            {isMarkedForReview ? "Marked" : "Mark for Review"}
+            {isMarkedForReview ? "Marked for Review" : "Mark for Review"}
           </Button>
         </div>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="p-8 space-y-8">
         {/* Question Text */}
-        <p className="text-lg font-medium text-foreground leading-relaxed">
+        <h3 className="text-[20px] font-medium text-foreground leading-[1.6]">
           {question.text}
-        </p>
+        </h3>
 
         {/* Options */}
         <RadioGroup
@@ -70,28 +70,36 @@ export function QuestionCard({
           onValueChange={(value) => onSelectAnswer(parseInt(value))}
           className="space-y-3"
         >
-          {question.options.map((option, index) => (
-            <Label
-              key={index}
-              htmlFor={`option-${index}`}
-              className={cn(
-                "flex items-center gap-4 p-4 rounded-lg border-2 cursor-pointer transition-all",
-                selectedAnswer === index
-                  ? "border-primary bg-primary/5"
-                  : "border-border hover:border-primary/50 hover:bg-muted/50"
-              )}
-            >
-              <RadioGroupItem
-                value={index.toString()}
-                id={`option-${index}`}
-                className="border-primary text-primary"
-              />
-              <span className="flex items-center justify-center w-8 h-8 rounded-full bg-muted text-sm font-semibold">
-                {String.fromCharCode(65 + index)}
-              </span>
-              <span className="flex-1 text-foreground">{option}</span>
-            </Label>
-          ))}
+          {question.options.map((option, index) => {
+            const isSelected = selectedAnswer === index
+            return (
+              <Label
+                key={index}
+                htmlFor={`option-${index}`}
+                className={cn(
+                  "answer-option",
+                  isSelected && "answer-option-selected"
+                )}
+              >
+                <div className="flex items-start gap-4">
+                  <span className={cn(
+                    "flex items-center justify-center min-w-[32px] h-8 rounded-md border text-[14px] font-semibold transition-colors",
+                    isSelected 
+                      ? "bg-white text-primary border-white" 
+                      : "bg-slate-50 text-muted-foreground border-border group-hover:bg-white"
+                  )}>
+                    {String.fromCharCode(65 + index)}
+                  </span>
+                  <span className="flex-1 pt-1">{option}</span>
+                </div>
+                <RadioGroupItem
+                  value={index.toString()}
+                  id={`option-${index}`}
+                  className="sr-only" /* Hide radio item but keep functionally for a11y */
+                />
+              </Label>
+            )
+          })}
         </RadioGroup>
       </CardContent>
     </Card>

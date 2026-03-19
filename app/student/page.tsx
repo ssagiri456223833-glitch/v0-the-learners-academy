@@ -14,9 +14,8 @@ import {
   SelectValue 
 } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
-import { GraduationCap, BookOpen, Clock, User, Play, Hash, Calendar } from "lucide-react"
+import { GraduationCap, BookOpen, Clock, Play, Hash } from "lucide-react"
 import Image from "next/image"
-import Link from "next/link"
 import { ACADEMY_LEVELS, TIMETABLE_SLOTS } from "@/lib/constants"
 
 export default function StudentPortal() {
@@ -34,8 +33,6 @@ export default function StudentPortal() {
     const minutes = now.getMinutes()
     const currentTime = hours * 60 + minutes
 
-    // Simple time mapping for 6 slots
-    // 02:15 = 135 mins past noon (using 14:15)
     const slotTimes = [
       { id: "1", start: 14 * 60 + 15, end: 15 * 60 },
       { id: "2", start: 15 * 60, end: 15 * 60 + 45 },
@@ -52,13 +49,12 @@ export default function StudentPortal() {
   const handleSearchTest = () => {
     if (studentId && level && slot) {
       setIsSearching(true)
-      // Simulate API fetch from the institutional term data
       setTimeout(() => {
         setTestFound({
-          title: `${level} - Mid-Term Assessment`,
+          title: `${level} - Mid-Term Protocol`,
           duration: 45,
           totalQuestions: 10,
-          subject: "Grammar & Vocabulary Concentration"
+          subject: "Grammar & Vocabulary Focus"
         })
         setIsSearching(false)
       }, 1500)
@@ -70,68 +66,69 @@ export default function StudentPortal() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/10 flex items-center justify-center p-4">
-      <div className="max-w-md w-full space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-        {/* Branding */}
-        <div className="flex flex-col items-center text-center">
-          <div className="relative w-24 h-24 mb-4">
-            <div className="absolute inset-0 bg-primary/20 rounded-3xl blur-xl animate-pulse" />
+    <div className="min-h-screen bg-background flex items-center justify-center p-6 selection:bg-primary/10">
+      <div className="max-w-md w-full space-y-12 animate-in fade-in slide-in-from-bottom-2 duration-300">
+        {/* Branding Header Area */}
+        <div className="flex flex-col items-center text-center space-y-4">
+          <div className="p-1 rounded-lg bg-white shadow-sm border border-border transition-all duration-300">
             <Image
               src="/logo.jpeg"
-              alt="The Learners Academy"
-              width={96}
-              height={96}
-              className="rounded-2xl relative z-10 shadow-2xl"
+              alt="Logo"
+              width={70}
+              height={70}
+              className="rounded-md"
             />
           </div>
-          <h1 className="font-heading text-3xl font-bold text-foreground">
-            Student Access
-          </h1>
-          <p className="text-muted-foreground mt-2">
-            The Learners Academy English Specialized Program
-          </p>
+          <div className="space-y-2">
+            <h1 className="page-title text-[38px] font-medium text-foreground tracking-tight leading-none">
+              Student <span className="text-primary italic">Portal</span>
+            </h1>
+            <p className="micro-text text-muted-foreground tracking-widest opacity-60">
+              Institutional Assessment Access
+            </p>
+          </div>
         </div>
 
-        <Card className="border-0 shadow-2xl bg-card/80 backdrop-blur-sm overflow-hidden border-t-4 border-primary">
-          <CardHeader className="text-center pb-2">
-            <CardTitle className="text-xl font-bold">
-              {testFound ? "Assessment Ready" : "Login to Your Session"}
+        <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden border-t-2 border-primary">
+          <CardHeader className="text-center pb-6 border-b border-border bg-slate-50/50">
+            <CardTitle className="text-[18px] font-semibold text-foreground italic">
+              {testFound ? "Assessment Discovery" : "Credential Verification"}
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-[13px] font-medium text-muted-foreground uppercase tracking-widest">
               {testFound 
-                ? "Please verify the assessment details below."
-                : "Enter your Institutional Credentials to access the test"
+                ? "Verify session details"
+                : "Term-based Test Retrieval"
               }
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6 pt-4">
+          <CardContent className="space-y-6 pt-8">
             {!testFound ? (
-              <>
+              <div className="space-y-8">
                 {/* Student ID */}
                 <div className="space-y-2">
-                  <Label htmlFor="id" className="flex items-center gap-2">
-                    <Hash className="h-4 w-4 text-primary" />
-                    Student Registration ID
+                  <Label htmlFor="id" className="flex items-center gap-2 micro-text text-muted-foreground font-bold">
+                    <Hash className="h-3 w-3 text-primary opacity-70" />
+                    Identification Code
                   </Label>
                   <Input
                     id="id"
                     placeholder="e.g., L-1025"
                     value={studentId}
                     onChange={(e) => setStudentId(e.target.value.toUpperCase())}
-                    className="h-12 focus-visible:ring-primary text-lg font-mono tracking-widest"
+                    className="h-12 border-border focus-visible:ring-primary text-[15px] font-medium tracking-wide bg-slate-50/10"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   {/* Level Selection */}
                   <div className="space-y-2">
-                    <Label htmlFor="level" className="flex items-center gap-2">
-                      <BookOpen className="h-4 w-4 text-primary" />
-                      Current Level
+                    <Label htmlFor="level" className="flex items-center gap-2 micro-text text-muted-foreground font-bold">
+                      <BookOpen className="h-3 w-3 text-primary opacity-70" />
+                      Academic Level
                     </Label>
                     <Select onValueChange={setLevel} value={level}>
-                      <SelectTrigger id="level" className="h-12 focus:ring-primary">
-                        <SelectValue placeholder="Level" />
+                      <SelectTrigger id="level" className="h-12 border-border focus:ring-primary">
+                        <SelectValue placeholder="Select" />
                       </SelectTrigger>
                       <SelectContent>
                         {ACADEMY_LEVELS.map((l) => (
@@ -145,12 +142,12 @@ export default function StudentPortal() {
 
                   {/* Time Slot Selection */}
                   <div className="space-y-2">
-                    <Label htmlFor="slot" className="flex items-center gap-2">
-                      <Clock className="h-4 w-4 text-primary" />
-                      Time Slot
+                    <Label htmlFor="slot" className="flex items-center gap-2 micro-text text-muted-foreground font-bold">
+                      <Clock className="h-3 w-3 text-primary opacity-70" />
+                      Assigned Slot
                     </Label>
                     <Select onValueChange={setSlot} value={slot}>
-                      <SelectTrigger id="slot" className="h-12 focus:ring-primary">
+                      <SelectTrigger id="slot" className="h-12 border-border focus:ring-primary">
                         <SelectValue placeholder="Slot" />
                       </SelectTrigger>
                       <SelectContent>
@@ -165,56 +162,56 @@ export default function StudentPortal() {
                 </div>
 
                 <Button 
-                  className="w-full h-14 text-lg font-bold gap-3 shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform"
+                  className="btn-primary w-full h-12 text-[14px] uppercase tracking-wider font-bold gap-3"
                   disabled={!studentId || !level || !slot || isSearching}
                   onClick={handleSearchTest}
                 >
                   {isSearching ? (
                         <span className="flex items-center gap-2">
-                          <Clock className="h-5 w-5 animate-spin" />
+                          <Clock className="h-4 w-4 animate-spin" />
                           Locating Assessment...
                         </span>
                   ) : (
                     <>
-                      <GraduationCap className="h-6 w-6" />
-                      Access Test
+                      <GraduationCap className="h-5 w-5" />
+                      Locate Protocol
                     </>
                   )}
                 </Button>
-              </>
+              </div>
             ) : (
-              <div className="space-y-6 animate-in zoom-in-95 duration-300">
-                <div className="p-4 rounded-xl bg-primary/5 border border-primary/10 space-y-3">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h4 className="font-bold text-lg">{testFound.title}</h4>
-                      <p className="text-sm text-muted-foreground">{testFound.subject}</p>
+              <div className="space-y-8 animate-in zoom-in-95 duration-300">
+                <div className="p-6 rounded-md bg-slate-50 border border-border space-y-4">
+                  <div className="flex justify-between items-start border-b border-border pb-4">
+                    <div className="space-y-1">
+                      <h4 className="text-[18px] font-semibold text-foreground underline underline-offset-4 decoration-primary/30 decoration-2">{testFound.title}</h4>
+                      <p className="text-[13px] text-muted-foreground italic font-medium">{testFound.subject}</p>
                     </div>
-                    <Badge className="bg-primary">{testFound.duration} Mins</Badge>
+                    <Badge variant="outline" className="border-primary/40 text-primary text-[11px] font-bold h-7">{testFound.duration} Minutes</Badge>
                   </div>
-                  <div className="grid grid-cols-2 gap-4 pt-4 border-t border-primary/10">
-                    <div className="text-center">
-                      <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-tighter">Registration ID</p>
-                      <p className="font-bold">{studentId}</p>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="text-left">
+                      <p className="micro-text text-muted-foreground opacity-60">Identity</p>
+                      <p className="text-[14px] font-semibold">{studentId}</p>
                     </div>
-                    <div className="text-center">
-                      <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-tighter">Assigned Slot</p>
-                      <p className="font-bold">Slot {slot}</p>
+                    <div className="text-left">
+                      <p className="micro-text text-muted-foreground opacity-60">Protocol Slot</p>
+                      <p className="text-[14px] font-semibold">Slot {slot}</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="space-y-3">
                   <Button 
-                    className="w-full h-14 text-lg font-bold gap-3 shadow-lg shadow-primary/20 bg-green-600 hover:bg-green-700"
+                    className="btn-primary w-full h-14 text-[16px] uppercase tracking-widest font-bold gap-3"
                     onClick={confirmAndBegin}
                   >
-                    <Play className="h-6 w-6" />
-                    Begin Now
+                    <Play className="h-5 w-5 fill-current" />
+                    Begin Assessment
                   </Button>
                   <Button 
                     variant="ghost" 
-                    className="w-full h-10 text-muted-foreground"
+                    className="w-full text-muted-foreground micro-text h-10 hover:bg-slate-50"
                     onClick={() => setTestFound(null)}
                   >
                     Go Back
@@ -223,8 +220,8 @@ export default function StudentPortal() {
               </div>
             )}
             
-            <p className="text-xs text-center text-muted-foreground pt-2">
-              The Learners Academy Assessment Environment • Term-Based Access
+            <p className="micro-text text-center text-muted-foreground pt-4 border-t border-border opacity-50">
+               Institutional Portal Version 2.4 | Encrypted Access Enabled
             </p>
           </CardContent>
         </Card>

@@ -16,7 +16,6 @@ import {
 } from "@/components/ui/alert-dialog"
 import { LogOut, Clock, Send } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { Badge } from "@/components/ui/badge"
 
 interface TestHeaderProps {
   title: string
@@ -31,34 +30,35 @@ export function TestHeader({ title, timeLeft, onSubmit, studentId, level }: Test
   const minutes = Math.floor(timeLeft / 60)
   const seconds = timeLeft % 60
 
-  const isLowTime = timeLeft < 300 // Less than 5 minutes
+  const isLowTime = timeLeft < 120 // 2 minutes per instruction
 
   return (
-    <header className="sticky top-0 z-50 bg-sidebar border-b border-sidebar-border">
-      <div className="max-w-6xl mx-auto px-4">
+    <header className="sticky top-0 z-50 bg-white border-b border-border shadow-sm">
+      <div className="institutional-container px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo & Test Title */}
+          {/* Exit Section */}
           <div className="flex items-center gap-4">
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-sidebar-foreground/70 hover:text-destructive hover:bg-destructive/10">
-                  <LogOut className="h-5 w-5" />
+                <Button variant="ghost" size="sm" className="text-secondary-foreground gap-2 hover:bg-slate-50">
+                  <LogOut className="h-4 w-4" />
+                  <span className="hidden sm:inline micro-text">Exit</span>
                 </Button>
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
-                  <AlertDialogTitle>Exit Assessment?</AlertDialogTitle>
+                  <AlertDialogTitle className="page-title text-[24px]">Exit Assessment?</AlertDialogTitle>
                   <AlertDialogDescription>
-                    Are you sure you want to leave? Your current progress will not be saved and you may not be able to resume this attempt.
+                    Your current progress will not be saved and you may not be able to resume.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                  <AlertDialogCancel>Stay & Finish</AlertDialogCancel>
+                  <AlertDialogCancel className="btn-secondary">Stay & Finish</AlertDialogCancel>
                   <AlertDialogAction 
-                    className="bg-destructive hover:bg-destructive/90"
+                    className="bg-destructive hover:bg-destructive/90 text-white"
                     onClick={() => router.push('/student')}
                   >
-                    Exit Anyway
+                    Confirm Exit
                   </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
@@ -67,59 +67,52 @@ export function TestHeader({ title, timeLeft, onSubmit, studentId, level }: Test
             <div className="flex items-center gap-3">
               <Image
                 src="/logo.jpeg"
-                alt="The Learners Academy"
-                width={36}
-                height={36}
-                className="rounded-lg shadow-sm"
+                alt="Logo"
+                width={32}
+                height={32}
+                className="rounded-md border border-border"
               />
               <div className="hidden sm:block">
-                <h1 className="font-heading text-base font-bold text-sidebar-foreground truncate max-w-[200px]">
+                <h1 className="text-[16px] font-semibold text-foreground truncate max-w-[200px] leading-tight">
                   {title}
                 </h1>
-                <p className="text-[10px] text-sidebar-foreground/50 uppercase tracking-widest font-bold">
-                  The Learners Academy
+                <p className="micro-text text-muted-foreground opacity-70">
+                  {level || "General Assessment"}
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Student Info - New Institutional Section */}
-          <div className="hidden lg:flex items-center gap-3 px-4 border-l border-r border-sidebar-border h-full">
-            <div className="flex flex-col items-end">
-              <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-tighter">Student ID</span>
-              <span className="text-xs font-mono font-bold text-primary">{studentId || "L-0000"}</span>
+          {/* Institutional Info Section */}
+          <div className="hidden lg:flex items-center gap-8 px-8 border-l border-r border-border h-full">
+            <div className="flex flex-col items-start translate-y-[2px]">
+              <span className="micro-text text-muted-foreground opacity-60">Candidate ID</span>
+              <span className="text-[14px] font-medium text-foreground">{studentId || "L-0000"}</span>
             </div>
-            <Badge variant="outline" className="bg-primary/5 text-primary border-primary/20 h-6 text-[10px] font-bold">
-              {level || "General"}
-            </Badge>
           </div>
 
-          {/* Timer & Submit */}
-          <div className="flex items-center gap-4">
-            {/* Timer */}
+          {/* Timer & Submit Section */}
+          <div className="flex items-center gap-6">
             <div
               className={cn(
-                "flex items-center gap-2 px-4 py-2 rounded-lg border",
+                "flex items-center gap-2 px-3 py-1.5 rounded-md border transition-colors",
                 isLowTime 
-                  ? "bg-destructive/10 border-destructive/50 text-destructive animate-pulse" 
-                  : "bg-sidebar-accent border-sidebar-border text-sidebar-accent-foreground"
+                  ? "bg-destructive/5 border-destructive/50 text-destructive animate-pulse" 
+                  : "bg-slate-50 border-border text-foreground"
               )}
             >
               <Clock className={cn("h-4 w-4", isLowTime ? "text-destructive" : "text-primary")} />
-              <span className="font-mono font-bold text-lg">
+              <span className="text-[18px] font-medium tabular-nums">
                 {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
               </span>
             </div>
 
-            {/* Submit Button */}
             <Button
               onClick={onSubmit}
-              variant="default"
-              className="gap-2 bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20"
+              className="btn-primary gap-2 h-10 px-6 py-0 flex items-center justify-center"
             >
               <Send className="h-4 w-4" />
-              <span className="hidden sm:inline">Submit Test</span>
-              <span className="sm:hidden">Submit</span>
+              <span className="text-[14px] font-semibold uppercase tracking-tight">Submit Test</span>
             </Button>
           </div>
         </div>

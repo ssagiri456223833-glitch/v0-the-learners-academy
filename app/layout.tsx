@@ -1,21 +1,12 @@
-import { Poppins, Inter, Outfit } from 'next/font/google'
+import { Cormorant_Garamond } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+import type { Metadata } from 'next'
 
-const poppins = Poppins({ 
+const cormorant = Cormorant_Garamond({ 
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-poppins"
-});
-
-const outfit = Outfit({ 
-  subsets: ["latin"],
-  variable: "--font-outfit"
-});
-
-const inter = Inter({ 
-  subsets: ["latin"],
-  variable: "--font-inter"
+  variable: "--font-serif"
 });
 
 export const metadata: Metadata = {
@@ -35,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} ${outfit.variable} ${inter.variable} font-sans antialiased`}>
+      <body className={`${cormorant.variable} font-sans antialiased text-[#0F172A]`}>
         {children}
         <Analytics />
       </body>
