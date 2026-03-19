@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { CheckCircle, XCircle, Info } from "lucide-react"
+import { CheckCircle, XCircle, Info, ShieldCheck, FileCheck, AlertTriangle } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const reviewQuestions = [
@@ -62,60 +62,80 @@ const reviewQuestions = [
 
 export function QuestionReview() {
   return (
-    <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden">
-      <CardHeader className="bg-slate-50 border-b border-border py-6 px-8">
-        <CardTitle className="text-[18px] font-semibold italic flex items-center gap-3 tracking-tight">
-          <Info className="h-4 w-4 text-primary opacity-60" />
-          Item-Level Audit Trail
-        </CardTitle>
+    <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden institutional-container">
+      <CardHeader className="bg-slate-50 border-b border-border py-8 px-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        <div className="flex items-center gap-4">
+          <FileCheck className="h-5 w-5 text-primary opacity-60" />
+          <CardTitle className="page-title text-[24px] text-foreground italic tracking-tight underline decoration-primary/20 underline-offset-8 decoration-2">Item-Level Audit Trail</CardTitle>
+        </div>
+        <div className="flex items-center gap-3">
+           <Badge variant="outline" className="text-secondary-foreground border-border bg-slate-100/50 font-black text-[9px] tracking-[0.2em] px-3 h-6 uppercase font-black italic">Matrix Integrity: Locked</Badge>
+           <Badge variant="outline" className="text-primary border-primary/20 bg-primary/5 font-black text-[9px] tracking-[0.2em] px-3 h-6 uppercase font-black italic">Verification v2.3</Badge>
+        </div>
       </CardHeader>
-      <CardContent className="p-8">
-        <div className="space-y-6">
+      <CardContent className="p-10 space-y-10">
+        <div className="space-y-10">
           {reviewQuestions.map((question, index) => (
             <div
               key={question.id}
               className={cn(
-                "p-6 rounded-md border transition-all",
+                "p-8 sm:p-12 rounded-lg border transition-all relative group overflow-hidden",
                 question.isCorrect
-                  ? "bg-success/5 border-success/20"
-                  : "bg-destructive/5 border-destructive/20"
+                  ? "bg-slate-50/30 border-success/20 shadow-[0_2px_10px_rgba(34,197,94,0.02)]"
+                  : "bg-slate-50/30 border-destructive/20 shadow-[0_2px_10px_rgba(239,68,68,0.02)]"
               )}
             >
-              <div className="flex items-start gap-6">
-                {/* Status Indicator */}
-                <div className="flex-shrink-0 mt-1">
-                  {question.isCorrect ? (
-                    <CheckCircle className="h-5 w-5 text-success" />
-                  ) : (
-                    <XCircle className="h-5 w-5 text-destructive" />
-                  )}
+              {/* Background Status Indicator (Decorative) */}
+               <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                  {question.isCorrect 
+                    ? <CheckCircle className="h-24 w-24 text-success" />
+                    : <AlertTriangle className="h-24 w-24 text-destructive" />
+                  }
+               </div>
+
+              <div className="flex flex-col sm:flex-row items-start gap-10 relative z-10">
+                {/* Status Indicator Bubble */}
+                <div className="flex-shrink-0 mt-2">
+                  <div className={cn(
+                    "flex items-center justify-center w-14 h-14 rounded-md border shadow-sm transition-all duration-500 group-hover:scale-110",
+                    question.isCorrect 
+                      ? "bg-white text-success border-success/30 shadow-success/10" 
+                      : "bg-white text-destructive border-destructive/30 shadow-destructive/10"
+                  )}>
+                    {question.isCorrect ? (
+                      <CheckCircle className="h-7 w-7" />
+                    ) : (
+                      <XCircle className="h-7 w-7" />
+                    )}
+                  </div>
                 </div>
 
                 {/* Content Area */}
-                <div className="flex-1 min-w-0 space-y-4">
+                <div className="flex-1 min-w-0 space-y-8">
                   <div className="flex items-center justify-between">
-                    <span className="text-[13px] font-bold text-foreground uppercase tracking-widest opacity-40">
-                      ITEM {index + 1}
-                    </span>
+                    <div className="flex items-center gap-4">
+                       <span className="text-[12px] font-black text-muted-foreground uppercase tracking-[0.25em] opacity-40 italic">Node Allocation</span>
+                       <span className="micro-text text-foreground font-black uppercase tracking-widest tabular-nums opacity-60">ITEM-{(index + 1).toString().padStart(2, '0')}</span>
+                    </div>
                     <Badge
                       variant="outline"
                       className={cn(
-                        "text-[9px] font-black uppercase tracking-tighter px-2 h-5",
+                        "text-[10px] font-black uppercase tracking-[0.15em] px-3 h-6 italic",
                         question.isCorrect
-                          ? "border-success/30 text-success"
-                          : "border-destructive/30 text-destructive"
+                          ? "border-success/30 text-success bg-success/5"
+                          : "border-destructive/30 text-destructive bg-destructive/5"
                       )}
                     >
-                      {question.isCorrect ? "Validated" : "Discrepancy"}
+                      {question.isCorrect ? "Protocol Validated" : "Audit Discrepancy"}
                     </Badge>
                   </div>
 
-                  <p className="text-[15px] font-medium text-foreground leading-relaxed italic">
+                  <p className="page-title text-[22px] sm:text-[28px] text-foreground leading-[1.3] italic underline decoration-primary/10 underline-offset-[10px] decoration-1 max-w-[90%]">
                     "{question.text}"
                   </p>
 
-                  {/* Options Matrix */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
+                  {/* Options Matrix (Grid Layout) */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
                     {question.options.map((option, optIndex) => {
                       const isCorrectOpt = optIndex === question.correctAnswer
                       const isUserOpt = optIndex === question.userAnswer
@@ -124,20 +144,25 @@ export function QuestionReview() {
                         <div
                           key={optIndex}
                           className={cn(
-                            "text-[12px] px-4 py-3 rounded-md flex items-center gap-3 border transition-all",
+                            "relative text-[14px] px-6 py-4 rounded-md flex items-center justify-between border transition-all group/opt overflow-hidden",
                             isCorrectOpt
-                              ? "bg-success/10 border-success/30 text-success font-bold"
+                              ? "bg-success/5 border-success/30 text-success font-bold"
                               : isUserOpt && !question.isCorrect
-                              ? "bg-destructive/10 border-destructive/30 text-destructive font-bold"
-                              : "bg-white border-border text-muted-foreground opacity-60"
+                              ? "bg-destructive/5 border-destructive/30 text-destructive font-bold"
+                              : "bg-white border-border/40 text-muted-foreground opacity-60 hover:bg-slate-50"
                           )}
                         >
-                          <span className="micro-text font-black opacity-40">
-                            {String.fromCharCode(65 + optIndex)}
-                          </span>
-                          <span className="flex-1 truncate">{option}</span>
+                          <div className="flex items-center gap-5">
+                             <span className={cn(
+                               "micro-text font-black px-2 h-6 flex items-center justify-center rounded-sm border transition-all tabular-nums",
+                               isCorrectOpt ? "bg-success text-white border-success" : isUserOpt ? "bg-destructive text-white border-destructive" : "bg-slate-50 border-border group-hover/opt:text-primary"
+                             )}>
+                               {String.fromCharCode(65 + optIndex)}
+                             </span>
+                             <span className="flex-1 font-bold tracking-tight">{option}</span>
+                          </div>
                           {isCorrectOpt && (
-                            <CheckCircle className="h-3 w-3" />
+                            <ShieldCheck className="h-4 w-4 opacity-40 animate-pulse" />
                           )}
                         </div>
                       )
@@ -149,6 +174,15 @@ export function QuestionReview() {
           ))}
         </div>
       </CardContent>
+      
+      {/* Table Footer Protocol */}
+      <div className="px-10 py-6 border-t border-border bg-slate-50/50 flex items-center justify-between opacity-30">
+          <span className="micro-text font-black uppercase tracking-widest italic">Database Commit: LT-827-01</span>
+          <span className="micro-text font-black uppercase tracking-widest italic flex items-center gap-2">
+             <ShieldCheck className="h-3 w-3" />
+             Institutional Security Layer Active
+          </span>
+      </div>
     </Card>
   )
 }

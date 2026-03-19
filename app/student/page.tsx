@@ -14,7 +14,7 @@ import {
   SelectValue 
 } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
-import { GraduationCap, BookOpen, Clock, Play, Hash } from "lucide-react"
+import { GraduationCap, BookOpen, Clock, Play, Hash, ShieldCheck, Search, Layout } from "lucide-react"
 import Image from "next/image"
 import { ACADEMY_LEVELS, TIMETABLE_SLOTS } from "@/lib/constants"
 
@@ -66,73 +66,75 @@ export default function StudentPortal() {
   }
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-6 selection:bg-primary/10">
-      <div className="max-w-md w-full space-y-12 animate-in fade-in slide-in-from-bottom-2 duration-300">
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-8 selection:bg-primary/10">
+      <div className="max-w-md w-full space-y-12 animate-in fade-in slide-in-from-bottom-2 duration-500">
         {/* Branding Header Area */}
-        <div className="flex flex-col items-center text-center space-y-4">
-          <div className="p-1 rounded-lg bg-white shadow-sm border border-border transition-all duration-300">
+        <div className="flex flex-col items-center text-center space-y-6">
+          <div className="p-1 rounded-md bg-white shadow-sm border border-border group hover:border-primary transition-all duration-300">
             <Image
               src="/logo.jpeg"
-              alt="Logo"
-              width={70}
-              height={70}
-              className="rounded-md"
+              alt="The Learners Academy"
+              width={64}
+              height={64}
+              className="rounded-sm"
             />
           </div>
           <div className="space-y-2">
-            <h1 className="page-title text-[38px] font-medium text-foreground tracking-tight leading-none">
-              Student <span className="text-primary italic">Portal</span>
+            <h1 className="page-title text-[38px] font-medium text-foreground tracking-tighter leading-none italic underline decoration-primary/20 underline-offset-8">
+              Student <span className="opacity-40 not-italic">PORTAL</span>
             </h1>
-            <p className="micro-text text-muted-foreground tracking-widest opacity-60">
-              Institutional Assessment Access
+            <p className="micro-text text-muted-foreground font-black uppercase tracking-[0.25em] opacity-40 mt-4">
+              Institutional Evaluation Environment
             </p>
           </div>
         </div>
 
-        <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden border-t-2 border-primary">
-          <CardHeader className="text-center pb-6 border-b border-border bg-slate-50/50">
-            <CardTitle className="text-[18px] font-semibold text-foreground italic">
+        <Card className="border border-border bg-white shadow-md rounded-lg overflow-hidden relative">
+          <div className="absolute top-0 left-0 right-0 h-1 bg-primary" />
+          <CardHeader className="text-center pb-8 border-b border-border bg-slate-50/50">
+            <CardTitle className="text-[18px] font-semibold text-foreground italic flex items-center justify-center gap-3 tracking-tight">
+               <ShieldCheck className="h-4 w-4 text-primary opacity-60" />
               {testFound ? "Assessment Discovery" : "Credential Verification"}
             </CardTitle>
-            <CardDescription className="text-[13px] font-medium text-muted-foreground uppercase tracking-widest">
+            <CardDescription className="micro-text text-muted-foreground font-black uppercase tracking-widest opacity-40 mt-1">
               {testFound 
-                ? "Verify session details"
-                : "Term-based Test Retrieval"
+                ? "Verify Terminal Protocol"
+                : "Term-based Retrieval Protocol"
               }
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6 pt-8">
+          <CardContent className="space-y-8 p-10">
             {!testFound ? (
               <div className="space-y-8">
                 {/* Student ID */}
-                <div className="space-y-2">
-                  <Label htmlFor="id" className="flex items-center gap-2 micro-text text-muted-foreground font-bold">
-                    <Hash className="h-3 w-3 text-primary opacity-70" />
-                    Identification Code
+                <div className="space-y-3">
+                  <Label htmlFor="id" className="micro-text text-muted-foreground font-black uppercase tracking-widest flex items-center gap-2 opacity-60">
+                    <Hash className="h-3 w-3 text-primary opacity-40" />
+                    Identification ID
                   </Label>
                   <Input
                     id="id"
                     placeholder="e.g., L-1025"
                     value={studentId}
                     onChange={(e) => setStudentId(e.target.value.toUpperCase())}
-                    className="h-12 border-border focus-visible:ring-primary text-[15px] font-medium tracking-wide bg-slate-50/10"
+                    className="h-11 rounded-md border-border bg-slate-50/50 focus-visible:ring-primary/10 text-[15px] font-black italic tracking-widest tabular-nums"
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-6">
                   {/* Level Selection */}
-                  <div className="space-y-2">
-                    <Label htmlFor="level" className="flex items-center gap-2 micro-text text-muted-foreground font-bold">
-                      <BookOpen className="h-3 w-3 text-primary opacity-70" />
+                  <div className="space-y-3">
+                    <Label htmlFor="level" className="micro-text text-muted-foreground font-black uppercase tracking-widest flex items-center gap-2 opacity-60">
+                      <BookOpen className="h-3 w-3 text-primary opacity-40" />
                       Academic Level
                     </Label>
                     <Select onValueChange={setLevel} value={level}>
-                      <SelectTrigger id="level" className="h-12 border-border focus:ring-primary">
-                        <SelectValue placeholder="Select" />
+                      <SelectTrigger id="level" className="h-11 rounded-md border-border bg-slate-50/50 focus:ring-primary/10 text-[14px] font-bold">
+                        <SelectValue placeholder="Identify Level" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="rounded-md border-border">
                         {ACADEMY_LEVELS.map((l) => (
-                          <SelectItem key={l.value} value={l.label}>
+                          <SelectItem key={l.value} value={l.label} className="text-[14px]">
                             {l.label}
                           </SelectItem>
                         ))}
@@ -141,19 +143,19 @@ export default function StudentPortal() {
                   </div>
 
                   {/* Time Slot Selection */}
-                  <div className="space-y-2">
-                    <Label htmlFor="slot" className="flex items-center gap-2 micro-text text-muted-foreground font-bold">
-                      <Clock className="h-3 w-3 text-primary opacity-70" />
-                      Assigned Slot
+                  <div className="space-y-3">
+                    <Label htmlFor="slot" className="micro-text text-muted-foreground font-black uppercase tracking-widest flex items-center gap-2 opacity-60">
+                      <Clock className="h-3 w-3 text-primary opacity-40" />
+                      Allocation Slot
                     </Label>
                     <Select onValueChange={setSlot} value={slot}>
-                      <SelectTrigger id="slot" className="h-12 border-border focus:ring-primary">
-                        <SelectValue placeholder="Slot" />
+                      <SelectTrigger id="slot" className="h-11 rounded-md border-border bg-slate-50/50 focus:ring-primary/10 text-[14px] font-bold">
+                        <SelectValue placeholder="Select Slot" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="rounded-md border-border">
                         {TIMETABLE_SLOTS.map((s) => (
-                          <SelectItem key={s.id} value={s.id.toString()}>
-                            Slot {s.id} ({s.standard})
+                          <SelectItem key={s.id} value={s.id.toString()} className="text-[13px] font-medium">
+                            Slot {s.id} <span className="opacity-40 mx-1">•</span> {s.standard}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -162,66 +164,66 @@ export default function StudentPortal() {
                 </div>
 
                 <Button 
-                  className="btn-primary w-full h-12 text-[14px] uppercase tracking-wider font-bold gap-3"
+                  className="btn-primary w-full h-12 text-[12px] font-black uppercase tracking-[0.2em] gap-3 shadow-md"
                   disabled={!studentId || !level || !slot || isSearching}
                   onClick={handleSearchTest}
                 >
                   {isSearching ? (
                         <span className="flex items-center gap-2">
-                          <Clock className="h-4 w-4 animate-spin" />
-                          Locating Assessment...
+                          <Clock className="h-4 w-4 animate-spin opacity-40" />
+                          Indexing...
                         </span>
                   ) : (
                     <>
-                      <GraduationCap className="h-5 w-5" />
+                      <Search className="h-4 w-4 opacity-40" />
                       Locate Protocol
                     </>
                   )}
                 </Button>
               </div>
             ) : (
-              <div className="space-y-8 animate-in zoom-in-95 duration-300">
-                <div className="p-6 rounded-md bg-slate-50 border border-border space-y-4">
-                  <div className="flex justify-between items-start border-b border-border pb-4">
+              <div className="space-y-8 animate-in zoom-in-95 duration-500">
+                <div className="p-8 rounded-md bg-slate-50 border border-border space-y-6">
+                  <div className="flex justify-between items-start border-b border-border pb-6">
                     <div className="space-y-1">
-                      <h4 className="text-[18px] font-semibold text-foreground underline underline-offset-4 decoration-primary/30 decoration-2">{testFound.title}</h4>
-                      <p className="text-[13px] text-muted-foreground italic font-medium">{testFound.subject}</p>
+                      <h4 className="text-[20px] font-semibold text-foreground italic decoration-primary/20 underline underline-offset-4 decoration-2">{testFound.title}</h4>
+                      <p className="micro-text text-muted-foreground font-bold uppercase tracking-widest opacity-40 mt-2">{testFound.subject}</p>
                     </div>
-                    <Badge variant="outline" className="border-primary/40 text-primary text-[11px] font-bold h-7">{testFound.duration} Minutes</Badge>
+                    <Badge variant="outline" className="border-primary/40 text-primary bg-primary/5 text-[10px] font-black px-3 h-7 tracking-widest uppercase">{testFound.duration} MIN</Badge>
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-8">
                     <div className="text-left">
-                      <p className="micro-text text-muted-foreground opacity-60">Identity</p>
-                      <p className="text-[14px] font-semibold">{studentId}</p>
+                      <p className="micro-text text-muted-foreground font-black uppercase tracking-widest opacity-40">Candidate ID</p>
+                      <p className="text-[15px] font-black tabular-nums mt-1">{studentId}</p>
                     </div>
                     <div className="text-left">
-                      <p className="micro-text text-muted-foreground opacity-60">Protocol Slot</p>
-                      <p className="text-[14px] font-semibold">Slot {slot}</p>
+                      <p className="micro-text text-muted-foreground font-black uppercase tracking-widest opacity-40">Allocated Space</p>
+                      <p className="text-[15px] font-black tabular-nums mt-1">Slot {slot}</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <Button 
-                    className="btn-primary w-full h-14 text-[16px] uppercase tracking-widest font-bold gap-3"
+                    className="btn-primary w-full h-14 text-[14px] font-black uppercase tracking-[0.25em] gap-4 shadow-lg active:scale-95 transition-all"
                     onClick={confirmAndBegin}
                   >
-                    <Play className="h-5 w-5 fill-current" />
-                    Begin Assessment
+                    <Play className="h-4 w-4 fill-current opacity-40" />
+                    Enter Assessment
                   </Button>
                   <Button 
                     variant="ghost" 
-                    className="w-full text-muted-foreground micro-text h-10 hover:bg-slate-50"
+                    className="w-full micro-text font-black text-muted-foreground uppercase h-10 hover:bg-slate-50 opacity-40 hover:opacity-100 transition-all"
                     onClick={() => setTestFound(null)}
                   >
-                    Go Back
+                    Abort Retrieval
                   </Button>
                 </div>
               </div>
             )}
             
-            <p className="micro-text text-center text-muted-foreground pt-4 border-t border-border opacity-50">
-               Institutional Portal Version 2.4 | Encrypted Access Enabled
+            <p className="micro-text text-center text-muted-foreground pt-4 border-t border-border font-black opacity-20 uppercase tracking-[0.1em]">
+               Institutional Interface v2.4 | LTD Environment
             </p>
           </CardContent>
         </Card>
