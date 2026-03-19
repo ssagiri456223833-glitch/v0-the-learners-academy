@@ -81,7 +81,7 @@ export function Sidebar() {
       <Button
         variant="ghost"
         size="icon"
-        className="fixed top-4 left-4 z-50 lg:hidden text-foreground hover:bg-secondary"
+        className="fixed top-4 left-4 z-50 lg:hidden text-foreground hover:bg-slate-50"
         onClick={() => setMobileOpen(!mobileOpen)}
         aria-label={mobileOpen ? "Close menu" : "Open menu"}
       >
@@ -91,7 +91,7 @@ export function Sidebar() {
       {/* Mobile overlay */}
       {mobileOpen && (
         <div 
-          className="fixed inset-0 bg-black/50 z-30 lg:hidden"
+          className="fixed inset-0 bg-slate-900/10 z-30 lg:hidden backdrop-blur-sm"
           onClick={() => setMobileOpen(false)}
         />
       )}
@@ -99,39 +99,37 @@ export function Sidebar() {
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed left-0 top-0 z-40 h-screen w-64 glass-effect transition-transform duration-300 ease-in-out lg:translate-x-0 border-r border-sidebar-border bg-sidebar/95 backdrop-blur-xl shadow-2xl shadow-sidebar/20",
-          mobileOpen ? "translate-x-0" : "-translate-x-full"
+          "fixed left-0 top-0 z-40 h-screen w-64 bg-white border-r border-border shadow-sm transition-transform duration-300 ease-in-out lg:translate-x-0 overflow-hidden",
+          mobileOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full"
         )}
       >
         <div className="flex h-full flex-col">
-          {/* Logo */}
-          <div className="flex items-center gap-3 px-6 py-8 border-b border-sidebar-border/30">
-            <div className="relative group">
-              <div className="absolute inset-0 bg-primary/20 rounded-xl blur-lg group-hover:bg-primary/40 transition-all duration-500" />
+          {/* Internal Branding Logo Area */}
+          <div className="flex items-center gap-3 px-8 py-10 border-b border-border bg-slate-50/50">
+            <div className="p-1 rounded-md bg-white border border-border shadow-sm">
               <Image
                 src="/logo.jpeg"
                 alt="The Learners Academy"
-                width={48}
-                height={48}
-                className="rounded-xl relative z-10 shadow-lg shadow-black/20"
+                width={36}
+                height={36}
+                className="rounded-sm"
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-heading text-lg font-black text-sidebar-foreground leading-tight tracking-tighter uppercase italic">
-                The Learners
+              <span className="page-title text-[18px] leading-none text-foreground tracking-tight underline underline-offset-4 decoration-primary/20">
+                Institutional
               </span>
-              <span className="font-heading text-xs font-bold text-sidebar-foreground/60 uppercase tracking-widest pt-0.5">
-                Academy
+              <span className="micro-text text-muted-foreground font-black mt-1 uppercase tracking-widest opacity-50">
+                LTD Environment
               </span>
             </div>
           </div>
 
-          {/* Navigation */}
-          <nav className="flex-1 px-4 py-8 overflow-y-auto custom-scrollbar">
-            <ul className="space-y-4">
-              {/* Branding Context Item */}
-              <li className="px-5 pb-2">
-                 <span className="text-[10px] font-black uppercase tracking-[0.2em] text-sidebar-foreground/40 font-heading">
+          {/* Navigation Items */}
+          <nav className="flex-1 px-4 py-8 overflow-y-auto">
+            <ul className="space-y-2">
+              <li className="px-4 pb-4">
+                 <span className="micro-text font-black uppercase tracking-widest text-muted-foreground opacity-30">
                    {pathname.startsWith('/admin') ? "Institutional Admin" : "Assessor Portal"}
                  </span>
               </li>
@@ -139,31 +137,27 @@ export function Sidebar() {
               {navItems.map((item) => {
                 const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href + "/"))
                 return (
-                  <li key={item.href} className="relative">
+                  <li key={item.href}>
                     <Link
                       href={item.href}
                       onClick={() => setMobileOpen(false)}
                       className={cn(
-                        "flex items-center gap-4 px-5 py-3.5 rounded-2xl font-bold transition-all duration-300 group overflow-hidden relative",
+                        "flex items-center gap-4 px-4 py-3 rounded-md font-semibold transition-all duration-200 group relative",
                         isActive
-                          ? "bg-sidebar-accent text-sidebar-accent-foreground shadow-lg shadow-primary/20 scale-[1.02]"
-                          : "text-sidebar-foreground/60 hover:bg-sidebar-accent/10 hover:text-sidebar-foreground hover:scale-[1.02]"
+                          ? "bg-slate-50 text-foreground shadow-sm border border-border"
+                          : "text-muted-foreground hover:bg-slate-50/50 hover:text-foreground"
                       )}
                     >
-                      {/* Active Indicator Bar */}
+                      {/* Discrete Active Indicator */}
                       {isActive && (
-                        <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-primary rounded-r-full shadow-lg shadow-primary" />
+                        <div className="absolute left-0 top-1 bottom-1 w-1 bg-primary rounded-r-md" />
                       )}
                       
                       <item.icon className={cn(
-                        "h-5 w-5 transition-transform duration-300 group-hover:scale-110",
-                        isActive ? "text-sidebar-accent-foreground" : "text-sidebar-foreground/40 group-hover:text-primary"
+                        "h-4 w-4 transition-colors duration-200",
+                        isActive ? "text-primary" : "text-muted-foreground opacity-40 group-hover:opacity-100 group-hover:text-primary"
                       )} />
-                      <span className="text-sm tracking-tight">{item.title}</span>
-                      
-                      {isActive && (
-                        <div className="ml-auto w-1.5 h-1.5 rounded-full bg-sidebar-accent-foreground/50 animate-pulse" />
-                      )}
+                      <span className="text-[14px] font-medium tracking-tight tracking-wide">{item.title}</span>
                     </Link>
                   </li>
                 )
@@ -171,17 +165,17 @@ export function Sidebar() {
             </ul>
           </nav>
 
-          {/* Footer / Exit Action */}
-          <div className="px-4 py-6 border-t border-sidebar-border mt-auto">
+          {/* Institutional Footer Area */}
+          <div className="px-6 py-6 border-t border-border mt-auto bg-slate-50/50">
              <Link 
                href="/"
-               className="flex items-center gap-4 px-5 py-3.5 rounded-2xl font-black uppercase text-[10px] tracking-[0.2em] text-white/40 hover:text-white hover:bg-white/5 transition-all group"
+               className="flex items-center gap-4 px-4 py-3 rounded-md font-bold uppercase text-[10px] tracking-widest text-muted-foreground hover:text-destructive hover:bg-destructive/5 transition-all group"
              >
-                <LogOut className="h-4 w-4 text-white/30 group-hover:text-red-400 group-hover:scale-110 transition-all" />
+                <LogOut className="h-3 w-3 opacity-40 group-hover:opacity-100 transition-all" />
                 <span>Exit Portal</span>
              </Link>
-             <p className="text-[9px] font-bold text-white/20 text-center mt-4 tracking-widest uppercase">
-                © 2026 The Learners Academy
+             <p className="text-[9px] font-bold text-muted-foreground opacity-20 text-center mt-6 tracking-widest uppercase">
+                © 2026 The Learners Academy LTD
              </p>
           </div>
         </div>

@@ -3,7 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
-import { Sparkles, AlertCircle, CheckCircle2 } from "lucide-react"
+import { BarChart3, AlertCircle, CheckCircle2 } from "lucide-react"
 
 interface PerformanceBreakdownProps {
   score: number
@@ -11,55 +11,54 @@ interface PerformanceBreakdownProps {
 }
 
 const categories = [
-  { name: "Grammar & Tenses", correct: 3, total: 4, feedback: "Keep practicing irregular verbs." },
-  { name: "Vocabulary Depth", correct: 2, total: 3, feedback: "Great range of synonyms used." },
-  { name: "Reading Comprehension", correct: 2, total: 2, feedback: "Perfect understanding of context." },
-  { name: "Sentence Structure", correct: 0, total: 1, feedback: "Review compound sentence rules." },
+  { name: "Syntax & Tense Logic", correct: 3, total: 4, feedback: "Reinforce irregular verb conjugation protocols." },
+  { name: "Lexical Precision", correct: 2, total: 3, feedback: "Satisfactory synonym range identified." },
+  { name: "Contextual Analysis", correct: 2, total: 2, feedback: "Optimal contextual comprehension." },
+  { name: "Structural Composition", correct: 0, total: 1, feedback: "Review compound sentential architectures." },
 ]
 
 export function PerformanceBreakdown({ score, total }: PerformanceBreakdownProps) {
   const overallPercentage = Math.round((score / total) * 100)
   
-  // Simulated feedback logic based on scores
   const getLingoFeedback = () => {
-    if (overallPercentage >= 80) return "Excellent proficiency! Your grasp of complex English structures is impressive. Focus on nuances to reach the next level."
-    if (overallPercentage >= 60) return "Good progress. You have a solid foundation, but some grammatical inconsistencies remain. Targeted practice in tenses will help."
-    return "Keep working! Focus on basic sentence structures and core vocabulary. We recommend 20 minutes of daily reading to improve context memory."
+    if (overallPercentage >= 80) return "Exceptional competency. Your grasp of high-tier English structures aligns with professional standards. Maintain focus on subtle cultural nuances."
+    if (overallPercentage >= 60) return "Operational proficiency. Core foundations are stable, though structural inconsistencies persist. Targeted drilling in complex tenses is recommended."
+    return "Developmental phase. Primary focus should remain on foundational sentence architecture and core lexical acquisition. Daily immersion protocols advised."
   }
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div className="space-y-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Category Breakdown */}
-        <Card className="lg:col-span-2 border-0 shadow-sm bg-card/50 backdrop-blur-sm">
-          <CardHeader className="pb-4">
-            <CardTitle className="font-heading text-lg font-semibold flex items-center gap-2">
-              <Sparkles className="h-5 w-5 text-primary" />
-              Linguistic Skill Breakdown
+        <Card className="lg:col-span-2 border border-border bg-white shadow-sm rounded-lg overflow-hidden">
+          <CardHeader className="bg-slate-50 border-b border-border py-6 px-8">
+            <CardTitle className="text-[18px] font-semibold italic flex items-center gap-3 tracking-tight">
+              <BarChart3 className="h-4 w-4 text-primary opacity-60" />
+              Linguistic Competency Matrix
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className="p-8 space-y-8">
             {categories.map((category) => {
               const percentage = Math.round((category.correct / category.total) * 100)
               return (
-                <div key={category.name} className="space-y-2">
-                  <div className="flex items-center justify-between text-sm">
-                    <div className="flex flex-col">
-                      <span className="font-bold text-foreground text-sm uppercase tracking-tight">{category.name}</span>
-                      <span className="text-[10px] text-muted-foreground italic">{category.feedback}</span>
+                <div key={category.name} className="space-y-4">
+                  <div className="flex items-start justify-between">
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[14px] font-bold text-foreground uppercase tracking-tight">{category.name}</span>
+                      <span className="micro-text text-muted-foreground font-medium italic opacity-60">{category.feedback}</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <Badge variant={percentage >= 70 ? "secondary" : "outline"} className="text-[10px] font-bold">
+                    <div className="flex items-center gap-4">
+                      <Badge variant="outline" className={`text-[10px] font-bold px-2 py-0.5 border-border ${percentage >= 70 ? 'text-success' : 'text-foreground'}`}>
                         {percentage}%
                       </Badge>
-                      <span className="text-xs font-mono text-muted-foreground w-8 text-right">
-                        {category.correct}/{category.total}
+                      <span className="text-[12px] font-medium text-muted-foreground w-12 text-right">
+                        {category.correct} / {category.total}
                       </span>
                     </div>
                   </div>
                   <Progress 
                     value={percentage} 
-                    className={`h-1.5 ${percentage < 50 ? 'bg-destructive/20' : ''}`}
+                    className="h-1 bg-slate-100"
                   />
                 </div>
               )
@@ -67,36 +66,38 @@ export function PerformanceBreakdown({ score, total }: PerformanceBreakdownProps
           </CardContent>
         </Card>
 
-        {/* Lingo Advice */}
-        <Card className="border-0 shadow-sm bg-primary/5 border-t-4 border-primary">
-          <CardHeader className="pb-4">
-            <CardTitle className="font-heading text-lg font-semibold flex items-center gap-2">
-              <AlertCircle className="h-5 w-5 text-primary" />
-              Institutional Feedback
+        {/* Institutional Advice */}
+        <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden flex flex-col">
+          <CardHeader className="bg-slate-50 border-b border-border py-6 px-8">
+            <CardTitle className="text-[18px] font-semibold italic flex items-center gap-3 tracking-tight">
+              <AlertCircle className="h-4 w-4 text-primary opacity-60" />
+              Assessor Commentary
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="p-4 rounded-xl bg-background border shadow-sm">
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                {getLingoFeedback()}
-              </p>
-            </div>
-            
-            <div className="space-y-3">
-              <p className="text-xs font-bold uppercase tracking-widest text-primary">Recommended Focus</p>
-              <div className="flex flex-wrap gap-2">
-                <Badge variant="outline" className="bg-background">Irregular Verbs</Badge>
-                <Badge variant="outline" className="bg-background">Compound Sentences</Badge>
-                <Badge variant="outline" className="bg-background">Contextual Vocabulary</Badge>
+          <CardContent className="p-8 flex-1 flex flex-col justify-between">
+            <div className="space-y-8">
+              <div className="p-6 rounded-md bg-slate-50 border border-border shadow-inner">
+                <p className="text-[14px] leading-relaxed text-foreground font-medium italic">
+                  "{getLingoFeedback()}"
+                </p>
+              </div>
+              
+              <div className="space-y-4">
+                <p className="micro-text font-black uppercase tracking-widest text-primary opacity-40">Developmental Focus</p>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="secondary" className="bg-slate-100 text-foreground border-border text-[10px] font-bold py-1 px-3">Irregular Conjugation</Badge>
+                  <Badge variant="secondary" className="bg-slate-100 text-foreground border-border text-[10px] font-bold py-1 px-3">Compound Architecture</Badge>
+                  <Badge variant="secondary" className="bg-slate-100 text-foreground border-border text-[10px] font-bold py-1 px-3">Advanced Lexis</Badge>
+                </div>
               </div>
             </div>
 
-            <div className="pt-4 border-t flex items-center justify-between text-[10px] font-bold text-muted-foreground uppercase tracking-tighter">
-              <span>Term Status: Active</span>
-              <span className="flex items-center gap-1">
-                <CheckCircle2 className="h-3 w-3 text-green-500" />
-                Validated on-the-spot
-              </span>
+            <div className="pt-8 border-t border-border mt-8 flex items-center justify-between">
+              <span className="micro-text font-black text-muted-foreground opacity-30 uppercase tracking-widest">Protocol v2.4</span>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="h-3 w-3 text-success" />
+                <span className="micro-text font-bold text-success uppercase tracking-tighter">Verified</span>
+              </div>
             </div>
           </CardContent>
         </Card>

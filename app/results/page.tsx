@@ -5,8 +5,8 @@ import { ResultsContent } from "@/components/results/results-content"
 export default function ResultsPage() {
   return (
     <DashboardLayout 
-      title="Test Results" 
-      subtitle="Review your performance and detailed breakdown"
+      title="Performance Evaluation" 
+      subtitle="Comprehensive Analysis • Institutional Feedback Cycle"
     >
       <Suspense fallback={<ResultsLoading />}>
         <ResultsContent />
@@ -17,8 +17,11 @@ export default function ResultsPage() {
 
 function ResultsLoading() {
   return (
-    <div className="flex items-center justify-center py-20">
-      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary" />
+    <div className="flex flex-col items-center justify-center py-32 space-y-6">
+      <div className="animate-spin rounded-full h-12 w-12 border-[3px] border-slate-100 border-t-primary" />
+      <p className="micro-text text-muted-foreground font-black uppercase tracking-[0.2em] animate-pulse">
+        Retrieving Evaluation Protocol...
+      </p>
     </div>
   )
 }

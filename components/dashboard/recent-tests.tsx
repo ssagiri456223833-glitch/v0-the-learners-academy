@@ -53,20 +53,20 @@ const recentTests = [
 ]
 
 const statusStyles = {
-  active: "bg-[#10B981]/10 text-[#10B981] hover:bg-[#10B981]/20",
-  draft: "bg-[#F59E0B]/10 text-[#F59E0B] hover:bg-[#F59E0B]/20",
-  completed: "bg-muted text-muted-foreground hover:bg-muted",
+  active: "border-success/30 text-success bg-success/5",
+  draft: "border-warning/30 text-warning bg-warning/5",
+  completed: "border-slate-200 text-muted-foreground bg-slate-50",
 }
 
 export function RecentTests() {
   return (
-    <Card className="premium-card border-0 shadow-sm overflow-hidden">
-      <CardHeader className="flex flex-row items-center justify-between pb-4">
-        <CardTitle className="font-heading text-lg font-semibold">
-          Recent Tests
+    <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden">
+      <CardHeader className="flex flex-row items-center justify-between py-6 px-8 border-b border-border bg-slate-50">
+        <CardTitle className="page-title text-[20px] italic underline underline-offset-4 decoration-primary/10">
+          Historical Protocol Feed
         </CardTitle>
-        <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80">
-          View all
+        <Button variant="ghost" size="sm" className="btn-secondary h-8 px-4 text-[11px] font-bold uppercase tracking-widest opacity-60 hover:opacity-100">
+          Audit All
         </Button>
       </CardHeader>
       <CardContent className="p-0">
@@ -74,54 +74,52 @@ export function RecentTests() {
           {recentTests.map((test) => (
             <div
               key={test.id}
-              className="flex items-center justify-between p-4 hover:bg-muted/50 transition-colors"
+              className="group flex items-center justify-between p-6 hover:bg-slate-50 transition-colors"
             >
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-3 mb-1">
-                  <h3 className="font-medium text-foreground truncate">
+              <div className="flex-1 min-w-0 space-y-2">
+                <div className="flex items-center gap-4 mb-1">
+                  <h3 className="text-[15px] font-bold text-foreground truncate tracking-tight">
                     {test.name}
                   </h3>
                   <Badge 
-                    variant="secondary" 
-                    className={statusStyles[test.status as keyof typeof statusStyles]}
+                    variant="outline" 
+                    className={`text-[9px] font-black uppercase tracking-tighter px-2 h-5 ${statusStyles[test.status as keyof typeof statusStyles]}`}
                   >
                     {test.status}
                   </Badge>
                 </div>
-                <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                  <span>{test.subject}</span>
-                  <span className="hidden sm:inline">•</span>
-                  <span className="hidden sm:inline">{test.questions} questions</span>
-                  <span className="hidden sm:inline">•</span>
-                  <span className="hidden sm:inline">{test.duration}</span>
+                <div className="flex items-center gap-6 text-[12px] font-medium text-muted-foreground opacity-60">
+                  <span className="flex items-center gap-1.5"><Badge variant="outline" className="h-4 p-0 px-1 border-border opacity-50">{test.subject}</Badge></span>
+                  <span>{test.questions} Items</span>
+                  <span>{test.duration} Duration</span>
                 </div>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-8 pl-8">
                 <div className="text-right hidden md:block">
-                  <p className="text-sm font-medium text-foreground">
-                    {test.submissions} submissions
+                  <p className="text-[13px] font-bold text-foreground leading-none mb-1">
+                    {test.submissions} Submissions
                   </p>
-                  <p className="text-xs text-muted-foreground">{test.created}</p>
+                  <p className="micro-text text-muted-foreground font-medium uppercase tracking-tighter opacity-40">{test.created}</p>
                 </div>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon" className="h-8 w-8">
-                      <MoreHorizontal className="h-4 w-4" />
+                    <Button variant="ghost" size="icon" className="h-9 w-9 border border-transparent hover:border-border hover:bg-white transition-all">
+                      <MoreHorizontal className="h-4 w-4 text-muted-foreground" />
                       <span className="sr-only">Open menu</span>
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuItem className="cursor-pointer">
-                      <Eye className="mr-2 h-4 w-4" />
-                      View
+                  <DropdownMenuContent align="end" className="rounded-md border-border shadow-md">
+                    <DropdownMenuItem className="cursor-pointer text-[13px] font-medium py-2 px-4 focus:bg-primary/5 focus:text-primary">
+                      <Eye className="mr-3 h-4 w-4 opacity-50" />
+                      Audit Results
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer">
-                      <Edit className="mr-2 h-4 w-4" />
-                      Edit
+                    <DropdownMenuItem className="cursor-pointer text-[13px] font-medium py-2 px-4 focus:bg-primary/5 focus:text-primary">
+                      <Edit className="mr-3 h-4 w-4 opacity-50" />
+                      Modify Protocol
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer">
-                      <Copy className="mr-2 h-4 w-4" />
-                      Duplicate
+                    <DropdownMenuItem className="cursor-pointer text-[13px] font-medium py-2 px-4 focus:bg-primary/5 focus:text-primary">
+                      <Copy className="mr-3 h-4 w-4 opacity-50" />
+                      Duplicate Access
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>

@@ -17,7 +17,7 @@ const scheduleData = [
     { level: "Beginners", teacher: "Ms. Howra Fatima", room: "4" },
     { level: "Level One", teacher: "Sir Abbas Ali", room: "6" },
     { level: "Level Two", teacher: "Ms. Sobia Batool", room: "7" },
-    { level: "Speaking Class", teacher: "Ms. Hadisa", room: "5" },
+    { level: "Speaking", teacher: "Ms. Hadisa", room: "5" },
   ],
   // Slot 2
   [
@@ -29,7 +29,7 @@ const scheduleData = [
     { level: "Level Two", teacher: "Sir Muhammad Basit", room: "4" },
     { level: "Level Three", teacher: "Sir Mehdi Hassani", room: "3" },
     { level: "Level Four", teacher: "Sir Mushtaq Hussain", room: "8" },
-    { level: "Speaking Class", teacher: "Ms. Hadisa", room: "5" },
+    { level: "Speaking", teacher: "Ms. Hadisa", room: "5" },
   ],
   // Slot 3
   [
@@ -76,7 +76,7 @@ const scheduleData = [
     { level: "Beginners", teacher: "Sir Zaheer Hassan", room: "2" },
     { level: "Level One", teacher: "Sir Abbas Ali", room: "5" },
     { level: "Level Three", teacher: "Ms. Tahira Batool", room: "7" },
-    { level: "Speaking Class", teacher: "Sir Qurban Ali", room: "4" },
+    { level: "Speaking", teacher: "Sir Qurban Ali", room: "4" },
   ],
 ]
 
@@ -84,54 +84,53 @@ export function TimetableGrid() {
   const [isEidMode, setIsEidMode] = useState(false)
 
   return (
-    <Card className="premium-card border-0 shadow-sm overflow-hidden">
-      <CardHeader className="bg-primary/5 border-b flex flex-col md:flex-row md:items-center justify-between gap-4 py-6">
+    <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden">
+      <CardHeader className="bg-slate-50 border-b border-border flex flex-col md:flex-row md:items-center justify-between gap-6 py-8 px-10">
         <div className="space-y-1">
-          <CardTitle className="font-heading text-2xl font-bold flex items-center gap-2">
-            <Calendar className="h-6 w-6 text-primary" />
-            Academy Timetable
+          <CardTitle className="page-title text-[28px] flex items-center gap-3">
+             Institutional Timetable
           </CardTitle>
-          <p className="text-sm text-muted-foreground">Manage class schedules and teacher assignments</p>
+          <p className="micro-text text-muted-foreground font-bold uppercase tracking-widest opacity-60">Term-Based Slot Management & Staff Allocation</p>
         </div>
-        <div className="flex items-center gap-3 bg-card px-4 py-2 rounded-full border shadow-sm">
-          <Clock className="h-4 w-4 text-primary" />
-          <Label htmlFor="eid-mode" className="text-sm font-semibold cursor-pointer">
-            After Eid Timing
+        <div className="flex items-center gap-4 bg-white px-6 py-3 rounded-md border border-border shadow-inner">
+          <Clock className="h-4 w-4 text-primary opacity-50" />
+          <Label htmlFor="eid-mode" className="text-[13px] font-bold text-foreground cursor-pointer uppercase tracking-tight">
+            Eid Protocol Timing
           </Label>
           <Switch 
             id="eid-mode" 
             checked={isEidMode}
             onCheckedChange={setIsEidMode}
+            className="data-[state=checked]:bg-primary"
           />
         </div>
       </CardHeader>
-      <CardContent className="p-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+      <CardContent className="p-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10">
           {TIMETABLE_SLOTS.map((slot, index) => (
-            <div key={slot.id} className="space-y-4 animate-in fade-in slide-in-from-top-2 duration-500" style={{ animationDelay: `${index * 100}ms` }}>
-              <div className="flex items-center justify-between border-b pb-2">
-                <div className="flex items-center gap-2">
-                  <Badge variant="outline" className="text-primary font-bold">Slot {slot.id}</Badge>
-                  <span className="font-bold text-lg">{isEidMode ? slot.eid : slot.standard}</span>
+            <div key={slot.id} className="space-y-6 animate-in fade-in slide-in-from-top-1 duration-300" style={{ animationDelay: `${index * 50}ms` }}>
+              <div className="flex items-center justify-between border-b border-border pb-3">
+                <div className="flex items-center gap-3">
+                  <Badge variant="outline" className="text-primary border-primary/20 font-bold px-2 py-0.5 text-[11px]">SLOT {slot.id}</Badge>
+                  <span className="text-[16px] font-semibold text-foreground italic decoration-primary/10 underline underline-offset-4 decoration-2">{isEidMode ? slot.eid : slot.standard}</span>
                 </div>
-                {isEidMode && <Badge variant="secondary" className="bg-accent/20 text-accent border-accent/20">Shifted</Badge>}
+                {isEidMode && <Badge className="bg-warning text-white text-[9px] font-black uppercase tracking-tighter">SHIFTED</Badge>}
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-3">
                 {scheduleData[index].map((item, i) => (
-                  <div key={i} className="group flex items-center gap-3 p-3 rounded-xl border bg-card hover:border-primary/50 hover:shadow-md transition-all duration-300">
-                    <div className="flex flex-col items-center justify-center w-10 h-10 rounded-lg bg-secondary/50 font-bold text-sm text-secondary-foreground group-hover:bg-primary group-hover:text-white transition-colors">
-                      <MapPin className="h-3 w-3 mb-0.5" />
-                      {item.room}
+                  <div key={i} className="group flex items-center gap-4 p-4 rounded-md border border-border bg-white hover:bg-slate-50 transition-all duration-200">
+                    <div className="flex flex-col items-center justify-center w-12 h-12 rounded-md bg-slate-100 border border-slate-200 font-bold text-slate-800 transition-colors group-hover:bg-primary/5 group-hover:border-primary/20 group-hover:text-primary">
+                      <span className="text-[10px] uppercase font-black tracking-tighter opacity-40 leading-none mb-1">Room</span>
+                      <span className="text-[16px] leading-none">{item.room}</span>
                     </div>
-                    <div className="flex-1 min-w-0">
+                    <div className="flex-1 min-w-0 space-y-1">
                       <div className="flex items-center gap-2">
-                        <BookOpen className="h-3 w-3 text-primary" />
-                        <p className="font-bold text-sm truncate">{item.level}</p>
+                        <p className="text-[14px] font-bold text-foreground truncate">{item.level}</p>
                       </div>
-                      <div className="flex items-center gap-2 mt-0.5">
-                        <User className="h-3 w-3 text-muted-foreground" />
-                        <p className="text-xs text-muted-foreground truncate">{item.teacher}</p>
+                      <div className="flex items-center gap-2">
+                         <User className="h-3 w-3 text-muted-foreground opacity-40 shrink-0" />
+                         <p className="text-[12px] font-medium text-muted-foreground truncate italic">{item.teacher}</p>
                       </div>
                     </div>
                   </div>

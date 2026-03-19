@@ -3,62 +3,56 @@ import { FileText, Users, CheckCircle, Clock } from "lucide-react"
 
 const stats = [
   {
-    title: "Total Tests",
+    title: "Assessments Deployed",
     value: "24",
-    change: "+3 this week",
+    change: "Term Cycle Week 8",
     icon: FileText,
-    iconBg: "bg-primary/10",
-    iconColor: "text-primary",
   },
   {
-    title: "Active Students",
+    title: "Authenticated Students",
     value: "156",
-    change: "+12 this month",
+    change: "92% Attendance Rate",
     icon: Users,
-    iconBg: "bg-[#10B981]/10",
-    iconColor: "text-[#10B981]",
   },
   {
-    title: "Tests Completed",
+    title: "Protocols Completed",
     value: "89",
-    change: "85% completion rate",
+    change: "Verified & Evaluated",
     icon: CheckCircle,
-    iconBg: "bg-accent/10",
-    iconColor: "text-accent",
   },
   {
-    title: "Trimester Progress",
+    title: "Institutional Phase",
     value: "Month 2",
-    change: "Cycle: Mar - May",
+    change: "Audit: Mar - May",
     icon: Clock,
-    iconBg: "bg-[#F59E0B]/10",
-    iconColor: "text-[#F59E0B]",
   },
 ]
 
 export function StatsCards() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {stats.map((stat) => (
         <Card 
           key={stat.title} 
-          className="premium-card border-0 shadow-sm"
+          className="border border-border bg-white shadow-sm rounded-lg overflow-hidden transition-all hover:bg-slate-50/50"
         >
-          <CardContent className="p-6">
+          <CardContent className="p-8">
             <div className="flex items-start justify-between">
-              <div className="space-y-2">
-                <p className="text-sm font-medium text-muted-foreground">
+              <div className="space-y-4">
+                <p className="micro-text text-muted-foreground font-bold uppercase tracking-widest opacity-60">
                   {stat.title}
                 </p>
-                <p className="font-heading text-3xl font-bold text-foreground">
-                  {stat.value}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  {stat.change}
-                </p>
+                <div className="space-y-1">
+                  <p className="page-title text-[32px] font-semibold text-foreground italic decoration-primary/20 underline underline-offset-8 decoration-2">
+                    {stat.value}
+                  </p>
+                  <p className="label-text text-[11px] font-medium text-muted-foreground pt-2">
+                    {stat.change}
+                  </p>
+                </div>
               </div>
-              <div className={`p-3 rounded-xl ${stat.iconBg}`}>
-                <stat.icon className={`h-6 w-6 ${stat.iconColor}`} />
+              <div className="p-3 rounded-md bg-slate-50 border border-border">
+                <stat.icon className="h-4 w-4 text-primary opacity-60" />
               </div>
             </div>
           </CardContent>

@@ -12,46 +12,54 @@ interface NavbarProps {
 
 export function Navbar({ title, subtitle }: NavbarProps) {
   return (
-    <header className="sticky top-0 z-30 bg-[#1d8ae2] text-white shadow-xl shadow-[#1d8ae2]/10 border-b border-[#1d8ae2]/20">
-      <div className="flex items-center justify-between h-16 px-6 lg:px-8">
+    <header className="sticky top-0 z-30 bg-white border-b border-border shadow-sm">
+      <div className="flex items-center justify-between h-18 px-6 lg:px-10">
         {/* Left side - Page title */}
         <div className="flex flex-col pl-12 lg:pl-0">
-          <h1 className="font-heading text-xl font-black tracking-tighter uppercase leading-none">{title}</h1>
+          <h1 className="page-title text-[24px] text-foreground leading-tight">{title}</h1>
           {subtitle && (
-            <p className="text-xs font-medium text-white/70 mt-0.5">{subtitle}</p>
+            <p className="micro-text text-muted-foreground font-semibold mt-0.5 uppercase tracking-widest">{subtitle}</p>
           )}
         </div>
 
         {/* Right side - Search, notifications, avatar */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-6">
           {/* Search - hidden on mobile */}
           <div className="relative hidden md:block group">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/50 group-focus-within:text-white transition-colors" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground opacity-50 group-focus-within:text-primary transition-colors" />
             <Input
               type="search"
-              placeholder="Search..."
-              className="w-64 pl-10 bg-white/10 hover:bg-white/20 border-0 focus-visible:ring-white/30 text-white placeholder:text-white/40 font-medium transition-all"
+              placeholder="System Search..."
+              className="w-72 pl-10 bg-slate-50 border-border focus-visible:ring-primary/20 text-[14px] font-medium transition-all"
             />
           </div>
 
           {/* Notifications */}
-          <Button 
-            variant="ghost" 
-            size="icon"
-            className="relative hover:bg-white/10 text-white"
-          >
-            <Bell className="h-5 w-5" />
-            <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-white animate-pulse" />
-            <span className="sr-only">Notifications</span>
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              className="relative hover:bg-slate-50 text-muted-foreground"
+            >
+              <Bell className="h-5 w-5" />
+              <span className="absolute top-2.5 right-2.5 h-1.5 w-1.5 rounded-full bg-primary" />
+              <span className="sr-only">Notifications</span>
+            </Button>
+          </div>
 
-          {/* Avatar */}
-          <Avatar className="h-9 w-9 cursor-pointer ring-2 ring-white/20 hover:ring-white transition-all">
-            <AvatarImage src="" alt="User" />
-            <AvatarFallback className="bg-white/20 text-white font-black text-xs">
-              SA
-            </AvatarFallback>
-          </Avatar>
+          {/* User Profile Summary */}
+          <div className="flex items-center gap-3 pl-4 border-l border-border">
+            <div className="hidden lg:flex flex-col text-right">
+              <span className="text-[13px] font-bold text-foreground leading-none">Institutional Admin</span>
+              <span className="text-[11px] text-muted-foreground font-medium mt-1">ID: ACCESS-8842</span>
+            </div>
+            <Avatar className="h-9 w-9 cursor-pointer border border-border hover:border-primary transition-colors">
+              <AvatarImage src="" alt="User" />
+              <AvatarFallback className="bg-slate-100 text-foreground font-bold text-[11px]">
+                SA
+              </AvatarFallback>
+            </Avatar>
+          </div>
         </div>
       </div>
     </header>
