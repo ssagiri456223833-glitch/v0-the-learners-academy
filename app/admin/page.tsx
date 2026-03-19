@@ -24,8 +24,8 @@ export default function AdminDashboard() {
               <Badge className="bg-primary hover:bg-primary">Term 2 (Spring 2026)</Badge>
               <span className="text-xs text-muted-foreground font-medium italic">Ends in 45 days</span>
             </div>
-            <h2 className="text-2xl font-bold font-heading">Schedule Management</h2>
-            <p className="text-sm text-muted-foreground">Define rooms, teachers, and timings for the active term.</p>
+            <h2 className="text-2xl font-bold font-heading tracking-tighter uppercase">Schedule Management</h2>
+            <p className="text-sm font-medium text-muted-foreground/70">Define rooms, teachers, and timings for the active term.</p>
           </div>
           <div className="flex items-center gap-3">
             {isEditing ? (

@@ -4,39 +4,34 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #F5F7FA;
-  --foreground: #1E293B;
+  --background: #F8FAFC;
+  --foreground: #020617;
   --card: #FFFFFF;
-  --card-foreground: #1E293B;
+  --card-foreground: #020617;
   --popover: #FFFFFF;
-  --popover-foreground: #1E293B;
-  --primary: #1E5DB8;
+  --popover-foreground: #020617;
+  --primary: #4338CA;
   --primary-foreground: #FFFFFF;
-  --secondary: #E8F0FE;
-  --secondary-foreground: #0F3D91;
+  --secondary: #EEF2FF;
+  --secondary-foreground: #312E81;
   --muted: #F1F5F9;
   --muted-foreground: #64748B;
-  --accent: #2F7FD3;
+  --accent: #6366F1;
   --accent-foreground: #FFFFFF;
   --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
   --border: #E2E8F0;
   --input: #E2E8F0;
-  --ring: #1E5DB8;
-  --chart-1: #0F3D91;
-  --chart-2: #1E5DB8;
-  --chart-3: #2F7FD3;
-  --chart-4: #60A5FA;
-  --chart-5: #93C5FD;
+  --ring: #4338CA;
   --radius: 0.75rem;
-  --sidebar: #0F3D91;
+  --sidebar: #1E1B4B;
   --sidebar-foreground: #FFFFFF;
-  --sidebar-primary: #1E5DB8;
+  --sidebar-primary: #4338CA;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #1E5DB8;
+  --sidebar-accent: #312E81;
   --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: #1E5DB8;
-  --sidebar-ring: #2F7FD3;
+  --sidebar-border: #312E81;
+  --sidebar-ring: #6366F1;
   --success: #10B981;
   --success-foreground: #FFFFFF;
   --warning: #F59E0B;
@@ -63,24 +58,13 @@
   --border: oklch(0.269 0 0);
   --input: oklch(0.269 0 0);
   --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
 }
 
 @theme inline {
   --font-sans: var(--font-inter), 'Inter', system-ui, sans-serif;
-  --font-heading: var(--font-poppins), 'Poppins', system-ui, sans-serif;
+  --font-heading: var(--font-outfit), 'Outfit', system-ui, sans-serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-success: var(--success);
   --color-success-foreground: var(--success-foreground);
@@ -105,11 +89,6 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -132,7 +111,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
   }
 
   /* Custom Scrollbar */
@@ -144,33 +123,27 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: color-mix(in oklch, var(--primary), transparent 70%);
+    background: color-mix(in oklch, var(--primary), transparent 85%);
     border-radius: 10px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--primary);
-  }
-
-  /* Global Animations & Selection */
-  ::selection {
-    background: color-mix(in oklch, var(--primary), transparent 80%);
-    color: var(--primary);
+    background: color-mix(in oklch, var(--primary), transparent 60%);
   }
 }
 
 @layer components {
-  /* Premium Card Hover Effect */
-  .premium-card {
-    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 cursor-pointer;
-  }
-
-  /* Glassmorphism Utilities */
+  /* Premium Institutional Glassmorphism */
   .glass-effect {
-    @apply bg-card/80 backdrop-blur-md border border-white/20;
+    @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
   }
 
-  /* Animated Page Entrance */
+  /* Animated Entrance */
   .page-entrance {
-    @apply animate-in fade-in slide-in-from-bottom-2 duration-700;
+    @apply animate-in fade-in slide-in-from-bottom-2 duration-1000 ease-out;
+  }
+
+  /* Card Consistency */
+  .premium-card {
+    @apply transition-all duration-500 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-primary/10 border-0 bg-white/80 backdrop-blur-sm;
   }
 }

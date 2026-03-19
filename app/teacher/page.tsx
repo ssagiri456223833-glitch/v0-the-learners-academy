@@ -72,7 +72,7 @@ export default function TeacherDashboard() {
         <div className="space-y-4 pt-6">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-bold font-heading uppercase tracking-tighter">Your Active Assessment Cycle</h2>
-            <Badge variant="outline">Term 2 • Active</Badge>
+            <Badge variant="outline" className="font-bold tracking-widest text-[10px] uppercase">Term 2 • Active</Badge>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

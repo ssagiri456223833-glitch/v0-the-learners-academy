@@ -6,14 +6,20 @@ import Image from "next/image"
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-secondary/10 flex flex-col items-center justify-center p-6 bg-slate-900">
-      <div className="max-w-4xl w-full space-y-12 mb-12 animate-in fade-in duration-1000">
+    <div className="min-h-screen bg-[#F8FAFC] relative overflow-hidden flex flex-col items-center justify-center p-6">
+      {/* Mesh Gradient Background Blobs */}
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px] animate-pulse" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent/10 rounded-full blur-[120px] animate-pulse" />
+
+      <div className="max-w-4xl w-full space-y-12 mb-12 relative z-10 page-entrance">
         <div className="flex flex-col items-center text-center space-y-4">
-          <Image src="/logo.jpeg" alt="Logo" width={100} height={100} className="rounded-3xl shadow-2xl" />
-          <h1 className="text-4xl md:text-6xl font-black font-heading text-white uppercase tracking-tighter">
+          <div className="p-1 rounded-[2.5rem] bg-white shadow-2xl border border-white/40">
+            <Image src="/logo.jpeg" alt="Logo" width={100} height={100} className="rounded-[2.2rem]" />
+          </div>
+          <h1 className="text-4xl md:text-6xl font-black font-heading text-slate-950 uppercase tracking-tighter leading-none">
             The Learners Academy
           </h1>
-          <p className="text-muted-foreground text-lg max-w-xl">
+          <p className="text-slate-500 text-lg max-w-xl font-medium">
              An online assessment specialized environment for the English Lingo Institution.
           </p>
         </div>
@@ -21,16 +27,16 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Admin Portal Card */}
           <Link href="/admin">
-            <Card className="premium-card group hover:border-primary transition-all duration-500 overflow-hidden bg-white/5 border-white/10 backdrop-blur-md h-full">
+            <Card className="premium-card group hover:border-primary transition-all duration-500 overflow-hidden bg-white/60 border border-white backdrop-blur-md h-full">
               <CardContent className="p-8 flex flex-col items-center text-center space-y-4">
-                <div className="p-4 rounded-2xl bg-primary/20 text-primary-foreground group-hover:scale-110 transition-transform">
-                  <ShieldAlert className="h-10 w-10 text-primary" />
+                <div className="p-4 rounded-2xl bg-primary/5 text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                  <ShieldAlert className="h-10 w-10" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold font-heading text-white">Institutional Admin</h2>
-                  <p className="text-sm text-muted-foreground mt-2">Manage term cycles, teachers, and rooms.</p>
+                  <h2 className="text-xl font-bold font-heading text-slate-900 tracking-tight">Institutional Admin</h2>
+                  <p className="text-sm text-slate-500 mt-2 font-medium">Manage term cycles, teachers, and rooms.</p>
                 </div>
-                <Button className="w-full mt-4 bg-primary hover:bg-primary/90">
+                <Button className="w-full mt-4 bg-primary hover:bg-primary/90 shadow-lg shadow-primary/25">
                   Enter Admin
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
@@ -40,16 +46,16 @@ export default function Home() {
 
           {/* Teacher Portal Card */}
           <Link href="/teacher">
-            <Card className="premium-card group hover:border-accent transition-all duration-500 overflow-hidden bg-white/5 border-white/10 backdrop-blur-md h-full">
+            <Card className="premium-card group hover:border-accent transition-all duration-500 overflow-hidden bg-white/60 border border-white backdrop-blur-md h-full">
               <CardContent className="p-8 flex flex-col items-center text-center space-y-4">
-                <div className="p-4 rounded-2xl bg-accent/20 text-accent group-hover:scale-110 transition-transform">
-                  <BookOpen className="h-10 w-10 text-accent" />
+                <div className="p-4 rounded-2xl bg-accent/5 text-accent group-hover:scale-110 group-hover:bg-accent group-hover:text-white transition-all duration-500">
+                  <BookOpen className="h-10 w-10" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold font-heading text-white">Assessor Portal</h2>
-                  <p className="text-sm text-muted-foreground mt-2">Create tests, manage Q-Bank, and reviews.</p>
+                  <h2 className="text-xl font-bold font-heading text-slate-900 tracking-tight">Assessor Portal</h2>
+                  <p className="text-sm text-slate-500 mt-2 font-medium">Create tests, manage Q-Bank, and reviews.</p>
                 </div>
-                <Button variant="secondary" className="w-full mt-4 bg-accent hover:bg-accent/90 text-white">
+                <Button variant="secondary" className="w-full mt-4 bg-accent hover:bg-accent/90 text-white shadow-lg shadow-accent/25">
                   Enter Teacher
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
@@ -59,16 +65,16 @@ export default function Home() {
 
           {/* Student Access Portal Card */}
           <Link href="/student">
-            <Card className="premium-card group hover:border-green-500 transition-all duration-500 overflow-hidden bg-white/5 border-white/10 backdrop-blur-md h-full">
+            <Card className="premium-card group hover:border-green-600 transition-all duration-500 overflow-hidden bg-white/60 border border-white backdrop-blur-md h-full">
               <CardContent className="p-8 flex flex-col items-center text-center space-y-4">
-                <div className="p-4 rounded-2xl bg-green-500/20 text-green-500 group-hover:scale-110 transition-transform">
-                  <GraduationCap className="h-10 w-10 text-green-500" />
+                <div className="p-4 rounded-2xl bg-green-600/5 text-green-600 group-hover:scale-110 group-hover:bg-green-600 group-hover:text-white transition-all duration-500">
+                  <GraduationCap className="h-10 w-10" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold font-heading text-white">Student Access</h2>
-                  <p className="text-sm text-muted-foreground mt-2">Take your on-the-spot assessment.</p>
+                  <h2 className="text-xl font-bold font-heading text-slate-900 tracking-tight">Student Access</h2>
+                  <p className="text-sm text-slate-500 mt-2 font-medium">Take your on-the-spot assessment.</p>
                 </div>
-                <Button variant="outline" className="w-full mt-4 border-green-500/50 text-green-500 hover:bg-green-500 hover:text-white transition-colors">
+                <Button variant="outline" className="w-full mt-4 border-green-600/50 text-green-600 hover:bg-green-600 hover:text-white transition-all">
                   Take Test
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>

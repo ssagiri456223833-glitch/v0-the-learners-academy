@@ -1,5 +1,4 @@
-import type { Metadata } from 'next'
-import { Poppins, Inter } from 'next/font/google'
+import { Poppins, Inter, Outfit } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
@@ -7,6 +6,11 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-poppins"
+});
+
+const outfit = Outfit({ 
+  subsets: ["latin"],
+  variable: "--font-outfit"
 });
 
 const inter = Inter({ 
@@ -31,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} ${inter.variable} font-sans antialiased`}>
+      <body className={`${poppins.variable} ${outfit.variable} ${inter.variable} font-sans antialiased`}>
         {children}
         <Analytics />
       </body>

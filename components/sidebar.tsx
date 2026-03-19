@@ -11,21 +11,23 @@ import {
   FileText, 
   BarChart3,
   Menu,
-  X
+  X,
+  BookOpen,
+  GraduationCap
 } from "lucide-react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 
 const navItems = [
   {
-    title: "Dashboard",
-    href: "/dashboard",
+    title: "Admin Portal",
+    href: "/admin",
     icon: LayoutDashboard,
   },
   {
-    title: "Create Test",
-    href: "/create-test",
-    icon: FilePlus,
+    title: "Teacher Portal",
+    href: "/teacher",
+    icon: BookOpen,
   },
   {
     title: "Question Bank",
@@ -33,14 +35,14 @@ const navItems = [
     icon: Library,
   },
   {
-    title: "Take Test",
-    href: "/test",
-    icon: FileText,
+    title: "Create Test",
+    href: "/create-test",
+    icon: FilePlus,
   },
   {
-    title: "Results",
-    href: "/results",
-    icon: BarChart3,
+    title: "Student Portal",
+    href: "/student",
+    icon: GraduationCap,
   },
 ]
 
