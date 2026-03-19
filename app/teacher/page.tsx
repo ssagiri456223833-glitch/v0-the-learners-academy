@@ -34,27 +34,27 @@ export default function TeacherDashboard() {
       <div className="space-y-8 pb-10">
         {/* Quick Teacher Actions */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Link href="/create-test" className="group">
+          <Link href="/teacher/create-test" className="group">
             <Card className="border-0 shadow-sm bg-primary/5 hover:bg-primary/10 transition-colors border-l-4 border-primary h-full">
               <CardContent className="p-6 flex flex-col items-center text-center gap-3">
                 <Plus className="h-8 w-8 text-primary group-hover:scale-110 transition-transform" />
-                <h3 className="font-heading font-bold uppercase tracking-widest text-xs">Create New Test</h3>
+                <h3 className="font-heading font-black uppercase tracking-widest text-[10px]">Create New Test</h3>
               </CardContent>
             </Card>
           </Link>
-          <Link href="/question-bank" className="group">
+          <Link href="/teacher/question-bank" className="group">
             <Card className="border-0 shadow-sm bg-accent/5 hover:bg-accent/10 transition-colors border-l-4 border-accent h-full">
               <CardContent className="p-6 flex flex-col items-center text-center gap-3">
                 <Database className="h-8 w-8 text-accent group-hover:scale-110 transition-transform" />
-                <h3 className="font-heading font-bold uppercase tracking-widest text-xs">Access Q-Bank</h3>
+                <h3 className="font-heading font-black uppercase tracking-widest text-[10px]">Access Q-Bank</h3>
               </CardContent>
             </Card>
           </Link>
-          <Link href="/results" className="group">
+          <Link href="/teacher/results" className="group">
             <Card className="border-0 shadow-sm bg-secondary/5 hover:bg-secondary/10 transition-colors border-l-4 border-secondary h-full">
               <CardContent className="p-6 flex flex-col items-center text-center gap-3">
                 <BarChart3 className="h-8 w-8 text-secondary group-hover:scale-110 transition-transform" />
-                <h3 className="font-heading font-bold uppercase tracking-widest text-xs">View Class Results</h3>
+                <h3 className="font-heading font-black uppercase tracking-widest text-[10px]">View Class Results</h3>
               </CardContent>
             </Card>
           </Link>

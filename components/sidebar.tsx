@@ -17,7 +17,8 @@ import {
   CalendarDays,
   UserCircle,
   Shapes,
-  History
+  History,
+  LogOut
 } from "lucide-react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -170,11 +171,18 @@ export function Sidebar() {
             </ul>
           </nav>
 
-          {/* Footer */}
-          <div className="px-6 py-4 border-t border-sidebar-border">
-            <p className="text-xs text-sidebar-foreground/60 text-center">
-              © 2026 The Learners Academy
-            </p>
+          {/* Footer / Exit Action */}
+          <div className="px-4 py-6 border-t border-sidebar-border mt-auto">
+             <Link 
+               href="/"
+               className="flex items-center gap-4 px-5 py-3.5 rounded-2xl font-black uppercase text-[10px] tracking-[0.2em] text-white/40 hover:text-white hover:bg-white/5 transition-all group"
+             >
+                <LogOut className="h-4 w-4 text-white/30 group-hover:text-red-400 group-hover:scale-110 transition-all" />
+                <span>Exit Portal</span>
+             </Link>
+             <p className="text-[9px] font-bold text-white/20 text-center mt-4 tracking-widest uppercase">
+                © 2026 The Learners Academy
+             </p>
           </div>
         </div>
       </aside>
