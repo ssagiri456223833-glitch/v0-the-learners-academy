@@ -13,11 +13,22 @@ import {
   Shapes,
   History,
   LogOut,
-  X
+  X,
+  Users
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const adminItems = [
+  {
+    title: "Dashboard",
+    href: "/admin",
+    icon: LayoutDashboard,
+  },
+  {
+    title: "Faculty Registry",
+    href: "/admin/teachers",
+    icon: Users,
+  },
   {
     title: "Timetable",
     href: "/admin/timetable",
