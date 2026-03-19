@@ -15,38 +15,52 @@ export default function AdminClasses() {
 
   return (
     <DashboardLayout 
-      title="Class Management" 
-      subtitle="Overview of Levels, enrollments, and teaching capacity."
+      title="Class Management Console" 
+      subtitle="Overview of Academic Levels • Active Enrollment Statistics"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 page-entrance">
-        {levels.map((level, i) => (
-          <Card key={i} className="premium-card group hover:scale-[1.02] transition-all border-0 shadow-xl shadow-[#1d8ae2]/5 overflow-hidden">
-            <CardHeader className="bg-[#1d8ae2]/5 border-b border-[#1d8ae2]/10">
-              <div className="flex justify-between items-center">
-                 <Shapes className="h-6 w-6 text-[#1d8ae2]" />
-                 <Badge variant="secondary" className="bg-white/80 text-[#1d8ae2] border-[#1d8ae2]/20 uppercase font-black text-[10px] tracking-widest px-2">Level Focus</Badge>
-              </div>
-              <CardTitle className="font-heading font-black tracking-tighter uppercase text-xl pt-2">{level.name}</CardTitle>
-              <CardDescription className="font-sans text-xs font-medium">Assigned to Active Term Cycle</CardDescription>
-            </CardHeader>
-            <CardContent className="p-6 space-y-4">
-               <div className="flex items-center justify-between text-sm font-bold opacity-70">
-                  <div className="flex items-center gap-2">
-                     <Users className="h-4 w-4" />
-                     <span>Students</span>
-                  </div>
-                  <span className="text-[#1d8ae2]">{level.students}</span>
-               </div>
-               <div className="flex items-center justify-between text-sm font-bold opacity-70">
-                  <div className="flex items-center gap-2">
-                     <BookOpen className="h-4 w-4" />
-                     <span>Teachers</span>
-                  </div>
-                  <span className="text-[#1d8ae2]">{level.activeTeachers}</span>
-               </div>
-            </CardContent>
-          </Card>
-        ))}
+      <div className="space-y-12 pb-12">
+        {/* Level Allocation Matrix */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {levels.map((level, i) => (
+            <Card key={i} className="border border-border bg-white shadow-sm rounded-lg overflow-hidden group hover:shadow-md transition-all">
+              <CardHeader className="bg-slate-50 border-b border-border p-8">
+                <div className="flex justify-between items-center mb-6">
+                   <div className="p-2 rounded-md bg-primary/5 text-primary border border-primary/10">
+                      <Shapes className="h-5 w-5" />
+                   </div>
+                   <Badge variant="outline" className="text-primary border-primary/20 bg-primary/5 font-black text-[9px] tracking-[0.2em] px-3 uppercase">Operational Hub</Badge>
+                </div>
+                <CardTitle className="page-title text-[28px] text-foreground leading-none">{level.name}</CardTitle>
+                <CardDescription className="micro-text text-muted-foreground font-bold mt-3 uppercase tracking-widest opacity-40 italic">Assigned Term 2 Cycle</CardDescription>
+              </CardHeader>
+              <CardContent className="p-8 space-y-6">
+                 <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                       <Users className="h-4 w-4 text-muted-foreground opacity-40" />
+                       <span className="text-[13px] font-bold text-foreground uppercase tracking-tight">Active Enrollment</span>
+                    </div>
+                    <span className="text-[16px] font-black italic decoration-primary/20 underline underline-offset-4 decoration-2 text-primary">{level.students}</span>
+                 </div>
+                 <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                       <BookOpen className="h-4 w-4 text-muted-foreground opacity-40" />
+                       <span className="text-[13px] font-bold text-foreground uppercase tracking-tight">Assessor Count</span>
+                    </div>
+                    <span className="text-[16px] font-black italic decoration-primary/20 underline underline-offset-4 decoration-2 text-primary">{level.activeTeachers}</span>
+                 </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        <div className="pt-8 border-t border-border flex items-center justify-between">
+           <p className="micro-text text-muted-foreground font-black uppercase tracking-[0.2em] opacity-30">
+              System Validation: LIVE-SECURE
+           </p>
+           <p className="micro-text text-muted-foreground font-bold italic opacity-40">
+              Last Database Sync: Current Phase
+           </p>
+        </div>
       </div>
     </DashboardLayout>
   )
