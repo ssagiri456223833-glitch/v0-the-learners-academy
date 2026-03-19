@@ -83,7 +83,7 @@ import { Suspense } from "react"
 function TestContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const studentName = searchParams.get("studentName") || "Student"
+  const studentId = searchParams.get("studentId") || "L-1025"
   
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<Record<string, number>>({})
@@ -165,6 +165,8 @@ function TestContent() {
         title={mockTest.title}
         timeLeft={timeLeft}
         onSubmit={() => setShowSubmitDialog(true)}
+        studentId={studentId || "L-1025"}
+        level={searchParams.get("level") || "General"}
       />
 
       <div className="max-w-6xl mx-auto px-4 py-6">

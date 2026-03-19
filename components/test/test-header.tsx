@@ -16,14 +16,17 @@ import {
 } from "@/components/ui/alert-dialog"
 import { LogOut, Clock, Send } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { Badge } from "@/components/ui/badge"
 
 interface TestHeaderProps {
   title: string
   timeLeft: number
   onSubmit: () => void
+  studentId?: string
+  level?: string
 }
 
-export function TestHeader({ title, timeLeft, onSubmit }: TestHeaderProps) {
+export function TestHeader({ title, timeLeft, onSubmit, studentId, level }: TestHeaderProps) {
   const router = useRouter()
   const minutes = Math.floor(timeLeft / 60)
   const seconds = timeLeft % 60
@@ -78,6 +81,17 @@ export function TestHeader({ title, timeLeft, onSubmit }: TestHeaderProps) {
                 </p>
               </div>
             </div>
+          </div>
+
+          {/* Student Info - New Institutional Section */}
+          <div className="hidden lg:flex items-center gap-3 px-4 border-l border-r border-sidebar-border h-full">
+            <div className="flex flex-col items-end">
+              <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-tighter">Student ID</span>
+              <span className="text-xs font-mono font-bold text-primary">{studentId || "L-0000"}</span>
+            </div>
+            <Badge variant="outline" className="bg-primary/5 text-primary border-primary/20 h-6 text-[10px] font-bold">
+              {level || "General"}
+            </Badge>
           </div>
 
           {/* Timer & Submit */}

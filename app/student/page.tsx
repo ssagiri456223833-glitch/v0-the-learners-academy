@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -14,28 +14,51 @@ import {
   SelectValue 
 } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
-import { GraduationCap, BookOpen, Clock, User, Play } from "lucide-react"
+import { GraduationCap, BookOpen, Clock, User, Play, Hash, Calendar } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { ACADEMY_LEVELS, TIMETABLE_SLOTS } from "@/lib/constants"
 
 export default function StudentPortal() {
   const router = useRouter()
-  const [name, setName] = useState("")
-  const [room, setRoom] = useState("")
-  const [testCode, setTestCode] = useState("")
+  const [studentId, setStudentId] = useState("")
+  const [level, setLevel] = useState("")
+  const [slot, setSlot] = useState("")
   const [isSearching, setIsSearching] = useState(false)
   const [testFound, setTestFound] = useState<any>(null)
 
-  const handleStartTest = () => {
-    if (name && room && testCode) {
+  // Auto-detect current slot based on time
+  useEffect(() => {
+    const now = new Date()
+    const hours = now.getHours()
+    const minutes = now.getMinutes()
+    const currentTime = hours * 60 + minutes
+
+    // Simple time mapping for 6 slots
+    // 02:15 = 135 mins past noon (using 14:15)
+    const slotTimes = [
+      { id: "1", start: 14 * 60 + 15, end: 15 * 60 },
+      { id: "2", start: 15 * 60, end: 15 * 60 + 45 },
+      { id: "3", start: 15 * 60 + 45, end: 16 * 60 + 30 },
+      { id: "4", start: 16 * 60 + 30, end: 17 * 60 + 15 },
+      { id: "5", start: 17 * 60 + 15, end: 18 * 60 },
+      { id: "6", start: 18 * 60, end: 18 * 60 + 45 },
+    ]
+
+    const detected = slotTimes.find(s => currentTime >= s.start && currentTime < s.end)
+    if (detected) setSlot(detected.id)
+  }, [])
+
+  const handleSearchTest = () => {
+    if (studentId && level && slot) {
       setIsSearching(true)
-      // Simulate API fetch delay
+      // Simulate API fetch from the institutional term data
       setTimeout(() => {
         setTestFound({
-          title: "Level One - Trimester Assessment 1",
+          title: `${level} - Mid-Term Assessment`,
           duration: 45,
           totalQuestions: 10,
-          subject: "Grammar & Vocabulary"
+          subject: "Grammar & Vocabulary Concentration"
         })
         setIsSearching(false)
       }, 1500)
@@ -43,7 +66,7 @@ export default function StudentPortal() {
   }
 
   const confirmAndBegin = () => {
-    router.push(`/test?studentName=${encodeURIComponent(name)}&room=${room}&code=${testCode}`)
+    router.push(`/test?studentId=${encodeURIComponent(studentId)}&level=${level}&slot=${slot}`)
   }
 
   return (
@@ -62,7 +85,7 @@ export default function StudentPortal() {
             />
           </div>
           <h1 className="font-heading text-3xl font-bold text-foreground">
-            Student Portal
+            Student Access
           </h1>
           <p className="text-muted-foreground mt-2">
             The Learners Academy English Specialized Program
@@ -72,77 +95,84 @@ export default function StudentPortal() {
         <Card className="border-0 shadow-2xl bg-card/80 backdrop-blur-sm overflow-hidden border-t-4 border-primary">
           <CardHeader className="text-center pb-2">
             <CardTitle className="text-xl font-bold">
-              {testFound ? "Test Found!" : "Access Your Test"}
+              {testFound ? "Assessment Ready" : "Login to Your Session"}
             </CardTitle>
             <CardDescription>
               {testFound 
-                ? "Please verify the test details below before starting."
-                : "Enter your details below to begin the assessment"
+                ? "Please verify the assessment details below."
+                : "Enter your Institutional Credentials to access the test"
               }
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6 pt-4">
             {!testFound ? (
               <>
-                {/* Student Name */}
+                {/* Student ID */}
                 <div className="space-y-2">
-                  <Label htmlFor="name" className="flex items-center gap-2">
-                    <User className="h-4 w-4 text-primary" />
-                    Full Name
+                  <Label htmlFor="id" className="flex items-center gap-2">
+                    <Hash className="h-4 w-4 text-primary" />
+                    Student Registration ID
                   </Label>
                   <Input
-                    id="name"
-                    placeholder="e.g., Ali Khan"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="h-12 focus-visible:ring-primary text-lg"
+                    id="id"
+                    placeholder="e.g., L-1025"
+                    value={studentId}
+                    onChange={(e) => setStudentId(e.target.value.toUpperCase())}
+                    className="h-12 focus-visible:ring-primary text-lg font-mono tracking-widest"
                   />
                 </div>
 
-                {/* Room Selection */}
-                <div className="space-y-2">
-                  <Label htmlFor="room" className="flex items-center gap-2">
-                    <BookOpen className="h-4 w-4 text-primary" />
-                    Room / Class Number
-                  </Label>
-                  <Select onValueChange={setRoom}>
-                    <SelectTrigger id="room" className="h-12 focus:ring-primary text-lg">
-                      <SelectValue placeholder="Select your room" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((r) => (
-                        <SelectItem key={r} value={r.toString()}>
-                          Room {r}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  {/* Level Selection */}
+                  <div className="space-y-2">
+                    <Label htmlFor="level" className="flex items-center gap-2">
+                      <BookOpen className="h-4 w-4 text-primary" />
+                      Current Level
+                    </Label>
+                    <Select onValueChange={setLevel} value={level}>
+                      <SelectTrigger id="level" className="h-12 focus:ring-primary">
+                        <SelectValue placeholder="Level" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {ACADEMY_LEVELS.map((l) => (
+                          <SelectItem key={l.value} value={l.label}>
+                            {l.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
 
-                {/* Test Code */}
-                <div className="space-y-2">
-                  <Label htmlFor="testCode" className="flex items-center gap-2">
-                    <Clock className="h-4 w-4 text-primary" />
-                    Test Access Code
-                  </Label>
-                  <Input
-                    id="testCode"
-                    placeholder="Enter the code from your teacher"
-                    value={testCode}
-                    onChange={(e) => setTestCode(e.target.value)}
-                    className="h-12 focus-visible:ring-primary text-lg font-mono uppercase tracking-widest text-center"
-                  />
+                  {/* Time Slot Selection */}
+                  <div className="space-y-2">
+                    <Label htmlFor="slot" className="flex items-center gap-2">
+                      <Clock className="h-4 w-4 text-primary" />
+                      Time Slot
+                    </Label>
+                    <Select onValueChange={setSlot} value={slot}>
+                      <SelectTrigger id="slot" className="h-12 focus:ring-primary">
+                        <SelectValue placeholder="Slot" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {TIMETABLE_SLOTS.map((s) => (
+                          <SelectItem key={s.id} value={s.id.toString()}>
+                            Slot {s.id} ({s.standard})
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
 
                 <Button 
                   className="w-full h-14 text-lg font-bold gap-3 shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform"
-                  disabled={!name || !room || !testCode || isSearching}
-                  onClick={handleStartTest}
+                  disabled={!studentId || !level || !slot || isSearching}
+                  onClick={handleSearchTest}
                 >
                   {isSearching ? (
                         <span className="flex items-center gap-2">
                           <Clock className="h-5 w-5 animate-spin" />
-                          Searching...
+                          Locating Assessment...
                         </span>
                   ) : (
                     <>
@@ -162,14 +192,14 @@ export default function StudentPortal() {
                     </div>
                     <Badge className="bg-primary">{testFound.duration} Mins</Badge>
                   </div>
-                  <div className="grid grid-cols-2 gap-4 pt-2 border-t border-primary/10">
+                  <div className="grid grid-cols-2 gap-4 pt-4 border-t border-primary/10">
                     <div className="text-center">
-                      <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-tighter">Questions</p>
-                      <p className="font-bold">{testFound.totalQuestions}</p>
+                      <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-tighter">Registration ID</p>
+                      <p className="font-bold">{studentId}</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-tighter">Candidate</p>
-                      <p className="font-bold truncate">{name}</p>
+                      <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-tighter">Assigned Slot</p>
+                      <p className="font-bold">Slot {slot}</p>
                     </div>
                   </div>
                 </div>
@@ -183,7 +213,7 @@ export default function StudentPortal() {
                     Begin Now
                   </Button>
                   <Button 
-                    variant="ghost"
+                    variant="ghost" 
                     className="w-full h-10 text-muted-foreground"
                     onClick={() => setTestFound(null)}
                   >
@@ -194,17 +224,10 @@ export default function StudentPortal() {
             )}
             
             <p className="text-xs text-center text-muted-foreground pt-2">
-              By clicking "Begin Now", you agree to follow the academy's integrity policy.
+              The Learners Academy Assessment Environment • Term-Based Access
             </p>
           </CardContent>
         </Card>
-
-        {/* Support Link */}
-        <div className="text-center">
-          <p className="text-sm text-muted-foreground">
-            Having trouble? <Link href="/student/dashboard" className="text-primary font-semibold hover:underline">Go to Student Dashboard</Link>
-          </p>
-        </div>
       </div>
     </div>
   )
