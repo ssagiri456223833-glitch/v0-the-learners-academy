@@ -7,16 +7,16 @@ import Image from "next/image"
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#F8FAFC] relative overflow-hidden flex flex-col items-center justify-center p-6">
-      {/* Pure Azure Mesh Gradient Background Blobs */}
-      <div className="absolute top-[-10%] left-[-10%] w-[45%] h-[45%] bg-primary/10 rounded-full blur-[130px] animate-pulse" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[45%] h-[45%] bg-primary/15 rounded-full blur-[130px] animate-pulse" />
+      {/* Pure Brand Mesh Gradient Background Blobs - #1d8ae2 */}
+      <div className="absolute top-[-10%] left-[-10%] w-[45%] h-[45%] bg-[#1d8ae2]/10 rounded-full blur-[130px] animate-pulse" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[45%] h-[45%] bg-[#1d8ae2]/15 rounded-full blur-[130px] animate-pulse" />
 
       <div className="max-w-4xl w-full space-y-12 mb-12 relative z-10 page-entrance">
         <div className="flex flex-col items-center text-center space-y-4">
-          <div className="p-1.5 rounded-[2.5rem] bg-white shadow-2xl border border-white/40 ring-4 ring-primary/5">
+          <div className="p-1.5 rounded-[2.5rem] bg-white shadow-2xl border border-white/40 ring-4 ring-[#1d8ae2]/5">
             <Image src="/logo.jpeg" alt="Logo" width={100} height={100} className="rounded-[2.2rem]" />
           </div>
-          <h1 className="text-4xl md:text-6xl font-black font-heading text-slate-950 uppercase tracking-tighter leading-none">
+          <h1 className="text-4xl md:text-6xl font-black font-heading text-[#0F172A] uppercase tracking-tighter leading-none">
             The Learners Academy
           </h1>
           <p className="text-slate-500 text-lg max-w-xl font-medium">
