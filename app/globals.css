@@ -5,33 +5,33 @@
 
 :root {
   --background: #F8FAFC;
-  --foreground: #020617;
+  --foreground: #0F172A;
   --card: #FFFFFF;
-  --card-foreground: #020617;
+  --card-foreground: #0F172A;
   --popover: #FFFFFF;
-  --popover-foreground: #020617;
-  --primary: #4338CA;
+  --popover-foreground: #0F172A;
+  --primary: #1D4ED8; /* Royal Blue from logo */
   --primary-foreground: #FFFFFF;
-  --secondary: #EEF2FF;
-  --secondary-foreground: #312E81;
+  --secondary: #EFF6FF;
+  --secondary-foreground: #1E40AF;
   --muted: #F1F5F9;
   --muted-foreground: #64748B;
-  --accent: #6366F1;
+  --accent: #0EA5E9; /* Azure Cyan from logo */
   --accent-foreground: #FFFFFF;
   --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
   --border: #E2E8F0;
   --input: #E2E8F0;
-  --ring: #4338CA;
+  --ring: #1D4ED8;
   --radius: 0.75rem;
-  --sidebar: #1E1B4B;
+  --sidebar: #0F172A; /* Deep Navy from logo */
   --sidebar-foreground: #FFFFFF;
-  --sidebar-primary: #4338CA;
+  --sidebar-primary: #1D4ED8;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #312E81;
+  --sidebar-accent: #1E3A8A;
   --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: #312E81;
-  --sidebar-ring: #6366F1;
+  --sidebar-border: #1E3A8A;
+  --sidebar-ring: #0EA5E9;
   --success: #10B981;
   --success-foreground: #FFFFFF;
   --warning: #F59E0B;

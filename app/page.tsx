@@ -7,16 +7,16 @@ import Image from "next/image"
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#F8FAFC] relative overflow-hidden flex flex-col items-center justify-center p-6">
-      {/* Mesh Gradient Background Blobs */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px] animate-pulse" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent/10 rounded-full blur-[120px] animate-pulse" />
+      {/* Mesh Gradient Background Blobs - Sync with Logo Palette */}
+      <div className="absolute top-[-10%] left-[-10%] w-[45%] h-[45%] bg-[#1D4ED8]/10 rounded-full blur-[130px] animate-pulse" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[45%] h-[45%] bg-[#0EA5E9]/10 rounded-full blur-[130px] animate-pulse" />
 
       <div className="max-w-4xl w-full space-y-12 mb-12 relative z-10 page-entrance">
         <div className="flex flex-col items-center text-center space-y-4">
-          <div className="p-1 rounded-[2.5rem] bg-white shadow-2xl border border-white/40">
+          <div className="p-1.5 rounded-[2.5rem] bg-white shadow-2xl border border-white/40 ring-4 ring-primary/5">
             <Image src="/logo.jpeg" alt="Logo" width={100} height={100} className="rounded-[2.2rem]" />
           </div>
-          <h1 className="text-4xl md:text-6xl font-black font-heading text-slate-950 uppercase tracking-tighter leading-none">
+          <h1 className="text-4xl md:text-6xl font-black font-heading text-[#0F172A] uppercase tracking-tighter leading-none">
             The Learners Academy
           </h1>
           <p className="text-slate-500 text-lg max-w-xl font-medium">
@@ -36,7 +36,7 @@ export default function Home() {
                   <h2 className="text-xl font-bold font-heading text-slate-900 tracking-tight">Institutional Admin</h2>
                   <p className="text-sm text-slate-500 mt-2 font-medium">Manage term cycles, teachers, and rooms.</p>
                 </div>
-                <Button className="w-full mt-4 bg-primary hover:bg-primary/90 shadow-lg shadow-primary/25">
+                <Button className="w-full mt-4 bg-primary hover:bg-primary/90 shadow-lg shadow-primary/25 font-bold uppercase tracking-widest text-xs py-6">
                   Enter Admin
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
@@ -46,16 +46,16 @@ export default function Home() {
 
           {/* Teacher Portal Card */}
           <Link href="/teacher">
-            <Card className="premium-card group hover:border-accent transition-all duration-500 overflow-hidden bg-white/60 border border-white backdrop-blur-md h-full">
+            <Card className="premium-card group hover:border-[#0EA5E9] transition-all duration-500 overflow-hidden bg-white/60 border border-white backdrop-blur-md h-full">
               <CardContent className="p-8 flex flex-col items-center text-center space-y-4">
-                <div className="p-4 rounded-2xl bg-accent/5 text-accent group-hover:scale-110 group-hover:bg-accent group-hover:text-white transition-all duration-500">
+                <div className="p-4 rounded-2xl bg-[#0EA5E9]/5 text-[#0EA5E9] group-hover:scale-110 group-hover:bg-[#0EA5E9] group-hover:text-white transition-all duration-500">
                   <BookOpen className="h-10 w-10" />
                 </div>
                 <div>
                   <h2 className="text-xl font-bold font-heading text-slate-900 tracking-tight">Assessor Portal</h2>
                   <p className="text-sm text-slate-500 mt-2 font-medium">Create tests, manage Q-Bank, and reviews.</p>
                 </div>
-                <Button variant="secondary" className="w-full mt-4 bg-accent hover:bg-accent/90 text-white shadow-lg shadow-accent/25">
+                <Button variant="secondary" className="w-full mt-4 bg-[#0EA5E9] hover:bg-[#0EA5E9]/90 text-white shadow-lg shadow-[#0EA5E9]/25 font-bold uppercase tracking-widest text-xs py-6">
                   Enter Teacher
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
@@ -74,7 +74,7 @@ export default function Home() {
                   <h2 className="text-xl font-bold font-heading text-slate-900 tracking-tight">Student Access</h2>
                   <p className="text-sm text-slate-500 mt-2 font-medium">Take your on-the-spot assessment.</p>
                 </div>
-                <Button variant="outline" className="w-full mt-4 border-green-600/50 text-green-600 hover:bg-green-600 hover:text-white transition-all">
+                <Button variant="outline" className="w-full mt-4 border-green-600/50 text-green-600 hover:bg-green-600 hover:text-white transition-all font-bold uppercase tracking-widest text-xs py-6">
                   Take Test
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
