@@ -34,7 +34,7 @@ export default function TeacherDashboard() {
         {/* Assessor Action Modules */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <Link href="/teacher/create-test" className="group">
-            <Card className="border border-border bg-white shadow-sm hover:shadow-md transition-all rounded-lg overflow-hidden h-full">
+            <Card className="border border-border bg-white shadow-sm btn-interactive rounded-lg overflow-hidden h-full">
               <CardContent className="p-8 flex flex-col items-center text-center gap-5">
                 <div className="p-4 rounded-md bg-primary/5 text-primary border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                   <Plus className="h-6 w-6" />
@@ -44,7 +44,7 @@ export default function TeacherDashboard() {
             </Card>
           </Link>
           <Link href="/teacher/question-bank" className="group">
-            <Card className="border border-border bg-white shadow-sm hover:shadow-md transition-all rounded-lg overflow-hidden h-full">
+            <Card className="border border-border bg-white shadow-sm btn-interactive rounded-lg overflow-hidden h-full">
               <CardContent className="p-8 flex flex-col items-center text-center gap-5">
                 <div className="p-4 rounded-md bg-primary/5 text-primary border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                   <Database className="h-6 w-6" />
@@ -54,7 +54,7 @@ export default function TeacherDashboard() {
             </Card>
           </Link>
           <Link href="/teacher/results" className="group">
-            <Card className="border border-border bg-white shadow-sm hover:shadow-md transition-all rounded-lg overflow-hidden h-full">
+            <Card className="border border-border bg-white shadow-sm btn-interactive rounded-lg overflow-hidden h-full">
               <CardContent className="p-8 flex flex-col items-center text-center gap-5">
                 <div className="p-4 rounded-md bg-primary/5 text-primary border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                   <BarChart3 className="h-6 w-6" />

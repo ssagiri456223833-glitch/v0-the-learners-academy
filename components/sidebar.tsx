@@ -8,19 +8,13 @@ import {
   LayoutDashboard, 
   FilePlus, 
   Library, 
-  FileText, 
-  BarChart3,
-  Menu,
-  X,
-  BookOpen,
-  GraduationCap,
   CalendarDays,
   UserCircle,
   Shapes,
   History,
-  LogOut
+  LogOut,
+  X
 } from "lucide-react"
-import { useState } from "react"
 import { Button } from "@/components/ui/button"
 
 const adminItems = [
@@ -58,7 +52,7 @@ const teacherItems = [
     icon: FilePlus,
   },
   {
-    title: "Class Results",
+    title: "Results",
     href: "/teacher/results",
     icon: History,
   },
@@ -69,95 +63,94 @@ const teacherItems = [
   },
 ]
 
-export function Sidebar() {
-  const pathname = usePathname()
-  const [mobileOpen, setMobileOpen] = useState(false)
+interface SidebarProps {
+  isOpen: boolean
+  onClose: () => void
+}
 
+export function Sidebar({ isOpen, onClose }: SidebarProps) {
+  const pathname = usePathname()
   const navItems = pathname.startsWith('/admin') ? adminItems : teacherItems
 
   return (
     <>
-      {/* Mobile menu button */}
-      <Button
-        variant="ghost"
-        size="icon"
-        className="fixed top-4 left-4 z-50 lg:hidden text-foreground hover:bg-slate-50"
-        onClick={() => setMobileOpen(!mobileOpen)}
-        aria-label={mobileOpen ? "Close menu" : "Open menu"}
-      >
-        {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-      </Button>
-
-      {/* Mobile overlay */}
-      {mobileOpen && (
+      {/* Mobile Backdrop Overlay */}
+      {isOpen && (
         <div 
-          className="fixed inset-0 bg-slate-900/10 z-30 lg:hidden backdrop-blur-sm"
-          onClick={() => setMobileOpen(false)}
+          className="fixed inset-0 bg-slate-900/40 z-40 md:hidden backdrop-blur-sm transition-opacity duration-300"
+          onClick={onClose}
         />
       )}
 
-      {/* Sidebar */}
+      {/* Sidebar Container */}
       <aside
         className={cn(
-          "fixed left-0 top-0 z-40 h-screen w-64 bg-white border-r border-border shadow-sm transition-transform duration-300 ease-in-out lg:translate-x-0 overflow-hidden",
-          mobileOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full"
+          "fixed left-0 top-0 bottom-0 z-50 w-[260px] bg-white border-r border-border transition-transform duration-300 ease-in-out md:translate-x-0 md:static md:h-full",
+          isOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
         <div className="flex h-full flex-col">
-          {/* Internal Branding Logo Area */}
-          <div className="flex items-center gap-3 px-8 py-10 border-b border-border bg-slate-50/50">
-            <div className="p-1 rounded-md bg-white border border-border shadow-sm">
-              <Image
-                src="/logo.jpeg"
-                alt="The Learners Academy"
-                width={36}
-                height={36}
-                className="rounded-sm"
-              />
+          {/* Header Area (Branding) */}
+          <div className="flex items-center justify-between px-8 py-10 border-b border-border bg-slate-50/50">
+            <div className="flex items-center gap-3">
+              <div className="p-1 rounded-md bg-white border border-border shadow-sm">
+                <Image
+                  src="/logo.jpeg"
+                  alt="The Learners Academy"
+                  width={32}
+                  height={32}
+                  className="rounded-sm"
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="page-title text-[16px] leading-none text-foreground tracking-tight underline underline-offset-4 decoration-primary/20">
+                  Institutional
+                </span>
+                <span className="micro-text text-muted-foreground font-black mt-1 uppercase tracking-widest opacity-40">
+                   {pathname.startsWith('/admin') ? "Admin" : "Teacher"}
+                </span>
+              </div>
             </div>
-            <div className="flex flex-col">
-              <span className="page-title text-[18px] leading-none text-foreground tracking-tight underline underline-offset-4 decoration-primary/20">
-                Institutional
-              </span>
-              <span className="micro-text text-muted-foreground font-black mt-1 uppercase tracking-widest opacity-50">
-                LTD Environment
-              </span>
-            </div>
+            
+            {/* Close Button (Mobile Only) */}
+            <Button variant="ghost" size="icon" className="md:hidden -mr-2" onClick={onClose}>
+              <X className="h-5 w-5 opacity-40" />
+            </Button>
           </div>
 
-          {/* Navigation Items */}
+          {/* Navigation Matrix */}
           <nav className="flex-1 px-4 py-8 overflow-y-auto">
-            <ul className="space-y-2">
+            <ul className="space-y-1.5">
               <li className="px-4 pb-4">
                  <span className="micro-text font-black uppercase tracking-widest text-muted-foreground opacity-30">
-                   {pathname.startsWith('/admin') ? "Institutional Admin" : "Assessor Portal"}
+                   Navigation Protocol
                  </span>
               </li>
 
               {navItems.map((item) => {
-                const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href + "/"))
+                const isActive = pathname === item.href
                 return (
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      onClick={() => setMobileOpen(false)}
+                      onClick={onClose}
                       className={cn(
-                        "flex items-center gap-4 px-4 py-3 rounded-md font-semibold transition-all duration-200 group relative",
+                        "flex items-center gap-4 px-4 py-3.5 rounded-md font-semibold transition-all duration-200 group relative",
                         isActive
-                          ? "bg-slate-50 text-foreground shadow-sm border border-border"
-                          : "text-muted-foreground hover:bg-slate-50/50 hover:text-foreground"
+                          ? "bg-slate-50 text-primary shadow-sm border border-border/60"
+                          : "text-muted-foreground hover:bg-slate-50/50 hover:text-foreground hover:translate-x-1"
                       )}
                     >
-                      {/* Discrete Active Indicator */}
+                      {/* Active Notch */}
                       {isActive && (
-                        <div className="absolute left-0 top-1 bottom-1 w-1 bg-primary rounded-r-md" />
+                        <div className="absolute left-0 top-2 bottom-2 w-[3px] bg-primary rounded-r-full" />
                       )}
                       
                       <item.icon className={cn(
                         "h-4 w-4 transition-colors duration-200",
-                        isActive ? "text-primary" : "text-muted-foreground opacity-40 group-hover:opacity-100 group-hover:text-primary"
+                        isActive ? "text-primary opacity-100 scale-110" : "text-muted-foreground opacity-40 group-hover:opacity-100 group-hover:text-primary"
                       )} />
-                      <span className="text-[14px] font-medium tracking-tight tracking-wide">{item.title}</span>
+                      <span className="text-[13px] font-bold tracking-tight uppercase tracking-widest">{item.title}</span>
                     </Link>
                   </li>
                 )
@@ -171,11 +164,11 @@ export function Sidebar() {
                href="/"
                className="flex items-center gap-4 px-4 py-3 rounded-md font-bold uppercase text-[10px] tracking-widest text-muted-foreground hover:text-destructive hover:bg-destructive/5 transition-all group"
              >
-                <LogOut className="h-3 w-3 opacity-40 group-hover:opacity-100 transition-all" />
-                <span>Exit Portal</span>
+                <LogOut className="h-3.5 w-3.5 opacity-40 group-hover:opacity-100 transition-all" />
+                <span>Terminate Session</span>
              </Link>
              <p className="text-[9px] font-bold text-muted-foreground opacity-20 text-center mt-6 tracking-widest uppercase">
-                © 2026 The Learners Academy LTD
+                © 2026 Learners Academy
              </p>
           </div>
         </div>

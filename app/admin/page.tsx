@@ -18,42 +18,42 @@ export default function AdminDashboard() {
     >
       <div className="space-y-10 pb-12">
         {/* Institutional Control Modules */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <Link href="/admin/timetable" className="group">
-            <Card className="border border-border bg-white shadow-sm hover:shadow-md transition-all rounded-lg overflow-hidden group">
-              <CardContent className="p-6 flex items-center gap-6">
-                <div className="p-3 rounded-md bg-primary/5 text-primary group-hover:bg-primary group-hover:text-white transition-all">
+            <Card className="border border-border bg-white shadow-sm btn-interactive rounded-lg overflow-hidden h-full">
+              <CardContent className="p-8 flex items-center gap-6">
+                <div className="p-3.5 rounded-md bg-primary/5 text-primary border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                   <Calendar className="h-5 w-5" />
                 </div>
                 <div>
-                   <h3 className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground opacity-60">System Schedule</h3>
-                   <p className="text-[16px] font-semibold text-foreground mt-1">Master Timetable</p>
+                   <h3 className="micro-text font-black uppercase tracking-widest text-muted-foreground opacity-50">Master Schedule</h3>
+                   <p className="text-[18px] font-bold text-foreground mt-1 tracking-tight">System Timetable</p>
                 </div>
               </CardContent>
             </Card>
           </Link>
           <Link href="/admin/classes" className="group">
-            <Card className="border border-border bg-white shadow-sm hover:shadow-md transition-all rounded-lg overflow-hidden group">
-              <CardContent className="p-6 flex items-center gap-6">
-                <div className="p-3 rounded-md bg-primary/5 text-primary group-hover:bg-primary group-hover:text-white transition-all">
+            <Card className="border border-border bg-white shadow-sm btn-interactive rounded-lg overflow-hidden h-full">
+              <CardContent className="p-8 flex items-center gap-6">
+                <div className="p-3.5 rounded-md bg-primary/5 text-primary border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                   <UserCheck className="h-5 w-5" />
                 </div>
                 <div>
-                   <h3 className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground opacity-60">Academic Groups</h3>
-                   <p className="text-[16px] font-semibold text-foreground mt-1">Class Enrollment</p>
+                   <h3 className="micro-text font-black uppercase tracking-widest text-muted-foreground opacity-50">Academic Groups</h3>
+                   <p className="text-[18px] font-bold text-foreground mt-1 tracking-tight">Class Enrollment</p>
                 </div>
               </CardContent>
             </Card>
           </Link>
           <Link href="/admin/profile" className="group">
-            <Card className="border border-border bg-white shadow-sm hover:shadow-md transition-all rounded-lg overflow-hidden group">
-              <CardContent className="p-6 flex items-center gap-6">
-                <div className="p-3 rounded-md bg-primary/5 text-primary group-hover:bg-primary group-hover:text-white transition-all">
+            <Card className="border border-border bg-white shadow-sm btn-interactive rounded-lg overflow-hidden h-full">
+              <CardContent className="p-8 flex items-center gap-6">
+                <div className="p-3.5 rounded-md bg-primary/5 text-primary border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                   <Settings className="h-5 w-5" />
                 </div>
                 <div>
-                   <h3 className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground opacity-60">Environment</h3>
-                   <p className="text-[16px] font-semibold text-foreground mt-1">System Profile</p>
+                   <h3 className="micro-text font-black uppercase tracking-widest text-muted-foreground opacity-50">Environment</h3>
+                   <p className="text-[18px] font-bold text-foreground mt-1 tracking-tight">System Profile</p>
                 </div>
               </CardContent>
             </Card>

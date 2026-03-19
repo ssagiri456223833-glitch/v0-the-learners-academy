@@ -148,4 +148,13 @@
   .sidebar-secondary {
     @apply opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all;
   }
+
+  /* Institutional Interactive Utilities */
+  .btn-interactive {
+    @apply transition-all duration-300;
+  }
+
+  .btn-interactive:hover {
+    @apply -translate-y-1 shadow-md;
+  }
 }
