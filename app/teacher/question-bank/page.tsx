@@ -4,7 +4,7 @@ import { DashboardLayout } from "@/components/dashboard-layout"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Library, Search, Plus, Filter, BookOpen, Layers } from "lucide-react"
+import { Library, Search, Plus, Filter, BookOpen, Layers, Database } from "lucide-react"
 import { Input } from "@/components/ui/input"
 
 export default function TeacherQuestionBank() {
@@ -17,54 +17,56 @@ export default function TeacherQuestionBank() {
 
   return (
     <DashboardLayout 
-      title="Question Repository" 
-      subtitle="Access and manage the institutional question bank."
+      title="Institutional Asset Repository" 
+      subtitle="Comprehensive Q-Bank Access • Categorized Assessment Items"
     >
-      <div className="space-y-8 page-entrance">
-        {/* Search and Action Bar */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-           <div className="relative group w-full md:w-96">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground group-focus-within:text-[#1d8ae2] transition-colors" />
+      <div className="space-y-12 pb-12">
+        {/* Search & Operational Bar */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-border pb-10">
+           <div className="relative group w-full md:w-[450px]">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground opacity-40 group-focus-within:text-primary transition-colors" />
               <Input
                 type="search"
-                placeholder="Search repository..."
-                className="w-full pl-10 bg-white/50 backdrop-blur-xl border-white hover:border-[#1d8ae2]/30 focus-visible:ring-[#1d8ae2]/20 shadow-sm transition-all rounded-2xl h-12"
+                placeholder="Query institutional assets..."
+                className="w-full pl-12 bg-white border-border hover:border-primary/20 focus-visible:ring-primary/10 shadow-sm transition-all rounded-lg h-12 text-[14px] font-medium italic"
               />
            </div>
-           <div className="flex gap-2">
-              <Button variant="outline" size="icon" className="h-12 w-12 rounded-2xl border-white bg-white/30 backdrop-blur shadow-sm hover:border-[#1d8ae2]/30">
-                 <Filter className="h-4 w-4 text-[#1d8ae2]" />
+           <div className="flex items-center gap-4">
+              <Button variant="outline" size="icon" className="h-12 w-12 btn-secondary border-border hover:border-primary transition-all">
+                 <Filter className="h-4 w-4 opacity-50" />
               </Button>
-              <Button className="h-12 bg-[#1d8ae2] hover:bg-[#1d8ae2]/90 shadow-xl shadow-[#1d8ae2]/20 uppercase font-black tracking-tighter text-xs rounded-2xl gap-2 px-6">
+              <Button className="btn-primary h-12 px-8 gap-3 text-[12px] font-bold uppercase tracking-widest">
                  <Plus className="h-4 w-4" />
-                 Create New Entry
+                 Initialize New Asset
               </Button>
            </div>
         </div>
 
-        {/* Categories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Categories Matrix */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
            {topics.map((topic, i) => (
-             <Card key={i} className="premium-card group border-0 shadow-xl shadow-[#1d8ae2]/5 overflow-hidden transition-all hover:scale-[1.01]">
-                <CardHeader className="flex flex-row items-center justify-between pb-4 bg-[#1d8ae2]/5">
-                   <div className="flex items-center gap-3">
-                      <div className="bg-[#1d8ae2] p-2 rounded-xl text-white shadow-lg shadow-[#1d8ae2]/20 group-hover:scale-110 transition-transform">
-                         <Layers className="h-4 w-4" />
+             <Card key={i} className="border border-border bg-white shadow-sm rounded-lg overflow-hidden transition-all hover:bg-slate-50 group">
+                <CardHeader className="flex flex-row items-center justify-between p-8 bg-slate-50 border-b border-border">
+                   <div className="flex items-center gap-4">
+                      <div className="p-3 rounded-md bg-white border border-border text-primary shadow-sm group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                         <Layers className="h-5 w-5" />
                       </div>
-                      <CardTitle className="font-heading font-black tracking-tighter uppercase text-lg leading-tight">{topic.title}</CardTitle>
+                      <CardTitle className="page-title text-[22px] text-foreground leading-tight">{topic.title}</CardTitle>
                    </div>
-                   <Badge variant="secondary" className="bg-white/80 text-[#1d8ae2] border-[#1d8ae2]/20 uppercase font-black text-[10px] tracking-widest">{topic.level}</Badge>
+                   <Badge variant="outline" className="border-primary/30 text-primary bg-primary/5 font-black text-[9px] tracking-[0.2em] px-3 uppercase">{topic.level}</Badge>
                 </CardHeader>
-                <CardContent className="p-6">
-                   <p className="text-sm font-sans font-medium text-muted-foreground mb-6">Access categorized grammar points and vocabulary tests for specialized English training.</p>
-                   <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#1d8ae2]">
-                         <Library className="h-3.5 w-3.5" />
-                         <span>{topic.count} Available</span>
+                <CardContent className="p-8 space-y-8">
+                   <p className="text-[14px] font-medium text-muted-foreground italic leading-relaxed opacity-60">
+                      Standardized institutional item categorized for specialized English evaluation. Verified for the Spring-2026 term cycle.
+                   </p>
+                   <div className="flex items-center justify-between border-t border-border pt-8 mt-4">
+                      <div className="flex items-center gap-3">
+                         <Database className="h-4 w-4 text-primary opacity-40" />
+                         <span className="micro-text font-black uppercase tracking-widest text-muted-foreground opacity-50">{topic.count} Validated Items</span>
                       </div>
-                      <Button variant="ghost" className="text-xs font-black uppercase text-muted-foreground hover:text-[#1d8ae2] hover:bg-[#1d8ae2]/5 gap-2 px-0">
-                         Open View
-                         <span className="text-lg leading-none pt-0.5">→</span>
+                      <Button variant="ghost" className="text-[12px] font-bold uppercase tracking-widest text-muted-foreground hover:text-primary hover:bg-transparent gap-3 p-0 h-auto">
+                         Open Protocol
+                         <span className="text-[18px] leading-none opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all">→</span>
                       </Button>
                    </div>
                 </CardContent>
