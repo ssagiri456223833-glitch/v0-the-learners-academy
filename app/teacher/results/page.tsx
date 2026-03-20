@@ -22,31 +22,31 @@ export default function TeacherResults() {
       <div className="space-y-12 pb-12">
         {/* Institutional Metrics Highlights */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-           <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden group">
-              <CardContent className="p-8 flex flex-col items-center text-center gap-6">
-                 <div className="bg-primary/5 p-4 rounded-md border border-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                    <TrendingUp className="h-6 w-6" />
-                 </div>
-                  <div className="space-y-2">
-                     <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Average Score</h3>
-                     <p className="text-4xl font-semibold text-primary tracking-tighter tabular-nums leading-none">77%</p>
-                  </div>
-                  <Badge variant="outline" className="border-success/30 text-success bg-success/5 font-bold text-[9px] tracking-widest uppercase py-1 px-4">+4.2% Delta</Badge>
-              </CardContent>
-           </Card>
+             <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden group">
+                <CardContent className="p-8 flex flex-col items-center text-center gap-6">
+                   <div className="bg-primary/5 p-4 rounded-md border border-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                      <TrendingUp className="h-6 w-6" />
+                   </div>
+                    <div className="space-y-2">
+                       <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60 truncate w-full">Average Score</h3>
+                       <p className="text-4xl font-semibold text-primary tracking-tighter tabular-nums leading-none">77%</p>
+                    </div>
+                    <Badge variant="outline" className="border-success/30 text-success bg-success/5 font-semibold text-[9px] tracking-widest uppercase py-1 px-4 truncate">+4.2% Delta</Badge>
+                </CardContent>
+             </Card>
 
-           <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden group">
-              <CardContent className="p-8 flex flex-col items-center text-center gap-6">
-                 <div className="bg-success/5 p-4 rounded-md border border-success/10 text-success group-hover:bg-success group-hover:text-white transition-all duration-300">
-                    <FilePieChart className="h-6 w-6" />
-                 </div>
-                  <div className="space-y-2">
-                     <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Completion Rate</h3>
-                     <p className="text-4xl font-semibold text-success tracking-tighter tabular-nums leading-none">94.2%</p>
-                  </div>
-                  <Badge variant="outline" className="border-border text-muted-foreground font-bold text-[9px] tracking-widest uppercase py-1 px-4">Academy Target</Badge>
-              </CardContent>
-           </Card>
+             <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden group">
+                <CardContent className="p-8 flex flex-col items-center text-center gap-6">
+                   <div className="bg-success/5 p-4 rounded-md border border-success/10 text-success group-hover:bg-success group-hover:text-white transition-all duration-300">
+                      <FilePieChart className="h-6 w-6" />
+                   </div>
+                    <div className="space-y-2">
+                       <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60 truncate w-full">Completion Rate</h3>
+                       <p className="text-4xl font-semibold text-success tracking-tighter tabular-nums leading-none">94.2%</p>
+                    </div>
+                    <Badge variant="outline" className="border-border text-muted-foreground font-semibold text-[9px] tracking-widest uppercase py-1 px-4 truncate">Target Achieved</Badge>
+                </CardContent>
+             </Card>
 
            <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden group">
               <CardContent className="p-8 flex flex-col items-center text-center gap-6">

@@ -20,16 +20,16 @@ export default function AdminProfile() {
           <div className="relative group">
             <Avatar className="h-40 w-40 border border-border shadow-inner transition-colors group-hover:border-primary/20">
               <AvatarImage src="" />
-              <AvatarFallback className="bg-slate-50 text-foreground text-5xl font-bold">SA</AvatarFallback>
+              <AvatarFallback className="bg-slate-50 text-foreground text-5xl font-semibold">SA</AvatarFallback>
             </Avatar>
             <div className="absolute inset-0 rounded-full bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
           </div>
           <div className="flex-1 text-center md:text-left space-y-6">
              <div className="flex flex-wrap justify-center md:justify-start gap-4">
-                <Badge variant="outline" className="border-primary/30 text-primary font-bold text-[10px] tracking-widest uppercase py-1.5 px-4 h-6">System Admin</Badge>
-                <Badge variant="outline" className="border-border text-muted-foreground font-bold text-[10px] tracking-widest uppercase py-1.5 px-4 h-6">Term 2 Active</Badge>
+                <Badge variant="outline" className="border-primary/30 text-primary font-semibold text-[10px] tracking-widest uppercase py-1.5 px-4 h-6">System Admin</Badge>
+                <Badge variant="outline" className="border-border text-muted-foreground font-semibold text-[10px] tracking-widest uppercase py-1.5 px-4 h-6">Term 2 Active</Badge>
              </div>
-             <h1 className="page-title text-[48px] text-foreground leading-none">{profile.name}</h1>
+             <h1 className="page-title text-[40px] sm:text-[48px] text-foreground leading-none">{profile.name}</h1>
              <p className="text-[14px] font-medium text-muted-foreground flex items-center justify-center md:justify-start gap-3">
                 <Mail className="h-4 w-4 opacity-40" />
                 {profile.email}
@@ -39,9 +39,9 @@ export default function AdminProfile() {
              <Button variant="outline" className="btn-secondary h-12 w-12 p-0 border-border hover:border-primary transition-all">
                 <Settings className="h-5 w-5 opacity-50 group-hover:opacity-100" />
              </Button>
-             <Button className="btn-primary h-12 px-8 gap-3 text-[12px] font-bold uppercase tracking-widest">
+             <Button className="btn-primary h-12 px-8 gap-3 text-[12px] font-semibold uppercase tracking-widest">
                 <Shield className="h-4 w-4" />
-                Root Access
+                System Controls
              </Button>
           </div>
         </div>

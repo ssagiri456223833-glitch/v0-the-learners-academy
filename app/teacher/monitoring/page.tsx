@@ -223,16 +223,16 @@ export default function LiveMonitoringPage() {
                  <div className="flex gap-6 text-[13px] font-medium animate-in slide-in-from-left-2 duration-500">
                     <span className="text-muted-foreground opacity-30 tabular-nums">14:52:12</span>
                     <span className="text-success font-semibold">SUCCESS:</span>
-                    <p className="text-foreground opacity-70 italic">Candidate L-2201 (Zubair Ali) has validated and committed assessment protocol.</p>
+                    <p className="text-foreground opacity-70">Candidate L-2201 (Zubair Ali) has validated and committed assessment.</p>
                  </div>
                  <div className="flex gap-6 text-[13px] font-medium animate-in slide-in-from-left-2 duration-500 delay-75">
                     <span className="text-muted-foreground opacity-30 tabular-nums">14:48:05</span>
                     <span className="text-destructive font-semibold">WARNING:</span>
-                    <p className="text-foreground opacity-70 italic">Candidate L-3012 (Bilal Hassan) detected focus-switch violation (Tab Switch #3).</p>
+                    <p className="text-foreground opacity-70">Candidate L-3012 (Bilal Hassan) detected focus-switch violation (Tab Switch #3).</p>
                  </div>
                  <div className="flex gap-6 text-[13px] font-medium opacity-40">
                     <span className="text-muted-foreground opacity-30 tabular-nums">14:45:22</span>
-                    <p className="text-foreground italic">Batch Level 3 Assessment Initialized globally.</p>
+                    <p className="text-foreground">Batch Level 3 Assessment Initialized globally.</p>
                  </div>
               </div>
            </CardContent>

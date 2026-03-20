@@ -7,7 +7,7 @@ import { QuestionCard } from "@/components/test/question-card"
 import { QuestionNavigation } from "@/components/test/question-navigation"
 import { TestProgress } from "@/components/test/test-progress"
 import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight, Send, ShieldCheck, Clock, ShieldInfo } from "lucide-react"
+import { ChevronLeft, ChevronRight, Send, ShieldCheck, Clock } from "lucide-react"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -159,7 +159,7 @@ function TestContent() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-primary/10">
-      {/* Assessment Header */}
+      {/* Test Header */}
       <TestHeader 
         title={mockTest.title}
         timeLeft={timeLeft}
@@ -168,35 +168,33 @@ function TestContent() {
         level={searchParams.get("level") || "LEVEL B2"}
       />
 
-      <div className="institutional-container px-6 py-12 pb-24 max-w-[1400px] mx-auto">
+      <div className="px-6 py-10 pb-20 max-w-[1200px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-          {/* Primary Assessment Matrix Area */}
-          <div className="lg:col-span-3 space-y-12">
+          {/* Main Question Area */}
+          <div className="lg:col-span-3 space-y-10">
             
-            {/* Section Heading */}
             <div className="flex items-center justify-between border-b border-border pb-6">
                <div className="space-y-1">
-                  <h2 className="page-title text-[32px] text-foreground underline decoration-primary/10 underline-offset-8">Test Content</h2>
+                  <h2 className="text-[24px] font-semibold text-foreground tracking-tight">Test Content</h2>
                   <p className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-60 mt-1.5">Academy Assessment • Spring Term</p>
                </div>
-               <div className="flex flex-col items-end gap-1.5 grayscale opacity-30 sm:flex sm:items-end">
-                  <span className="micro-text text-muted-foreground font-semibold uppercase tracking-widest text-[9px]">Secure Connection</span>
+               <div className="flex flex-col items-end gap-1.5 opacity-30 sm:flex sm:items-end">
                   <div className="flex items-center gap-2">
-                     <ShieldCheck className="h-3 w-3 text-success" />
-                     <span className="text-[10px] font-semibold text-foreground">TLS 1.3 Active</span>
+                     <ShieldCheck className="h-4 w-4 text-success" />
+                     <span className="text-[10px] font-semibold text-foreground uppercase tracking-widest">TLS 1.3 Active</span>
                   </div>
                </div>
             </div>
 
-            {/* Progress Trace */}
+            {/* Test Progress */}
             <TestProgress 
               current={currentQuestion + 1}
               total={mockTest.questions.length}
               answered={answeredCount}
             />
 
-            {/* Question Card */}
-            <div className="space-y-10 animate-in fade-in slide-in-from-bottom-2 duration-500">
+            {/* Question Display */}
+            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
               <QuestionCard
                 questionNumber={currentQuestion + 1}
                 question={question}
@@ -206,8 +204,8 @@ function TestContent() {
                 onToggleReview={() => handleToggleReview(question.id)}
               />
 
-              {/* Interaction Control Row */}
-              <div className="flex flex-col sm:flex-row items-center justify-between border-t border-border pt-10 gap-6">
+              {/* Navigation Controls */}
+              <div className="flex flex-col sm:flex-row items-center justify-between border-t border-border pt-8 gap-6">
                 <Button
                   variant="outline"
                   onClick={() => setCurrentQuestion((prev) => Math.max(0, prev - 1))}
@@ -222,17 +220,17 @@ function TestContent() {
                   {isLastQuestion ? (
                     <Button
                       onClick={() => setShowSubmitDialog(true)}
-                      className="btn-primary h-14 px-10 gap-3 w-full shadow-md active:scale-95 transition-all"
+                      className="btn-primary h-12 px-10 gap-3 w-full shadow-md active:scale-95 transition-all"
                     >
                       <Send className="h-4 w-4 opacity-40" />
-                      <span className="text-[13px] font-semibold uppercase tracking-widest">Finalize Test</span>
+                      <span className="text-[12px] font-semibold uppercase tracking-widest">Submit Assessment</span>
                     </Button>
                   ) : (
                     <Button
                       onClick={() => setCurrentQuestion((prev) => Math.min(mockTest.questions.length - 1, prev + 1))}
-                      className="btn-primary h-14 px-12 gap-3 w-full shadow-md active:scale-95 transition-all"
+                      className="btn-primary h-12 px-12 gap-3 w-full shadow-md active:scale-95 transition-all"
                     >
-                      <span className="text-[13px] font-semibold uppercase tracking-widest">Next Question</span>
+                      <span className="text-[12px] font-semibold uppercase tracking-widest">Next Question</span>
                       <ChevronRight className="h-4 w-4 opacity-40" />
                     </Button>
                   )}
@@ -241,7 +239,7 @@ function TestContent() {
             </div>
           </div>
 
-          {/* Navigational Sidebar Node (Institutional Desktop) */}
+          {/* Sidebar Navigation */}
           <div className="hidden lg:block">
             <QuestionNavigation
               questions={mockTest.questions}
@@ -254,31 +252,30 @@ function TestContent() {
         </div>
       </div>
 
-      {/* Institutional Submission Guard */}
       <AlertDialog open={showSubmitDialog} onOpenChange={setShowSubmitDialog}>
         <AlertDialogContent className="max-w-md rounded-lg border-border">
           <AlertDialogHeader>
-            <AlertDialogTitle className="page-title text-[26px] text-foreground underline underline-offset-[10px] decoration-2">Submit Assessment</AlertDialogTitle>
-            <AlertDialogDescription className="text-[16px] leading-[1.7] text-muted-foreground mt-6 font-medium">
-              You have answered <span className="text-foreground font-semibold tabular-nums">{answeredCount}</span> questions out of <span className="text-foreground font-semibold tabular-nums">{mockTest.questions.length}</span>.
+            <AlertDialogTitle className="text-[22px] font-semibold text-foreground">Submit Your Answers?</AlertDialogTitle>
+            <AlertDialogDescription className="text-[16px] leading-[1.6] text-muted-foreground mt-4 font-medium">
+              You have answered <span className="text-foreground font-semibold">{answeredCount}</span> of <span className="text-foreground font-semibold">{mockTest.questions.length}</span> questions.
               {answeredCount < mockTest.questions.length && (
                 <div className="mt-6 flex gap-4 p-5 rounded-md bg-destructive/5 border border-destructive/20 items-start">
                    <Clock className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
                    <div className="space-y-1">
-                      <p className="micro-text text-destructive font-semibold uppercase tracking-widest leading-none">Incomplete Test</p>
-                      <p className="text-[13px] font-semibold text-destructive/80 leading-relaxed italic">Warning: {mockTest.questions.length - answeredCount} questions remain unanswered.</p>
+                      <p className="micro-text text-destructive font-semibold uppercase tracking-widest leading-none">Incomplete Answers</p>
+                      <p className="text-[13px] font-semibold text-destructive/80 leading-relaxed">Warning: Some questions were left blank.</p>
                    </div>
                 </div>
               )}
             </AlertDialogDescription>
           </AlertDialogHeader>
-          <AlertDialogFooter className="mt-10 border-t border-border pt-6 gap-4">
-            <AlertDialogCancel className="btn-secondary h-11 px-6 text-[11px] font-semibold uppercase tracking-widest border-border hover:bg-slate-50">Back to Test</AlertDialogCancel>
+          <AlertDialogFooter className="mt-8 border-t border-border pt-6 gap-4">
+            <AlertDialogCancel className="btn-secondary h-11 px-6 text-[11px] font-semibold uppercase tracking-widest">Back to Test</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleSubmit}
               className="btn-primary h-11 px-8 text-[11px] font-semibold uppercase tracking-widest shadow-md"
             >
-              Confirm Submission
+              Finish Assessment
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -297,8 +294,8 @@ export default function TestPage() {
              <ShieldCheck className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-6 w-6 text-primary animate-pulse" />
           </div>
           <div className="space-y-2">
-             <h2 className="page-title text-[24px] text-foreground underline underline-offset-4 tracking-tight">Setting up Test</h2>
-             <p className="micro-text text-muted-foreground font-semibold uppercase tracking-[0.25em] opacity-60">Verifying Registry v2.4...</p>
+             <h2 className="text-[20px] font-semibold text-foreground tracking-tight">Loading Assessment...</h2>
+             <p className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-40">Verifying session details...</p>
           </div>
         </div>
       </div>

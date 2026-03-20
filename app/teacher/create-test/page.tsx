@@ -68,20 +68,20 @@ export default function TeacherCreateTest() {
                  <FilePlus className="h-6 w-6" />
               </div>
                <div>
-                  <h2 className="text-[20px] font-semibold text-foreground tracking-tight">Drafting: {testDetails.title || "New Unnamed Test"}</h2>
-                  <p className="micro-text text-muted-foreground mt-1 uppercase tracking-widest font-semibold opacity-60">Assessment Mode • 2026 Term 2</p>
+                  <h2 className="text-[20px] font-semibold text-foreground">Drafting: {testDetails.title || "New Unnamed Test"}</h2>
+                  <p className="micro-text text-muted-foreground mt-1 uppercase tracking-widest font-medium opacity-60">Assessment Mode • 2026 Term 2</p>
                </div>
            </div>
-           <div className="flex items-center gap-3">
-              <Button variant="outline" className="h-12 px-6 rounded-2xl border-white bg-white hover:bg-slate-50 shadow-sm transition-all gap-2 text-slate-600 font-semibold uppercase text-[10px] tracking-widest">
-                <Eye className="h-4 w-4" />
-                Live Preview
-              </Button>
-               <Button className="h-12 px-8 rounded-md bg-primary hover:bg-primary/90 shadow-md gap-3 font-semibold uppercase text-[11px] tracking-widest">
-                 <Save className="h-4 w-4" />
-                 Save & Publish
-               </Button>
-           </div>
+               <div className="flex items-center gap-3">
+                  <Button variant="outline" className="h-12 px-6 rounded-2xl border-white bg-white hover:bg-slate-50 shadow-sm transition-all gap-2 text-slate-600 font-medium uppercase text-[10px] tracking-widest">
+                    <Eye className="h-4 w-4" />
+                    Live Preview
+                  </Button>
+                   <Button className="h-12 px-8 rounded-md bg-primary hover:bg-primary/90 shadow-md gap-3 font-medium uppercase text-[11px] tracking-widest">
+                     <Save className="h-4 w-4" />
+                     Save & Publish
+                   </Button>
+               </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

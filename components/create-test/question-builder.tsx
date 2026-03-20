@@ -98,9 +98,9 @@ export function QuestionBuilder({ onAdd, editingQuestion, onCancelEdit }: Questi
   return (
     <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden">
       <CardHeader className="bg-slate-50 border-b border-border py-6 px-8 flex flex-row items-center justify-between">
-        <CardTitle className="text-[18px] font-semibold italic flex items-center gap-3 tracking-tight">
+        <CardTitle className="text-[18px] font-semibold flex items-center gap-3 tracking-tight">
           <FileEdit className="h-4 w-4 text-primary opacity-60" />
-          {editingQuestion ? "Modify Existing Item" : "Initialize Evaluation Item"}
+          {editingQuestion ? "Edit Question" : "Add New Question"}
         </CardTitle>
         {editingQuestion && (
           <Badge variant="outline" className="border-warning/30 text-warning bg-warning/5 text-[9px] font-semibold uppercase tracking-widest px-3 h-6">Edit Mode</Badge>
@@ -109,7 +109,7 @@ export function QuestionBuilder({ onAdd, editingQuestion, onCancelEdit }: Questi
       <CardContent className="p-8 space-y-10">
         {/* Question Type Selector */}
         <div className="space-y-3">
-          <Label className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Evaluation Protocol</Label>
+          <Label className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Question Type</Label>
           <div className="flex gap-4">
              <Button 
                variant={type === "mcq" ? "default" : "outline"}
@@ -136,7 +136,7 @@ export function QuestionBuilder({ onAdd, editingQuestion, onCancelEdit }: Questi
             placeholder={type === "mcq" ? "e.g., Identify the correctly conjugated verb..." : "e.g., Explain the role of the past participle in this sentence..."}
             value={questionText}
             onChange={(e) => setQuestionText(e.target.value)}
-            className="h-11 rounded-md border-border focus-visible:ring-primary/10 text-[15px] font-medium leading-relaxed italic"
+            className="h-11 rounded-md border-border focus-visible:ring-primary/10 text-[15px] font-medium leading-relaxed"
           />
         </div>
 
@@ -208,7 +208,7 @@ export function QuestionBuilder({ onAdd, editingQuestion, onCancelEdit }: Questi
           /* Short Answer Sample Area */
           <div className="space-y-6">
             <div className="flex items-center justify-between border-b border-border pb-3">
-              <Label className="text-[12px] font-semibold uppercase tracking-[0.15em] text-foreground">Reference Architecture</Label>
+              <Label className="text-[12px] font-semibold uppercase tracking-[0.15em] text-foreground">Reference Model</Label>
               <span className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-40">
                 Subjective Validation
               </span>
@@ -222,8 +222,8 @@ export function QuestionBuilder({ onAdd, editingQuestion, onCancelEdit }: Questi
                  onChange={(e) => setSampleAnswer(e.target.value)}
                  className="h-24 rounded-md border-border focus-visible:ring-primary/10 text-[14px] font-medium"
                />
-               <p className="text-[11px] italic text-muted-foreground opacity-70">
-                 * This response will be used by evaluators during manual grading to assess student construct validity.
+               <p className="text-[11px] text-muted-foreground opacity-70">
+                 * This response will be used by teachers during grading to assess student answer validity.
                </p>
             </div>
           </div>
@@ -241,7 +241,7 @@ export function QuestionBuilder({ onAdd, editingQuestion, onCancelEdit }: Questi
             disabled={!isValid}
             className={`btn-primary h-11 px-8 gap-3 text-[12px] font-semibold uppercase tracking-widest ${!isValid ? 'opacity-40 grayscale pointer-events-none' : ''}`}
           >
-            {editingQuestion ? "Update Item Protocol" : "Commit Item to List"}
+            {editingQuestion ? "Save Question" : "Add to Test"}
           </Button>
         </div>
       </CardContent>

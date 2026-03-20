@@ -33,11 +33,11 @@ import {
 import { Input } from "@/components/ui/input"
 
 const teachers = [
-  { id: "STA-001", name: "Abbas Ali", level: "Senior Assessor", classes: ["Level One", "Level Two"], status: "In Session", email: "abbas.ali@academy.edu" },
-  { id: "STA-002", name: "Sarah Jennings", level: "Lead Evaluator", classes: ["Level Three"], status: "Available", email: "sarah.j@academy.edu" },
-  { id: "STA-003", name: "Michael Chen", level: "Assessor", classes: ["Level One", "Level Four"], status: "On Leave", email: "m.chen@academy.edu" },
-  { id: "STA-004", name: "Emma Wilson", level: "Assessor", classes: ["Level Two"], status: "Available", email: "e.wilson@academy.edu" },
-  { id: "STA-005", name: "David Stark", level: "Senior Assessor", classes: ["Level Four"], status: "In Session", email: "d.stark@academy.edu" },
+  { id: "STA-001", name: "Abbas Ali", level: "Senior Teacher", classes: ["Level One", "Level Two"], status: "In Session", email: "abbas.ali@academy.edu" },
+  { id: "STA-002", name: "Sarah Jennings", level: "Lead Faculty", classes: ["Level Three"], status: "Available", email: "sarah.j@academy.edu" },
+  { id: "STA-003", name: "Michael Chen", level: "Teacher", classes: ["Level One", "Level Four"], status: "On Leave", email: "m.chen@academy.edu" },
+  { id: "STA-004", name: "Emma Wilson", level: "Teacher", classes: ["Level Two"], status: "Available", email: "e.wilson@academy.edu" },
+  { id: "STA-005", name: "David Stark", level: "Senior Teacher", classes: ["Level Four"], status: "In Session", email: "d.stark@academy.edu" },
 ]
 
 export default function TeachersPage() {
@@ -135,17 +135,17 @@ export default function TeachersPage() {
                             <DropdownMenuContent align="end" className="w-48 rounded-md border-border">
                                <DropdownMenuLabel className="micro-text font-semibold text-muted-foreground opacity-40 px-3 py-2 uppercase tracking-widest">Actions</DropdownMenuLabel>
                                <DropdownMenuSeparator />
-                               <DropdownMenuItem className="text-[13px] font-bold gap-3 px-3 py-2 cursor-pointer">
+                               <DropdownMenuItem className="text-[13px] font-semibold gap-3 px-3 py-2 cursor-pointer">
                                   <Mail className="h-3.5 w-3.5 opacity-40" />
-                                  Dispatch Audit
+                                  Send Message
                                </DropdownMenuItem>
-                               <DropdownMenuItem className="text-[13px] font-bold gap-3 px-3 py-2 cursor-pointer">
+                               <DropdownMenuItem className="text-[13px] font-semibold gap-3 px-3 py-2 cursor-pointer">
                                   <Calendar className="h-3.5 w-3.5 opacity-40" />
-                                  Manual Allocation
+                                  Manual Assign
                                </DropdownMenuItem>
                                <DropdownMenuSeparator />
-                               <DropdownMenuItem className="text-[13px] font-bold gap-3 px-3 py-2 cursor-pointer text-destructive focus:text-destructive focus:bg-destructive/5">
-                                  De-authenticate
+                               <DropdownMenuItem className="text-[13px] font-semibold gap-3 px-3 py-2 cursor-pointer text-destructive focus:text-destructive focus:bg-destructive/5">
+                                  Remove Teacher
                                 </DropdownMenuItem>
                             </DropdownMenuContent>
                          </DropdownMenu>

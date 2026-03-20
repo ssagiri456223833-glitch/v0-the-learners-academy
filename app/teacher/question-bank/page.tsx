@@ -64,7 +64,7 @@ export default function TeacherQuestionBank() {
                      <span className="text-[16px] font-semibold text-primary">{topic.count}</span>
                   </div>
                       <Button variant="ghost" className="text-[12px] font-bold uppercase tracking-widest text-muted-foreground hover:text-primary hover:bg-transparent gap-3 p-0 h-auto">
-                         Open Protocol
+                         Open Assessment
                          <span className="text-[18px] leading-none opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all">→</span>
                       </Button>
                    </div>

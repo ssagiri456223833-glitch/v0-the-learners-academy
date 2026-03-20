@@ -15,15 +15,15 @@ export default function AdminDashboard() {
       subtitle="Administrative Overview • Academy Management Status"
     >
       <div className="space-y-10 pb-12">
-        {/* Protocol Health Analytics (Premium Widget) */}
+        {/* System Health Analytics */}
         <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden">
           <CardHeader className="bg-slate-50 border-b border-border py-8 px-10">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <Activity className="h-5 w-5 text-primary opacity-60" />
-                <CardTitle className="text-[18px] font-semibold text-foreground tracking-tight">Active Teachers</CardTitle>
+                <CardTitle className="text-[18px] font-semibold text-foreground">Active Staff</CardTitle>
               </div>
-              <Badge variant="outline" className="text-success border-success/30 bg-success/5 font-bold text-[10px] tracking-widest px-4 h-7 uppercase">Term Active</Badge>
+              <Badge variant="outline" className="text-success border-success/30 bg-success/5 font-semibold text-[10px] tracking-widest px-4 h-7 uppercase">Term Active</Badge>
             </div>
             <CardDescription className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-60 mt-1">Personnel Overview</CardDescription>
           </CardHeader>
@@ -118,7 +118,7 @@ export default function AdminDashboard() {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 p-10 bg-white border border-border shadow-sm rounded-lg">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <Badge variant="outline" className="border-primary/30 text-primary uppercase font-bold text-[10px] px-3 py-1">Term 2 Active</Badge>
+              <Badge variant="outline" className="border-primary/30 text-primary uppercase font-semibold text-[10px] px-3 py-1">Term 2 Active</Badge>
             </div>
             <div>
                   <p className="micro-text text-muted-foreground font-semibold uppercase tracking-[0.2em] opacity-40">Teacher Count</p>
