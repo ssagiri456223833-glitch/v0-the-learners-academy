@@ -80,7 +80,7 @@ export default function AdminClasses() {
                    <div className="space-y-6">
                       <div className="flex items-center gap-3">
                          <MapPin className="h-3.5 w-3.5 text-primary opacity-40" />
-                         <span className="text-[12px] font-black uppercase tracking-widest text-foreground">Environmental Allocation</span>
+                         <span className="text-[12px] font-semibold uppercase tracking-widest text-foreground">Environmental Allocation</span>
                       </div>
                       <div className="grid grid-cols-2 gap-8">
                           <div className="space-y-3">
@@ -91,7 +91,7 @@ export default function AdminClasses() {
                                 </SelectTrigger>
                                <SelectContent className="rounded-md border-border">
                                   {ACADEMY_LEVELS.map((level) => (
-                                     <SelectItem key={level.value} value={level.value} className="text-[14px]">X{level.label}</SelectItem>
+                                     <SelectItem key={level.value} value={level.value} className="text-[14px]">{level.label}</SelectItem>
                                   ))}
                                </SelectContent>
                             </Select>
@@ -132,9 +132,9 @@ export default function AdminClasses() {
                    <div className="p-2.5 rounded-md bg-primary/5 text-primary border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                       <Shapes className="h-5 w-5" />
                    </div>
-                   <Badge variant="outline" className="text-primary border-primary/20 bg-primary/5 font-black text-[9px] tracking-[0.2em] px-3 h-6 uppercase">{level.id}</Badge>
+                    <Badge variant="outline" className="text-primary border-primary/20 bg-primary/5 font-semibold text-[9px] tracking-[0.2em] px-3 h-6 uppercase">{level.id}</Badge>
                 </div>
-                 <CardTitle className="page-title text-[28px] text-foreground leading-none">{level.name}</CardTitle>
+                 <CardTitle className="page-title text-[28px] text-foreground leading-none truncate" title={level.name}>{level.name}</CardTitle>
                  <CardDescription className="micro-text text-muted-foreground font-semibold mt-3 uppercase tracking-widest opacity-60 flex items-center gap-2">
                     <MapPin className="h-3 w-3 opacity-50" />
                     {level.room}

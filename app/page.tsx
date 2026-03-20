@@ -69,7 +69,7 @@ export default function Home() {
                   <GraduationCap className="h-8 w-8" />
                 </div>
                 <div>
-                  <h2 className="text-[20px] font-semibold text-foreground">Student Portal</h2>
+                  <h2 className="text-[20px] font-semibold text-foreground">Assessment Gateway</h2>
                   <p className="label-text mt-2 uppercase tracking-wide opacity-70">Academy Assessments</p>
                 </div>
                 <Button variant="outline" className="btn-secondary w-full hover:bg-primary hover:text-white border-primary text-primary transition-colors">

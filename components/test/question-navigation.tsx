@@ -36,7 +36,7 @@ export function QuestionNavigation({
       <CardContent className="p-8 space-y-8">
         {/* Status Protocol Legend */}
         <div className="space-y-3">
-           <span className="micro-text text-muted-foreground font-black uppercase tracking-[0.2em] opacity-40">Status Protocol</span>
+           <span className="micro-text text-muted-foreground font-semibold uppercase tracking-[0.2em] opacity-40">Status Protocol</span>
            <div className="grid grid-cols-1 gap-2.5">
               <div className="flex items-center justify-between text-[11px] font-bold text-foreground/60 uppercase tracking-widest bg-slate-50/50 p-2 px-3 rounded-md border border-border/50">
                  <div className="flex items-center gap-3">
@@ -64,7 +64,7 @@ export function QuestionNavigation({
 
         {/* Interaction Matrix Grid */}
         <div className="space-y-4">
-           <span className="micro-text text-muted-foreground font-black uppercase tracking-[0.2em] opacity-40">Entry Nodes</span>
+           <span className="micro-text text-muted-foreground font-semibold uppercase tracking-[0.2em] opacity-40">Entry Nodes</span>
            <div className="grid grid-cols-4 gap-3">
              {questions.map((question, index) => {
                const isAnswered = answers[question.id] !== undefined
@@ -76,7 +76,7 @@ export function QuestionNavigation({
                    key={question.id}
                    onClick={() => onNavigate(index)}
                    className={cn(
-                     "aspect-square rounded-md flex items-center justify-center text-[13px] font-black italic transition-all duration-300 border tabular-nums shadow-sm active:scale-95",
+                     "aspect-square rounded-md flex items-center justify-center text-[13px] font-semibold italic transition-all duration-300 border tabular-nums shadow-sm active:scale-95",
                      isCurrent 
                        ? "bg-primary text-white border-primary shadow-md -translate-y-0.5" 
                        : isReview
@@ -97,7 +97,7 @@ export function QuestionNavigation({
         <div className="pt-6 border-t border-border">
            <div className="flex flex-col gap-2">
               <div className="flex items-center justify-between">
-                 <span className="micro-text text-muted-foreground font-black uppercase tracking-widest opacity-40">Consolidation</span>
+                 <span className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-40">Consolidation</span>
                  <span className="text-[14px] font-black italic text-primary">{Object.keys(answers).length} / {questions.length}</span>
               </div>
               <div className="h-1 w-full bg-slate-100 rounded-full overflow-hidden">

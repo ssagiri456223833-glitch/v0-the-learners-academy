@@ -4,12 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Edit2, Trash2, GripVertical } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-interface Question {
-  id: string
-  text: string
-  options: string[]
-  correctAnswer: number
-}
+import type { Question } from "@/lib/types"
+import { Badge } from "@/components/ui/badge"
 
 interface QuestionListProps {
   questions: Question[]
@@ -56,9 +52,14 @@ export function QuestionList({ questions, onEdit, onDelete, editingId }: Questio
               <p className="text-sm font-medium text-foreground line-clamp-2">
                 {question.text}
               </p>
-              <p className="text-xs text-muted-foreground mt-1">
-                {question.options.length} options
-              </p>
+              <div className="flex items-center gap-2 mt-1">
+                <Badge variant="secondary" className="text-[9px] font-semibold uppercase tracking-widest px-2 h-5">
+                  {question.type === "mcq" ? "MCQ" : "Short"}
+                </Badge>
+                <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-widest opacity-60">
+                  {question.type === "mcq" ? `${question.options?.length} solutions` : "Manual grade"}
+                </p>
+              </div>
             </div>
             <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
               <Button

@@ -36,7 +36,7 @@ export function PerformanceBreakdown({ score, total }: PerformanceBreakdownProps
               <BarChart3 className="h-4 w-4 text-primary opacity-60" />
               <CardTitle className="page-title text-[20px] text-foreground italic tracking-tight underline decoration-primary/10 underline-offset-4 decoration-1">Linguistic Matrix Analysis</CardTitle>
             </div>
-            <Badge variant="outline" className="text-primary border-primary/20 bg-primary/5 font-black text-[9px] tracking-widest px-4 h-6 uppercase font-black italic">Matrix Status: Analyzed</Badge>
+            <Badge variant="outline" className="text-primary border-primary/20 bg-primary/5 font-semibold text-[9px] tracking-widest px-4 h-6 uppercase font-semibold italic">Matrix Status: Analyzed</Badge>
           </CardHeader>
           <CardContent className="p-10 sm:p-14 space-y-12">
             {categories.map((category) => {
@@ -45,14 +45,14 @@ export function PerformanceBreakdown({ score, total }: PerformanceBreakdownProps
                 <div key={category.name} className="space-y-5">
                   <div className="flex items-start justify-between">
                     <div className="flex flex-col gap-2">
-                      <span className="text-[15px] font-black uppercase tracking-widest text-foreground opacity-80">{category.name}</span>
+                      <span className="text-[15px] font-semibold uppercase tracking-widest text-foreground opacity-80">{category.name}</span>
                       <span className="micro-text text-muted-foreground font-bold italic opacity-40 leading-tight tracking-tight">{category.feedback}</span>
                     </div>
                     <div className="flex items-center gap-6">
-                      <Badge variant="outline" className={`text-[10px] font-black italic px-3 h-6 border-border tabular-nums tracking-widest ${percentage >= 70 ? 'text-success bg-success/5 border-success/20' : 'text-foreground bg-slate-50'}`}>
+                      <Badge variant="outline" className={`text-[10px] font-semibold italic px-3 h-6 border-border tabular-nums tracking-widest ${percentage >= 70 ? 'text-success bg-success/5 border-success/20' : 'text-foreground bg-slate-50'}`}>
                         {percentage}%
                       </Badge>
-                      <span className="text-[14px] font-black italic text-muted-foreground tabular-nums w-12 text-right opacity-40">
+                      <span className="text-[14px] font-semibold italic text-muted-foreground tabular-nums w-12 text-right opacity-40">
                         {category.correct} <span className="text-[10px] opacity-20 not-italic mx-1">/</span> {category.total}
                       </span>
                     </div>
@@ -87,17 +87,17 @@ export function PerformanceBreakdown({ score, total }: PerformanceBreakdownProps
               </div>
               
               <div className="space-y-6">
-                <p className="micro-text font-black uppercase tracking-[0.25em] text-primary opacity-40 px-2">Skill Acquisition Focus</p>
+                <p className="micro-text font-semibold uppercase tracking-[0.25em] text-primary opacity-40 px-2">Skill Acquisition Focus</p>
                 <div className="flex flex-col gap-2.5">
-                  <Badge variant="secondary" className="bg-slate-100/50 text-foreground border-border/60 text-[10px] font-black py-2 px-5 rounded-md uppercase tracking-widest italic flex items-center justify-between">
+                  <Badge variant="secondary" className="bg-slate-100/50 text-foreground border-border/60 text-[10px] font-semibold py-2 px-5 rounded-md uppercase tracking-widest italic flex items-center justify-between">
                      <span>Irregular Conjugation</span>
                      <ShieldCheck className="h-3 w-3 opacity-20" />
                   </Badge>
-                  <Badge variant="secondary" className="bg-slate-100/50 text-foreground border-border/60 text-[10px] font-black py-2 px-5 rounded-md uppercase tracking-widest italic flex items-center justify-between">
+                  <Badge variant="secondary" className="bg-slate-100/50 text-foreground border-border/60 text-[10px] font-semibold py-2 px-5 rounded-md uppercase tracking-widest italic flex items-center justify-between">
                      <span>Compound Architecture</span>
                      <ShieldCheck className="h-3 w-3 opacity-20" />
                   </Badge>
-                  <Badge variant="secondary" className="bg-slate-100/50 text-foreground border-border/60 text-[10px] font-black py-2 px-5 rounded-md uppercase tracking-widest italic flex items-center justify-between">
+                  <Badge variant="secondary" className="bg-slate-100/50 text-foreground border-border/60 text-[10px] font-semibold py-2 px-5 rounded-md uppercase tracking-widest italic flex items-center justify-between">
                      <span>Advanced Lexis Matrix</span>
                      <ShieldCheck className="h-3 w-3 opacity-20" />
                   </Badge>

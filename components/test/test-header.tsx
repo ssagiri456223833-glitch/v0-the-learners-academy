@@ -52,7 +52,7 @@ export function TestHeader({ title, timeLeft, onSubmit, studentId, level }: Test
                   <h1 className="page-title text-[18px] text-foreground tracking-tight leading-none italic underline underline-offset-4 decoration-primary/20">
                     {title}
                   </h1>
-                  <p className="micro-text text-muted-foreground font-black uppercase tracking-widest opacity-40 mt-1.5">
+                  <p className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-40 mt-1.5">
                     {level || "General Assessment Protocol"}
                   </p>
                </div>
@@ -64,14 +64,14 @@ export function TestHeader({ title, timeLeft, onSubmit, studentId, level }: Test
             <div className="flex items-center gap-3">
                <User className="h-3.5 w-3.5 text-primary opacity-40" />
                <div className="flex flex-col">
-                  <span className="micro-text text-muted-foreground font-black uppercase tracking-widest opacity-30">Active Candidate</span>
-                  <span className="text-[13px] font-black tabular-nums text-foreground tracking-widest">{studentId || "L-0000"}</span>
+                  <span className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-30">Active Candidate</span>
+                  <span className="text-[13px] font-semibold tabular-nums text-foreground tracking-widest">{studentId || "L-0000"}</span>
                </div>
             </div>
             <div className="flex items-center gap-3">
                <ShieldCheck className="h-3.5 w-3.5 text-primary opacity-40" />
                <div className="flex flex-col">
-                  <span className="micro-text text-muted-foreground font-black uppercase tracking-widest opacity-30">Security Protocol</span>
+                  <span className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-30">Security Protocol</span>
                   <span className="text-[11px] font-bold text-success uppercase tracking-widest">Encrypted Session</span>
                </div>
             </div>
@@ -88,7 +88,7 @@ export function TestHeader({ title, timeLeft, onSubmit, studentId, level }: Test
               )}
             >
               <Clock className={cn("h-4 w-4 transition-transform duration-500", isLowTime ? "text-destructive animate-pulse scale-110" : "text-primary opacity-40")} />
-              <span className="text-[18px] font-black tabular-nums tracking-widest italic decoration-2">
+              <span className="text-[18px] font-semibold tabular-nums tracking-widest italic decoration-2">
                 {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
               </span>
             </div>

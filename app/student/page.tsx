@@ -81,7 +81,7 @@ export default function StudentPortal() {
           </div>
           <div className="space-y-3">
             <h1 className="page-title text-[42px] font-medium text-[#0F172A] tracking-tighter leading-none">
-              Student Portal
+              Assessment Gateway
             </h1>
             <p className="micro-text text-[#64748B] font-semibold uppercase tracking-[0.3em] opacity-60 mt-6 block">
               Academy Assessment Gateway
@@ -128,7 +128,7 @@ export default function StudentPortal() {
                       Class Level
                     </Label>
                     <Select onValueChange={setLevel} value={level}>
-                      <SelectTrigger id="level" className="h-12 rounded-md border-[#E2E8F0] bg-slate-50/30 focus:ring-primary/10 text-[15px] font-bold">
+                      <SelectTrigger id="level" className="h-12 rounded-md border-[#E2E8F0] bg-slate-50/30 focus:ring-primary/10 text-[15px] font-semibold">
                         <SelectValue placeholder="Identify Level" />
                       </SelectTrigger>
                       <SelectContent className="rounded-md border-[#E2E8F0]">
@@ -148,7 +148,7 @@ export default function StudentPortal() {
                       Time Slot
                     </Label>
                     <Select onValueChange={setSlot} value={slot}>
-                      <SelectTrigger id="slot" className="h-12 rounded-md border-[#E2E8F0] bg-slate-50/30 focus:ring-primary/10 text-[15px] font-bold">
+                      <SelectTrigger id="slot" className="h-12 rounded-md border-[#E2E8F0] bg-slate-50/30 focus:ring-primary/10 text-[15px] font-semibold">
                         <SelectValue placeholder="Select Slot" />
                       </SelectTrigger>
                       <SelectContent className="rounded-md border-[#E2E8F0]">

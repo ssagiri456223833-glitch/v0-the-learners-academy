@@ -69,8 +69,8 @@ export function QuestionReview() {
           <CardTitle className="page-title text-[24px] text-foreground italic tracking-tight underline decoration-primary/20 underline-offset-8 decoration-2">Item-Level Audit Trail</CardTitle>
         </div>
         <div className="flex items-center gap-3">
-           <Badge variant="outline" className="text-secondary-foreground border-border bg-slate-100/50 font-black text-[9px] tracking-[0.2em] px-3 h-6 uppercase font-black italic">Matrix Integrity: Locked</Badge>
-           <Badge variant="outline" className="text-primary border-primary/20 bg-primary/5 font-black text-[9px] tracking-[0.2em] px-3 h-6 uppercase font-black italic">Verification v2.3</Badge>
+           <Badge variant="outline" className="text-secondary-foreground border-border bg-slate-100/50 font-semibold text-[9px] tracking-[0.2em] px-3 h-6 uppercase font-semibold italic">Matrix Integrity: Locked</Badge>
+           <Badge variant="outline" className="text-primary border-primary/20 bg-primary/5 font-semibold text-[9px] tracking-[0.2em] px-3 h-6 uppercase font-semibold italic">Verification v2.3</Badge>
         </div>
       </CardHeader>
       <CardContent className="p-10 space-y-10">

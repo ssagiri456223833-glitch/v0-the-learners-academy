@@ -117,7 +117,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                 <span className="page-title text-[16px] leading-none text-foreground tracking-tight underline underline-offset-4 decoration-primary/20">
                   Institutional
                 </span>
-                <span className="micro-text text-muted-foreground font-black mt-1 uppercase tracking-widest opacity-40">
+                <span className="micro-text text-muted-foreground font-semibold mt-1 uppercase tracking-widest opacity-40">
                    {pathname.startsWith('/admin') ? "Admin" : "Teacher"}
                 </span>
               </div>
@@ -133,7 +133,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           <nav className="flex-1 px-4 py-8 overflow-y-auto">
             <ul className="space-y-1.5">
               <li className="px-4 pb-4">
-                 <span className="micro-text font-black uppercase tracking-widest text-muted-foreground opacity-30">
+                 <span className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-30">
                    Navigation Protocol
                  </span>
               </li>

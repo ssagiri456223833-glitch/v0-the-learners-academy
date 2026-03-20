@@ -90,24 +90,24 @@ export default function AdminDashboard() {
             <Card className="border border-border bg-white shadow-sm btn-interactive rounded-lg overflow-hidden h-full">
               <CardContent className="p-8 flex items-center gap-6">
                 <div className="p-3.5 rounded-md bg-primary/5 text-primary border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                  <UserCheck className="h-5 w-5" />
+                  <Shapes className="h-5 w-5" />
                 </div>
                 <div>
-                   <h3 className="micro-text font-black uppercase tracking-widest text-muted-foreground opacity-50">Academic Groups</h3>
-                   <p className="text-[18px] font-bold text-foreground mt-1 tracking-tight">Class Enrollment</p>
+                   <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Curriculum</h3>
+                   <p className="text-[18px] font-semibold text-foreground mt-1 tracking-tight">Class & Level Manager</p>
                 </div>
               </CardContent>
             </Card>
           </Link>
-          <Link href="/admin/profile" className="group">
+          <Link href="/admin/students" className="group">
             <Card className="border border-border bg-white shadow-sm btn-interactive rounded-lg overflow-hidden h-full">
               <CardContent className="p-8 flex items-center gap-6">
                 <div className="p-3.5 rounded-md bg-primary/5 text-primary border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                  <Settings className="h-5 w-5" />
+                  <Users className="h-5 w-5" />
                 </div>
                 <div>
-                   <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Settings</h3>
-                   <p className="text-[18px] font-semibold text-foreground mt-1 tracking-tight">System Profile</p>
+                   <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Registry</h3>
+                   <p className="text-[18px] font-semibold text-foreground mt-1 tracking-tight">Student Records</p>
                 </div>
               </CardContent>
             </Card>

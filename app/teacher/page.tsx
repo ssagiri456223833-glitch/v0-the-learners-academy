@@ -53,26 +53,26 @@ export default function TeacherDashboard() {
               </CardContent>
             </Card>
           </Link>
-          <Link href="/teacher/results" className="group">
+          <Link href="/teacher/monitoring" className="group">
+            <Card className="border border-border bg-white shadow-sm btn-interactive rounded-lg overflow-hidden h-full">
+              <CardContent className="p-8 flex flex-col items-center text-center gap-5">
+                <div className="p-4 rounded-md bg-primary/5 text-primary border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                  <Clock className="h-6 w-6" />
+                </div>
+                <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Live Monitoring</h3>
+              </CardContent>
+            </Card>
+          </Link>
+          <Link href="/teacher/grading" className="group">
             <Card className="border border-border bg-white shadow-sm btn-interactive rounded-lg overflow-hidden h-full">
               <CardContent className="p-8 flex flex-col items-center text-center gap-5">
                 <div className="p-4 rounded-md bg-primary/5 text-primary border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                   <BarChart3 className="h-6 w-6" />
                 </div>
-                <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Test Results</h3>
+                <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Manual Grading</h3>
               </CardContent>
             </Card>
           </Link>
-          <div className="cursor-default">
-            <Card className="border border-border bg-slate-50 shadow-sm rounded-lg overflow-hidden h-full opacity-40 grayscale">
-              <CardContent className="p-8 flex flex-col items-center text-center gap-5">
-                <div className="p-4 rounded-md bg-slate-200 text-slate-400 border border-slate-300">
-                  <CalendarCheck className="h-6 w-6" />
-                </div>
-                <h3 className="micro-text font-semibold uppercase tracking-widest text-slate-500">Semester Schedule</h3>
-              </CardContent>
-            </Card>
-          </div>
         </div>
 
         {/* Assessment Cycle Tracking */}

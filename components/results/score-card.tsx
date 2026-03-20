@@ -52,10 +52,10 @@ export function ScoreCard({ score, total, percentage }: ScoreCardProps) {
                <div className="w-56 h-56 rounded-full border-[10px] border-slate-50 flex items-center justify-center bg-white shadow-[inset_0_2px_10px_rgba(0,0,0,0.02)] relative">
                   <div className="absolute inset-0 bg-primary/5 rounded-full animate-pulse" />
                   <div className="text-center z-10">
-                    <div className={cn("text-[64px] font-black leading-none tabular-nums italic", getStatusColor())}>
+                    <div className={cn("text-[64px] font-semibold leading-none tabular-nums italic", getStatusColor())}>
                       {percentage}<span className="text-[24px] not-italic opacity-40">%</span>
                     </div>
-                    <div className="micro-text text-muted-foreground mt-3 font-black tracking-[0.2em] text-[10px] uppercase opacity-40">
+                    <div className="micro-text text-muted-foreground mt-3 font-semibold tracking-[0.2em] text-[10px] uppercase opacity-40">
                       Aggregate Payload
                     </div>
                   </div>
@@ -66,7 +66,7 @@ export function ScoreCard({ score, total, percentage }: ScoreCardProps) {
               <div className="space-y-4">
                  <div className="flex items-center justify-center md:justify-start gap-3">
                     <ShieldCheck className="h-4 w-4 text-primary opacity-40" />
-                    <span className="micro-text text-muted-foreground font-black uppercase tracking-[0.25em] opacity-40">Audit Complete • Protocol Verified</span>
+                    <span className="micro-text text-muted-foreground font-semibold uppercase tracking-[0.25em] opacity-40">Audit Complete • Protocol Verified</span>
                  </div>
                  <h2 className="page-title text-[42px] text-foreground leading-tight tracking-tight italic underline decoration-primary/20 underline-offset-8 decoration-2">
                   Evaluation <span className="opacity-40 not-italic">MATRIX</span>
@@ -80,16 +80,16 @@ export function ScoreCard({ score, total, percentage }: ScoreCardProps) {
                 <div className="flex flex-col items-start gap-2 group transition-all duration-300">
                   <div className="flex items-center gap-2">
                      <CheckCircle className="h-4 w-4 text-success opacity-60" />
-                     <span className="micro-text text-muted-foreground font-black uppercase tracking-widest opacity-40">Validated Nodes</span>
+                     <span className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-40">Validated Nodes</span>
                   </div>
-                  <span className="text-[20px] font-black italic tabular-nums text-foreground">{score} <span className="text-[14px] not-italic opacity-20">CORRECT</span></span>
+                  <span className="text-[20px] font-semibold italic tabular-nums text-foreground">{score} <span className="text-[14px] not-italic opacity-20">CORRECT</span></span>
                 </div>
                 <div className="flex flex-col items-start gap-2 group transition-all duration-300">
                   <div className="flex items-center gap-2">
                      <Target className="h-4 w-4 text-primary opacity-60" />
-                     <span className="micro-text text-muted-foreground font-black uppercase tracking-widest opacity-40">Evaluation Density</span>
+                     <span className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-40">Evaluation Density</span>
                   </div>
-                  <span className="text-[20px] font-black italic tabular-nums text-foreground">{total} <span className="text-[14px] not-italic opacity-20">POINTS</span></span>
+                  <span className="text-[20px] font-semibold italic tabular-nums text-foreground">{total} <span className="text-[14px] not-italic opacity-20">POINTS</span></span>
                 </div>
               </div>
             </div>

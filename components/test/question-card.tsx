@@ -35,11 +35,11 @@ export function QuestionCard({
       <CardHeader className="py-6 px-10 bg-slate-50 border-b border-border">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="flex items-center justify-center w-10 h-10 rounded-md bg-foreground text-background text-[16px] font-black italic shadow-inner">
+            <div className="flex items-center justify-center w-10 h-10 rounded-md bg-foreground text-background text-[16px] font-semibold italic shadow-inner">
               {questionNumber}
             </div>
             <div className="flex flex-col">
-               <span className="micro-text text-muted-foreground font-black uppercase tracking-[0.2em] opacity-40">Matrix Position</span>
+               <span className="micro-text text-muted-foreground font-semibold uppercase tracking-[0.2em] opacity-40">Matrix Position</span>
                <span className="text-[13px] font-bold text-foreground">Question {questionNumber} of 10</span>
             </div>
           </div>
@@ -48,7 +48,7 @@ export function QuestionCard({
             size="sm"
             onClick={onToggleReview}
             className={cn(
-              "h-10 px-5 gap-3 text-[11px] font-black uppercase tracking-widest transition-all rounded-md border border-transparent",
+              "h-10 px-5 gap-3 text-[11px] font-semibold uppercase tracking-widest transition-all rounded-md border border-transparent",
               isMarkedForReview
                 ? "bg-warning/5 border-warning/20 text-warning hover:bg-warning/10"
                 : "text-muted-foreground hover:text-foreground hover:bg-white hover:border-border"
@@ -89,7 +89,7 @@ export function QuestionCard({
               >
                 <div className="flex items-center gap-6 z-10">
                   <span className={cn(
-                    "flex items-center justify-center min-w-[36px] h-9 rounded-md border text-[14px] font-black tabular-nums transition-all duration-300 group-hover:scale-110",
+                    "flex items-center justify-center min-w-[36px] h-9 rounded-md border text-[14px] font-semibold tabular-nums transition-all duration-300 group-hover:scale-110",
                     isSelected 
                       ? "bg-white/20 text-white border-white/20" 
                       : "bg-white text-muted-foreground border-border group-hover:text-primary group-hover:border-primary/20"
