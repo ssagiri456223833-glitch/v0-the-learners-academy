@@ -82,29 +82,29 @@ export default function TeacherCreateTest() {
   return (
     <DashboardLayout 
       title="Create Assessment" 
-      subtitle="Assemble an English MCQ test for the current term."
+      subtitle="Assemble an English MCQ test for the term."
     >
-      <div className="space-y-8 page-entrance">
+      <div className="space-y-8">
         {/* Action Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 bg-white shadow-xl shadow-[#1d8ae2]/5 rounded-[2.5rem] border border-white">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-8 bg-white shadow-sm rounded-lg border border-border">
            <div className="flex items-center gap-4">
               <div className="bg-[#1d8ae2] p-3 rounded-2xl text-white shadow-lg shadow-[#1d8ae2]/20">
                  <FilePlus className="h-6 w-6" />
               </div>
-              <div>
-                 <h2 className="font-heading font-black tracking-tighter uppercase text-xl leading-none">Drafting: {testDetails.title || "New Unnamed Test"}</h2>
-                 <p className="text-xs font-medium text-muted-foreground mt-1 uppercase tracking-widest">Assessment Mode • 2026 Term 2</p>
-              </div>
+               <div>
+                  <h2 className="text-[20px] font-semibold text-foreground tracking-tight">Drafting: {testDetails.title || "New Unnamed Test"}</h2>
+                  <p className="micro-text text-muted-foreground mt-1 uppercase tracking-widest font-semibold opacity-60">Assessment Mode • 2026 Term 2</p>
+               </div>
            </div>
            <div className="flex items-center gap-3">
               <Button variant="outline" className="h-12 px-6 rounded-2xl border-white bg-white hover:bg-slate-50 shadow-sm transition-all gap-2 text-slate-600 font-bold uppercase text-[10px] tracking-widest">
                 <Eye className="h-4 w-4" />
                 Live Preview
               </Button>
-              <Button className="h-12 px-8 rounded-2xl bg-[#1d8ae2] hover:bg-[#1d8ae2]/90 shadow-xl shadow-[#1d8ae2]/20 gap-2 font-black uppercase text-xs tracking-tighter">
-                <Save className="h-4 w-4" />
-                Commit & Publish
-              </Button>
+               <Button className="h-12 px-8 rounded-md bg-primary hover:bg-primary/90 shadow-md gap-3 font-bold uppercase text-[11px] tracking-widest">
+                 <Save className="h-4 w-4" />
+                 Save & Publish
+               </Button>
            </div>
         </div>
 
@@ -124,11 +124,11 @@ export default function TeacherCreateTest() {
 
           {/* Sticky List Column */}
           <div className="space-y-6">
-            <Card className="premium-card border-0 shadow-2xl rounded-[2.5rem] overflow-hidden sticky top-24">
-              <CardHeader className="bg-slate-50/50 pb-6 border-b border-slate-100/50">
-                <CardTitle className="font-heading font-black tracking-tighter uppercase text-lg flex items-center justify-between">
+            <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden sticky top-24">
+              <CardHeader className="bg-slate-50/50 pb-6 border-b border-white">
+                <CardTitle className="text-[14px] font-bold uppercase tracking-widest text-foreground flex items-center justify-between">
                   Inventory
-                  <span className="text-xs font-black uppercase text-[#1d8ae2] tracking-widest bg-[#1d8ae2]/5 py-1 px-3 rounded-full">
+                  <span className="text-[10px] font-bold uppercase text-primary tracking-widest bg-primary/5 py-1 px-3 rounded-full">
                     {questions.length} Items
                   </span>
                 </CardTitle>

@@ -27,8 +27,8 @@ import { TEACHERS } from "@/lib/constants"
 export default function AdminTimetable() {
   return (
     <DashboardLayout 
-      title="Master Timetable" 
-      subtitle="Schedule Operational Slots & Staff Allocations"
+      title="Timetable" 
+      subtitle="Schedule Class Slots & Teacher Allocations"
     >
       <div className="space-y-10 pb-12">
         {/* Institutional Control Actions */}
@@ -40,7 +40,7 @@ export default function AdminTimetable() {
              </Button>
              <Button variant="outline" className="h-11 px-6 gap-3 text-[12px] font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-all">
                 <Download className="h-4 w-4 opacity-50" />
-                Export Protocol (PDF)
+                Export Timetable
              </Button>
           </div>
           
@@ -53,25 +53,25 @@ export default function AdminTimetable() {
             </SheetTrigger>
             <SheetContent className="w-full sm:max-w-md bg-white border-l border-border p-0 overflow-hidden flex flex-col">
                <SheetHeader className="bg-slate-50 border-b border-border p-8 px-10">
-                  <div className="flex items-center gap-3 mb-2">
-                     <ShieldCheck className="h-4 w-4 text-primary opacity-60" />
-                     <SheetTitle className="page-title text-[24px] text-foreground tracking-tight underline underline-offset-4 decoration-primary/20 leading-none">Schedule Allocation</SheetTitle>
-                  </div>
-                  <SheetDescription className="micro-text text-muted-foreground font-bold uppercase tracking-widest opacity-40 italic">Initialize Operational Performance Slot</SheetDescription>
+                   <div className="flex items-center gap-3 mb-2">
+                      <ShieldCheck className="h-4 w-4 text-primary opacity-60" />
+                      <SheetTitle className="page-title text-[24px] text-foreground tracking-tight underline underline-offset-4 leading-none">Schedule Class</SheetTitle>
+                   </div>
+                   <SheetDescription className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-60">Initialize Academy Class Slot</SheetDescription>
                </SheetHeader>
 
                <div className="flex-1 overflow-y-auto p-10 space-y-10">
                   {/* Assessor Allocation */}
-                  <div className="space-y-6">
-                     <div className="flex items-center gap-3">
-                        <User className="h-4 w-4 text-primary opacity-40" />
-                        <span className="text-[12px] font-black uppercase tracking-widest text-foreground">Personnel Allocation</span>
-                     </div>
-                     <div className="space-y-3">
-                        <Label className="micro-text font-black uppercase tracking-widest text-muted-foreground opacity-60">Authorized Assessor</Label>
+                   <div className="space-y-6">
+                      <div className="flex items-center gap-3">
+                         <User className="h-4 w-4 text-primary opacity-40" />
+                         <span className="text-[12px] font-semibold uppercase tracking-widest text-foreground">Teacher Assignment</span>
+                      </div>
+                      <div className="space-y-3">
+                         <Label className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Assigned Teacher</Label>
                         <Select>
                            <SelectTrigger className="h-11 rounded-md border-border bg-slate-50 text-[14px] font-medium">
-                              <SelectValue placeholder="Identify Assessor" />
+                              <SelectValue placeholder="Select Teacher" />
                            </SelectTrigger>
                            <SelectContent className="rounded-md border-border">
                               {TEACHERS.map((teacher) => (
@@ -83,35 +83,35 @@ export default function AdminTimetable() {
                   </div>
 
                   {/* Temporal Parameters */}
-                  <div className="space-y-6">
-                     <div className="flex items-center gap-3">
-                        <Clock className="h-4 w-4 text-primary opacity-40" />
-                        <span className="text-[12px] font-black uppercase tracking-widest text-foreground">Temporal Parameters</span>
-                     </div>
-                     <div className="grid grid-cols-2 gap-6">
-                        <div className="space-y-3">
-                           <Label className="micro-text font-black uppercase tracking-widest text-muted-foreground opacity-60">Cycle Start Time</Label>
-                           <Input type="time" className="h-11 rounded-md border-border bg-slate-50 text-[14px] font-black tabular-nums" />
-                        </div>
-                        <div className="space-y-3">
-                           <Label className="micro-text font-black uppercase tracking-widest text-muted-foreground opacity-60">Cycle Terminus</Label>
-                           <Input type="time" className="h-11 rounded-md border-border bg-slate-50 text-[14px] font-black tabular-nums" />
-                        </div>
-                     </div>
+                   <div className="space-y-6">
+                      <div className="flex items-center gap-3">
+                         <Clock className="h-4 w-4 text-primary opacity-40" />
+                         <span className="text-[12px] font-semibold uppercase tracking-widest text-foreground">Time Parameters</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-6">
+                         <div className="space-y-3">
+                            <Label className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Start Time</Label>
+                            <Input type="time" className="h-11 rounded-md border-border bg-slate-50 text-[14px] font-semibold tabular-nums" />
+                         </div>
+                         <div className="space-y-3">
+                            <Label className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">End Time</Label>
+                            <Input type="time" className="h-11 rounded-md border-border bg-slate-50 text-[14px] font-semibold tabular-nums" />
+                         </div>
+                      </div>
                   </div>
 
                   {/* Environment Allocation */}
-                  <div className="space-y-6">
-                     <div className="flex items-center gap-3">
-                        <MapPin className="h-4 w-4 text-primary opacity-40" />
-                        <span className="text-[12px] font-black uppercase tracking-widest text-foreground">Spatial Allocation</span>
-                     </div>
-                     <div className="space-y-3">
-                        <Label className="micro-text font-black uppercase tracking-widest text-muted-foreground opacity-60">Physical Environment (Room)</Label>
-                        <Select>
-                           <SelectTrigger className="h-11 rounded-md border-border bg-slate-50 text-[14px] font-medium">
-                              <SelectValue placeholder="Allocate Workspace" />
-                           </SelectTrigger>
+                   <div className="space-y-6">
+                      <div className="flex items-center gap-3">
+                         <MapPin className="h-4 w-4 text-primary opacity-40" />
+                         <span className="text-[12px] font-semibold uppercase tracking-widest text-foreground">Room Allocation</span>
+                      </div>
+                      <div className="space-y-3">
+                         <Label className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Classroom</Label>
+                         <Select>
+                            <SelectTrigger className="h-11 rounded-md border-border bg-slate-50 text-[14px] font-medium">
+                               <SelectValue placeholder="Assign Room" />
+                            </SelectTrigger>
                            <SelectContent className="rounded-md border-border">
                               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((r) => (
                                  <SelectItem key={r} value={r.toString()} className="text-[14px]">Room {r}</SelectItem>
@@ -122,11 +122,11 @@ export default function AdminTimetable() {
                   </div>
                </div>
 
-               <SheetFooter className="bg-slate-50 border-t border-border p-8 px-10">
-                  <Button className="btn-primary h-12 w-full gap-3 text-[11px] font-bold uppercase tracking-widest shadow-md">
-                     Commit Allocation Slot
-                  </Button>
-               </SheetFooter>
+                <SheetFooter className="bg-slate-50 border-t border-border p-8 px-10">
+                   <Button className="btn-primary h-12 w-full gap-3 text-[11px] font-bold uppercase tracking-widest shadow-md">
+                      Save Class Slot
+                   </Button>
+                </SheetFooter>
             </SheetContent>
           </Sheet>
         </div>
@@ -136,14 +136,14 @@ export default function AdminTimetable() {
           <TimetableGrid />
         </div>
 
-        <div className="pt-8 border-t border-border flex items-center justify-between">
-           <p className="micro-text text-muted-foreground font-black uppercase tracking-[0.2em] opacity-30">
-              Audit Status: Verified • Cycle T2
-           </p>
-           <p className="micro-text text-muted-foreground font-bold italic opacity-40">
-              Last Global Refresh: 15:42 GMT
-           </p>
-        </div>
+         <div className="pt-8 border-t border-border flex items-center justify-between">
+            <p className="micro-text text-muted-foreground font-semibold uppercase tracking-[0.2em] opacity-30">
+               Schedule Validated
+            </p>
+            <p className="micro-text text-muted-foreground font-semibold opacity-40">
+               Cycle: 2026 Term 2
+            </p>
+         </div>
       </div>
     </DashboardLayout>
   )

@@ -17,8 +17,8 @@ export default function TeacherQuestionBank() {
 
   return (
     <DashboardLayout 
-      title="Institutional Asset Repository" 
-      subtitle="Comprehensive Q-Bank Access • Categorized Assessment Items"
+      title="Question Bank" 
+      subtitle="Organized by Topic • Comprehensive Assessment Items"
     >
       <div className="space-y-12 pb-12">
         {/* Search & Operational Bar */}
@@ -26,19 +26,18 @@ export default function TeacherQuestionBank() {
            <div className="relative group w-full md:w-[450px]">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground opacity-40 group-focus-within:text-primary transition-colors" />
               <Input
-                type="search"
-                placeholder="Query institutional assets..."
-                className="w-full pl-12 bg-white border-border hover:border-primary/20 focus-visible:ring-primary/10 shadow-sm transition-all rounded-lg h-12 text-[14px] font-medium italic"
+                className="pl-10 h-11 border-border bg-white rounded-md text-[14px]"
+                placeholder="Search question bank (Topics, level, etc)..."
               />
            </div>
            <div className="flex items-center gap-4">
               <Button variant="outline" size="icon" className="h-12 w-12 btn-secondary border-border hover:border-primary transition-all">
                  <Filter className="h-4 w-4 opacity-50" />
               </Button>
-              <Button className="btn-primary h-12 px-8 gap-3 text-[12px] font-bold uppercase tracking-widest">
-                 <Plus className="h-4 w-4" />
-                 Initialize New Asset
-              </Button>
+              <Button className="btn-primary h-11 px-8 gap-3 text-[12px] font-bold uppercase tracking-widest">
+               <Plus className="h-4 w-4" />
+               Add New Question
+            </Button>
            </div>
         </div>
 
@@ -53,17 +52,17 @@ export default function TeacherQuestionBank() {
                       </div>
                       <CardTitle className="page-title text-[22px] text-foreground leading-tight">{topic.title}</CardTitle>
                    </div>
-                   <Badge variant="outline" className="border-primary/30 text-primary bg-primary/5 font-black text-[9px] tracking-[0.2em] px-3 uppercase">{topic.level}</Badge>
+                   <Badge variant="outline" className="border-primary/20 text-primary bg-primary/5 font-semibold text-[9px] tracking-widest px-3 h-6 uppercase">{topic.level}</Badge>
                 </CardHeader>
                 <CardContent className="p-8 space-y-8">
                    <p className="text-[14px] font-medium text-muted-foreground italic leading-relaxed opacity-60">
                       Standardized institutional item categorized for specialized English evaluation. Verified for the Spring-2026 term cycle.
                    </p>
                    <div className="flex items-center justify-between border-t border-border pt-8 mt-4">
-                      <div className="flex items-center gap-3">
-                         <Database className="h-4 w-4 text-primary opacity-40" />
-                         <span className="micro-text font-black uppercase tracking-widest text-muted-foreground opacity-50">{topic.count} Validated Items</span>
-                      </div>
+                      <div className="flex items-center justify-between">
+                     <span className="text-[13px] font-bold text-muted-foreground uppercase tracking-tight">Questions</span>
+                     <span className="text-[16px] font-semibold text-primary">{topic.count}</span>
+                  </div>
                       <Button variant="ghost" className="text-[12px] font-bold uppercase tracking-widest text-muted-foreground hover:text-primary hover:bg-transparent gap-3 p-0 h-auto">
                          Open Protocol
                          <span className="text-[18px] leading-none opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all">→</span>

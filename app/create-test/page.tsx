@@ -82,8 +82,8 @@ export default function CreateTestPage() {
 
   return (
     <DashboardLayout 
-      title="Create Assessment Protocol" 
-      subtitle="Initialize Environment • Configure Skill Overlays • Verify Questions"
+      title="Create Assessment" 
+      subtitle="Assemble an English MCQ test for the term."
     >
       <div className="space-y-10 pb-12">
         {/* Core Header Identification */}
@@ -93,8 +93,8 @@ export default function CreateTestPage() {
               <FilePlus className="h-5 w-5" />
             </div>
             <div>
-              <h2 className="text-[20px] font-semibold text-foreground italic decoration-primary/10 underline underline-offset-8 decoration-2">Deployment Module</h2>
-              <p className="micro-text text-muted-foreground font-bold uppercase tracking-widest mt-2 opacity-50">Build an official MCQ evaluation protocol</p>
+              <h2 className="text-[28px] font-semibold text-foreground tracking-tight underline underline-offset-8 decoration-primary/10 decoration-2 italic leading-none">Drafting: {testDetails.title || "New Test"}</h2>
+              <p className="micro-text text-muted-foreground font-semibold uppercase tracking-widest mt-2 opacity-50">Build an official MCQ evaluation</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -102,9 +102,9 @@ export default function CreateTestPage() {
               <Eye className="h-4 w-4 opacity-50" />
               Environment Preview
             </Button>
-            <Button className="btn-primary h-11 px-8 gap-3 text-[12px] font-bold uppercase tracking-widest">
-              <Save className="h-4 w-4" />
-              Commit Protocol
+            <Button className="btn-primary h-12 px-8 gap-3 text-[12px] font-bold uppercase tracking-widest">
+               <Save className="h-4 w-4" />
+               Save Test
             </Button>
           </div>
         </div>
@@ -132,12 +132,10 @@ export default function CreateTestPage() {
           <div className="space-y-6">
             <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden sticky top-24">
               <CardHeader className="bg-slate-50 border-b border-border py-6 px-8 flex flex-row items-center justify-between">
-                <CardTitle className="text-[18px] font-semibold italic flex items-center gap-3 tracking-tight">
-                   Protocol Inventory
+                <CardTitle className="text-[14px] font-bold uppercase tracking-widest text-foreground flex items-center justify-between">
+                   Inventory
+                   <span className="text-[10px] font-bold text-primary tracking-widest bg-primary/5 py-1 px-3 rounded-full">{questions.length} Items</span>
                 </CardTitle>
-                <Badge variant="outline" className="text-[10px] font-bold opacity-50 px-3 uppercase tracking-tighter">
-                   {questions.length} Items Loaded
-                </Badge>
               </CardHeader>
               <CardContent className="p-8">
                 <QuestionList

@@ -26,12 +26,12 @@ export default function TeacherDashboard() {
   ]
 
   return (
-    <DashboardLayout 
-      title="Teacher Dashboard" 
-      subtitle={`Authenticated: ${teacherName} • Term 2 Semester`}
+    <DashboardLayout
+      title="Teacher Portal"
+      subtitle="Classroom Management & Assessment Dashboard"
     >
       <div className="space-y-12 pb-12">
-        {/* Assessor Action Modules */}
+        {/* Assessed Actions */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <Link href="/teacher/create-test" className="group">
             <Card className="border border-border bg-white shadow-sm btn-interactive rounded-lg overflow-hidden h-full">
@@ -78,10 +78,10 @@ export default function TeacherDashboard() {
         {/* Assessment Cycle Tracking */}
         <div className="space-y-6">
           <div className="flex items-center justify-between border-b border-border pb-6">
-            <h2 className="text-[20px] font-semibold text-foreground">Assigned Assessment Term</h2>
+            <h2 className="text-[20px] font-semibold text-foreground tracking-tight">Active Classes & Assessments</h2>
             <div className="flex items-center gap-4">
-              <Badge variant="outline" className="text-[10px] font-bold uppercase tracking-[0.2em] border-border opacity-60 px-3">SPRING-26</Badge>
-              <Badge className="btn-primary text-[10px] font-semibold uppercase tracking-widest px-4 h-6">Active Term</Badge>
+              <Badge variant="outline" className="text-[10px] font-semibold uppercase tracking-[0.2em] border-border opacity-60 px-3">TERM 2</Badge>
+              <Badge className="btn-primary text-[10px] font-semibold uppercase tracking-widest px-4 h-6">Active</Badge>
             </div>
           </div>
 
@@ -90,8 +90,8 @@ export default function TeacherDashboard() {
               <Card key={index} className="border border-border bg-white shadow-sm rounded-lg overflow-hidden group hover:shadow-md transition-all duration-300">
                 <CardHeader className="bg-slate-50 border-b border-border p-8">
                   <div className="flex justify-between items-center mb-6">
-                    <Badge variant="outline" className="text-[10px] font-bold border-primary/30 text-primary uppercase tracking-widest px-3 h-6">SLOT {item.slot}</Badge>
-                    <span className="micro-text text-muted-foreground font-black opacity-30 tracking-[0.2em] uppercase italic">VERIFIED: ROOM L5</span>
+                    <Badge variant="outline" className="text-[10px] font-semibold border-primary/30 text-primary uppercase tracking-widest px-3 h-6">SLOT {item.slot}</Badge>
+                    <span className="micro-text text-muted-foreground font-semibold opacity-40 tracking-[0.2em] uppercase">ROOM L5</span>
                   </div>
                   <CardTitle className="page-title text-[28px] text-foreground leading-none">{item.level}</CardTitle>
                 </CardHeader>
@@ -103,18 +103,20 @@ export default function TeacherDashboard() {
                         <FileText className="h-4 w-4" />
                       </div>
                       <div className="flex flex-col gap-0.5">
-                        <span className="text-[14px] font-semibold text-foreground tracking-tight">Mid-Term Phase</span>
-                        <span className="micro-text text-muted-foreground font-semibold uppercase tracking-tighter opacity-60">
-                          {item.midTerm === 'published' ? 'Test Published' : 'Drafting Phase'}
+                        <span className="text-[14px] font-semibold text-foreground tracking-tight">Mid-Term Test</span>
+                        <span className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-60">
+                          {item.midTerm === 'published' ? 'Published' : 'Drafting'}
                         </span>
                       </div>
                     </div>
                     {item.midTerm === 'published' ? (
                       <CheckCircle2 className="h-4 w-4 text-success opacity-60" />
                     ) : (
-                      <Button variant="outline" size="icon" className="h-8 w-8 btn-secondary border-border opacity-60 hover:opacity-100">
-                        <Send className="h-3 w-3" />
-                      </Button>
+                      <Link href="/teacher/create-test">
+                        <Button variant="outline" size="icon" className="h-8 w-8 btn-secondary border-border opacity-60 hover:opacity-100">
+                          <Plus className="h-3 w-3" />
+                        </Button>
+                      </Link>
                     )}
                   </div>
 
@@ -126,10 +128,10 @@ export default function TeacherDashboard() {
                       </div>
                       <div className="flex flex-col gap-0.5 text-slate-600">
                         <span className="text-[14px] font-semibold tracking-tight">Final Assessment</span>
-                        <span className="micro-text font-semibold uppercase tracking-tighter italic">LOCKED: WEEK 12</span>
+                        <span className="micro-text font-semibold uppercase tracking-widest">LOCKED</span>
                       </div>
                     </div>
-                    <Badge variant="outline" className="text-[10px] font-bold border-slate-300 tracking-tighter">SECURE</Badge>
+                    <Badge variant="outline" className="text-[10px] font-semibold border-slate-300 tracking-tighter">SECURE</Badge>
                   </div>
                 </CardContent>
               </Card>
@@ -138,11 +140,11 @@ export default function TeacherDashboard() {
         </div>
 
         <div className="pt-8 border-t border-border flex items-center justify-between">
-           <p className="micro-text text-muted-foreground font-semibold uppercase tracking-[0.2em] opacity-40">
-              Academy Portal: AUTH-7342
+           <p className="micro-text text-muted-foreground font-semibold uppercase tracking-[0.2em] opacity-30">
+              Academy Portal v2.4
            </p>
-           <p className="micro-text text-muted-foreground font-semibold opacity-40">
-              Updated: Mar 19, 21:26 GMT
+           <p className="micro-text text-muted-foreground font-semibold opacity-40 uppercase">
+              Cycle: 2026 Term 2
            </p>
         </div>
       </div>

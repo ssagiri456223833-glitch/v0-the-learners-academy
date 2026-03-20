@@ -40,11 +40,11 @@ const teachers = [
   { id: "STA-005", name: "David Stark", level: "Senior Assessor", classes: ["Level Four"], status: "In Session", email: "d.stark@academy.edu" },
 ]
 
-export default function FacultyRegistry() {
+export default function TeachersPage() {
   return (
     <DashboardLayout 
-      title="Faculty Matrix" 
-      subtitle="Registry of Authenticated Assessors & System staff allocations"
+      title="Teachers" 
+      subtitle="Registry of Teachers & Staff allocations"
     >
       <div className="space-y-10 pb-12">
         {/* Institutional Search & Filter Bar */}
@@ -52,7 +52,7 @@ export default function FacultyRegistry() {
            <div className="flex items-center gap-4 flex-1 max-w-xl">
               <div className="relative flex-1">
                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground opacity-40" />
-                 <Input className="pl-10 h-11 border-border bg-white rounded-md text-[14px]" placeholder="Identify Assessor (ID or Name)..." />
+                 <Input className="pl-10 h-11 border-border bg-white rounded-md text-[14px]" placeholder="Search Teachers (ID or Name)..." />
               </div>
               <Button variant="outline" className="h-11 px-5 gap-2 text-[12px] font-bold uppercase tracking-widest opacity-60 hover:opacity-100">
                  <Filter className="h-4 w-4" />
@@ -61,7 +61,7 @@ export default function FacultyRegistry() {
            </div>
            <Button className="btn-primary h-11 px-8 gap-3 text-[12px] font-bold uppercase tracking-widest">
               <Plus className="h-4 w-4" />
-              Register New Assessor
+              Add New Teacher
            </Button>
         </div>
 
@@ -70,26 +70,26 @@ export default function FacultyRegistry() {
            <CardHeader className="bg-slate-50 border-b border-border py-6 px-10 flex flex-row items-center justify-between">
               <div className="flex items-center gap-3">
                  <ShieldCheck className="h-4 w-4 text-primary opacity-60" />
-                 <CardTitle className="text-[18px] font-semibold italic text-foreground tracking-tight">Active Faculty Registry</CardTitle>
+                 <CardTitle className="text-[18px] font-semibold text-foreground tracking-tight">Active Teachers</CardTitle>
               </div>
-              <Badge variant="outline" className="border-primary/20 text-primary bg-primary/5 font-black text-[9px] tracking-widest px-3 h-6 uppercase">Total Personnel: {teachers.length}</Badge>
+              <Badge variant="outline" className="border-primary/20 text-primary bg-primary/5 font-semibold text-[9px] tracking-widest px-3 h-6 uppercase">Total Personnel: {teachers.length}</Badge>
            </CardHeader>
            <CardContent className="p-0">
               <Table>
                 <TableHeader className="bg-slate-50/50">
                   <TableRow className="border-b border-border hover:bg-transparent">
-                    <TableHead className="w-[120px] pl-10 h-14 micro-text font-black text-muted-foreground opacity-60 uppercase tracking-widest">Protocol ID</TableHead>
-                    <TableHead className="h-14 micro-text font-black text-muted-foreground opacity-60 uppercase tracking-widest">Assessor Identity</TableHead>
-                    <TableHead className="h-14 micro-text font-black text-muted-foreground opacity-60 uppercase tracking-widest text-center">Rank / Tier</TableHead>
-                    <TableHead className="h-14 micro-text font-black text-muted-foreground opacity-60 uppercase tracking-widest">Assigned Levels</TableHead>
-                    <TableHead className="h-14 micro-text font-black text-muted-foreground opacity-60 uppercase tracking-widest">Status</TableHead>
+                    <TableHead className="w-[120px] pl-10 h-14 micro-text font-semibold text-muted-foreground opacity-60 uppercase tracking-widest">Teacher ID</TableHead>
+                    <TableHead className="h-14 micro-text font-semibold text-muted-foreground opacity-60 uppercase tracking-widest">Teacher Name</TableHead>
+                    <TableHead className="h-14 micro-text font-semibold text-muted-foreground opacity-60 uppercase tracking-widest text-center">Designation</TableHead>
+                    <TableHead className="h-14 micro-text font-semibold text-muted-foreground opacity-60 uppercase tracking-widest">Assigned Levels</TableHead>
+                    <TableHead className="h-14 micro-text font-semibold text-muted-foreground opacity-60 uppercase tracking-widest">Status</TableHead>
                     <TableHead className="w-[80px] h-14 pr-10"></TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {teachers.map((teacher) => (
                     <TableRow key={teacher.id} className="border-b border-border group hover:bg-slate-50/50 transition-colors">
-                      <TableCell className="pl-10 text-[12px] font-black text-muted-foreground opacity-40 tabular-nums">{teacher.id}</TableCell>
+                      <TableCell className="pl-10 text-[12px] font-semibold text-muted-foreground opacity-40 tabular-nums">{teacher.id}</TableCell>
                       <TableCell>
                          <div className="flex flex-col py-1">
                             <span className="text-[14px] font-bold text-foreground leading-tight">{teacher.name}</span>
@@ -133,7 +133,7 @@ export default function FacultyRegistry() {
                                </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="w-48 rounded-md border-border">
-                               <DropdownMenuLabel className="micro-text font-black text-muted-foreground opacity-40 px-3 py-2 uppercase tracking-widest">Protocol Actions</DropdownMenuLabel>
+                               <DropdownMenuLabel className="micro-text font-semibold text-muted-foreground opacity-40 px-3 py-2 uppercase tracking-widest">Actions</DropdownMenuLabel>
                                <DropdownMenuSeparator />
                                <DropdownMenuItem className="text-[13px] font-bold gap-3 px-3 py-2 cursor-pointer">
                                   <Mail className="h-3.5 w-3.5 opacity-40" />
@@ -157,13 +157,13 @@ export default function FacultyRegistry() {
            </CardContent>
         </Card>
 
-        {/* Terminal Legend */}
+        {/* Page Legend */}
         <div className="pt-8 border-t border-border flex items-center justify-between">
-           <p className="micro-text text-muted-foreground font-black uppercase tracking-[0.2em] opacity-30">
-              Database Integrity: STABLE • Faculty Protocol v2.1
+           <p className="micro-text text-muted-foreground font-semibold uppercase tracking-[0.2em] opacity-30">
+              Database Connected
            </p>
-           <p className="micro-text text-muted-foreground font-bold italic opacity-40">
-              Assigned Term Cycle: SPRING 2026
+           <p className="micro-text text-muted-foreground font-semibold opacity-40">
+              Term: Spring 2026
            </p>
         </div>
       </div>

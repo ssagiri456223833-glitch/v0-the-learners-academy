@@ -34,7 +34,7 @@ export default function DashboardPage() {
                   <LayoutDashboard className="h-4 w-4 text-primary opacity-60" />
                   <h2 className="text-[20px] font-semibold text-foreground italic decoration-primary/20 underline underline-offset-8 decoration-2">Live Assessment Feed</h2>
                 </div>
-                <Badge variant="outline" className="text-[10px] font-bold uppercase tracking-widest opacity-40">Active Protocols</Badge>
+                <Badge variant="outline" className="text-[10px] font-semibold uppercase tracking-widest opacity-60">Term Active</Badge>
              </div>
              
              {/* Dynamic Progress Monitor */}

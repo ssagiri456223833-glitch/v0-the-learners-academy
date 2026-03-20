@@ -12,8 +12,7 @@ export default function AdminProfile() {
 
   return (
     <DashboardLayout 
-      title="Institutional Profile" 
-      subtitle="Identity & Credential Management Module"
+      title="Admin Profile" 
     >
       <div className="max-w-4xl mx-auto space-y-12 pb-12">
         {/* User Credential Header */}
@@ -28,10 +27,10 @@ export default function AdminProfile() {
           <div className="flex-1 text-center md:text-left space-y-6">
              <div className="flex flex-wrap justify-center md:justify-start gap-4">
                 <Badge variant="outline" className="border-primary/30 text-primary font-bold text-[10px] tracking-widest uppercase py-1.5 px-4 h-6">System Admin</Badge>
-                <Badge variant="outline" className="border-border text-muted-foreground font-bold text-[10px] tracking-widest uppercase py-1.5 px-4 h-6">Term Cycle 2 Active</Badge>
+                <Badge variant="outline" className="border-border text-muted-foreground font-bold text-[10px] tracking-widest uppercase py-1.5 px-4 h-6">Term 2 Active</Badge>
              </div>
              <h1 className="page-title text-[48px] text-foreground leading-none">{profile.name}</h1>
-             <p className="text-[14px] font-medium text-muted-foreground flex items-center justify-center md:justify-start gap-3 italic">
+             <p className="text-[14px] font-medium text-muted-foreground flex items-center justify-center md:justify-start gap-3">
                 <Mail className="h-4 w-4 opacity-40" />
                 {profile.email}
              </p>
@@ -42,46 +41,9 @@ export default function AdminProfile() {
              </Button>
              <Button className="btn-primary h-12 px-8 gap-3 text-[12px] font-bold uppercase tracking-widest">
                 <Shield className="h-4 w-4" />
-                Root Protocol
+                Root Access
              </Button>
           </div>
-        </div>
-
-        {/* Diagnostic Control Panels */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-           <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden group">
-              <CardHeader className="bg-slate-50 border-b border-border py-6 px-8 flex flex-row items-center justify-between">
-                 <div className="flex flex-col gap-1">
-                    <CardTitle className="page-title text-[20px] text-foreground underline underline-offset-4 decoration-primary/10">Verification Audit</CardTitle>
-                    <CardDescription className="micro-text text-muted-foreground font-bold tracking-widest uppercase opacity-40">Operational Status Review</CardDescription>
-                 </div>
-                 <CheckCircle2 className="h-6 w-6 text-success opacity-60" />
-              </CardHeader>
-              <CardContent className="p-8 space-y-8">
-                 <p className="text-[14px] font-medium text-muted-foreground italic leading-relaxed">Your administrative account is verified for the 2026 Academic Term. Your root access enables creation of classrooms and assignment of teachers.</p>
-                 <Button variant="outline" className="btn-secondary w-full h-12 text-[12px] font-bold uppercase tracking-widest gap-2">
-                    <CheckCircle2 className="h-4 w-4 opacity-40" />
-                    Review Audit History
-                 </Button>
-              </CardContent>
-           </Card>
-
-           <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden group">
-              <CardHeader className="bg-slate-50 border-b border-border py-6 px-8 flex flex-row items-center justify-between">
-                 <div className="flex flex-col gap-1">
-                    <CardTitle className="page-title text-[20px] text-foreground underline underline-offset-4 decoration-destructive/10">Secured Termination</CardTitle>
-                    <CardDescription className="micro-text text-muted-foreground font-bold tracking-widest uppercase opacity-40">Session & Data Management</CardDescription>
-                 </div>
-                 <LogOut className="h-6 w-6 text-destructive opacity-40" />
-              </CardHeader>
-              <CardContent className="p-8 space-y-8">
-                 <p className="text-[14px] font-medium text-muted-foreground italic leading-relaxed">Session-wide data termination requires secondary verification through the institutional panel. Log out strictly for safe termination.</p>
-                 <Button variant="outline" className="w-full h-12 text-[12px] font-bold uppercase tracking-widest gap-2 border-destructive/20 text-destructive hover:bg-destructive hover:text-white transition-all">
-                    <LogOut className="h-4 w-4" />
-                    Secure Session Termination
-                 </Button>
-              </CardContent>
-           </Card>
         </div>
       </div>
     </DashboardLayout>

@@ -11,8 +11,8 @@ import { Progress } from "@/components/ui/progress"
 export default function AdminDashboard() {
   return (
     <DashboardLayout 
-      title="Academy Admin" 
-      subtitle="Management & Academic Term Overview"
+      title="Academy Dashboard" 
+      subtitle="Administrative Overview • Academy Management Status"
     >
       <div className="space-y-10 pb-12">
         {/* Protocol Health Analytics (Premium Widget) */}
@@ -21,11 +21,11 @@ export default function AdminDashboard() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <Activity className="h-5 w-5 text-primary opacity-60" />
-                <CardTitle className="page-title text-[24px] text-foreground tracking-tight underline underline-offset-4 decoration-primary/20 leading-none">Academy Metrics</CardTitle>
+                <CardTitle className="text-[18px] font-semibold text-foreground tracking-tight">Active Teachers</CardTitle>
               </div>
               <Badge variant="outline" className="text-success border-success/30 bg-success/5 font-bold text-[10px] tracking-widest px-4 h-7 uppercase">Term Active</Badge>
             </div>
-            <CardDescription className="micro-text text-muted-foreground font-semibold mt-3 uppercase tracking-widest opacity-60">Live performance summary</CardDescription>
+            <CardDescription className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-60 mt-1">Personnel Overview</CardDescription>
           </CardHeader>
           <CardContent className="p-10">
              <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -119,11 +119,13 @@ export default function AdminDashboard() {
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <Badge variant="outline" className="border-primary/30 text-primary uppercase font-bold text-[10px] px-3 py-1">Term 2 Active</Badge>
-              <span className="micro-text text-muted-foreground font-semibold tracking-[0.2em] opacity-60">SPRING 2026 SEMESTER</span>
             </div>
             <div>
-              <h2 className="text-[28px] font-semibold text-foreground leading-tight">Current Term Status</h2>
-              <p className="text-[14px] font-medium text-muted-foreground mt-3">Ends in 45 Days • Assessment Phase Open</p>
+                  <p className="micro-text text-muted-foreground font-semibold uppercase tracking-[0.2em] opacity-40">Teacher Count</p>
+                  <div className="flex items-center gap-3">
+                    <p className="text-[28px] font-semibold tracking-tighter text-foreground">24</p>
+                    <Badge variant="outline" className="border-primary/20 text-primary bg-primary/5 font-semibold text-[9px] px-2 h-5 uppercase tracking-widest">Active Status</Badge>
+                  </div>
             </div>
           </div>
           <div className="flex items-center gap-4">
