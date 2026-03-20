@@ -99,7 +99,7 @@ export default function AdminDashboard() {
               </CardContent>
             </Card>
           </Link>
-          <Link href="/admin/students" className="group">
+          <Link href="/admin/students/bulk" className="group">
             <Card className="border border-border bg-white shadow-sm btn-interactive rounded-lg overflow-hidden h-full">
               <CardContent className="p-8 flex items-center gap-6">
                 <div className="p-3.5 rounded-md bg-primary/5 text-primary border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
