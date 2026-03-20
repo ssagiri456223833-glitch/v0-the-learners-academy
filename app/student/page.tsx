@@ -54,7 +54,7 @@ export default function StudentPortal() {
           title: `${level} - Term Assessment`,
           duration: 45,
           totalQuestions: 10,
-          subject: "Grammar & Syntactic Reasoning"
+          subject: "Grammar & Vocabulary"
         })
         setIsSearching(false)
       }, 1500)
@@ -68,7 +68,7 @@ export default function StudentPortal() {
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center p-8 selection:bg-primary/10">
       <div className="max-w-md w-full space-y-12 animate-in fade-in slide-in-from-bottom-2 duration-700">
-        {/* Institutional Branding Gateway */}
+        {/* Branding */}
         <div className="flex flex-col items-center text-center space-y-8">
           <div className="p-1.5 rounded-md bg-white shadow-sm border border-[#E2E8F0] group hover:border-primary transition-all duration-500">
             <Image
@@ -80,11 +80,11 @@ export default function StudentPortal() {
             />
           </div>
           <div className="space-y-3">
-            <h1 className="page-title text-[42px] font-medium text-[#0F172A] tracking-tighter leading-none">
-              Assessment Gateway
+            <h1 className="page-title text-[42px] font-semibold text-[#0F172A] tracking-tighter leading-none">
+              Student Portal
             </h1>
             <p className="micro-text text-[#64748B] font-semibold uppercase tracking-[0.3em] opacity-60 mt-6 block">
-              Academy Assessment Gateway
+              Academy Entrance Gateway
             </p>
           </div>
         </div>
@@ -93,19 +93,19 @@ export default function StudentPortal() {
           <CardHeader className="text-center pb-8 border-b border-[#E2E8F0] bg-slate-50/50 pt-10">
             <CardTitle className="text-[20px] font-semibold text-[#0F172A] flex items-center justify-center gap-3 tracking-tight">
                <ShieldCheck className="h-4.5 w-4.5 text-primary opacity-60" />
-              {testFound ? "Assessment Details" : "Student Verification"}
+              {testFound ? "Test Details" : "Student Login"}
             </CardTitle>
             <CardDescription className="micro-text text-[#64748B] font-semibold uppercase tracking-widest opacity-60 mt-1.5">
               {testFound 
-                ? "Test Identified"
-                : "Entry Portal 2026.4"
+                ? "Test Available"
+                : "Enter your credentials"
               }
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-10 p-10 sm:p-12">
             {!testFound ? (
               <div className="space-y-8">
-                {/* Candidate Identification */}
+                {/* Student Information */}
                 <div className="space-y-4">
                   <Label htmlFor="id" className="micro-text text-[#64748B] font-semibold uppercase tracking-widest flex items-center gap-2 opacity-60">
                     <UserCircle2 className="h-3.5 w-3.5 text-primary opacity-40" />
@@ -116,12 +116,12 @@ export default function StudentPortal() {
                     placeholder="e.g., L-1025"
                     value={studentId}
                     onChange={(e) => setStudentId(e.target.value.toUpperCase())}
-                    className="h-12 rounded-md border-[#E2E8F0] bg-slate-50/30 focus-visible:ring-primary/10 text-[16px] font-medium tracking-widest tabular-nums placeholder:italic placeholder:font-medium placeholder:opacity-30"
+                    className="h-12 rounded-md border-[#E2E8F0] bg-slate-50/30 focus-visible:ring-primary/10 text-[16px] font-semibold tracking-widest tabular-nums placeholder:italic placeholder:font-medium placeholder:opacity-30"
                   />
                 </div>
 
                 <div className="grid grid-cols-1 gap-8">
-                  {/* Academic Level Node */}
+                  {/* Class Level */}
                   <div className="space-y-4">
                     <Label htmlFor="level" className="micro-text text-[#64748B] font-semibold uppercase tracking-widest flex items-center gap-2 opacity-60">
                       <BookOpen className="h-3.5 w-3.5 text-primary opacity-40" />
@@ -129,7 +129,7 @@ export default function StudentPortal() {
                     </Label>
                     <Select onValueChange={setLevel} value={level}>
                       <SelectTrigger id="level" className="h-12 rounded-md border-[#E2E8F0] bg-slate-50/30 focus:ring-primary/10 text-[15px] font-semibold">
-                        <SelectValue placeholder="Identify Level" />
+                        <SelectValue placeholder="Select Level" />
                       </SelectTrigger>
                       <SelectContent className="rounded-md border-[#E2E8F0]">
                         {ACADEMY_LEVELS.map((l) => (
@@ -141,7 +141,7 @@ export default function StudentPortal() {
                     </Select>
                   </div>
 
-                  {/* Temporal Allocation Slot */}
+                  {/* Time Slot */}
                   <div className="space-y-4">
                     <Label htmlFor="slot" className="micro-text text-[#64748B] font-semibold uppercase tracking-widest flex items-center gap-2 opacity-60">
                       <Clock className="h-3.5 w-3.5 text-primary opacity-40" />
@@ -170,12 +170,12 @@ export default function StudentPortal() {
                   {isSearching ? (
                         <span className="flex items-center gap-3">
                           <Clock className="h-4.5 w-4.5 animate-spin opacity-40" />
-                          Indexing...
+                          Searching...
                         </span>
                   ) : (
                     <>
                       <Search className="h-4.5 w-4.5 opacity-40" />
-                      Verify Student
+                      Find Test
                     </>
                   )}
                 </Button>
@@ -199,7 +199,7 @@ export default function StudentPortal() {
                       <p className="text-[17px] font-semibold tabular-nums mt-1.5 font-sans">{studentId}</p>
                     </div>
                     <div className="text-left">
-                      <p className="micro-text text-[#64748B] font-semibold uppercase tracking-widest opacity-60">Room Assignment</p>
+                      <p className="micro-text text-[#64748B] font-semibold uppercase tracking-widest opacity-60">Time Slot</p>
                       <p className="text-[17px] font-semibold tabular-nums mt-1.5 font-sans opacity-80">Slot {slot}</p>
                     </div>
                   </div>
@@ -211,21 +211,21 @@ export default function StudentPortal() {
                     onClick={confirmAndBegin}
                   >
                     <Play className="h-5 w-5 fill-current opacity-40" />
-                    Start Assessment
+                    Start Test
                   </Button>
                   <Button 
                     variant="ghost" 
                     className="w-full micro-text font-semibold text-[#64748B] uppercase h-12 hover:bg-slate-100/50 opacity-60 hover:opacity-100 transition-all tracking-[0.2em]"
                     onClick={() => setTestFound(null)}
                   >
-                    Cancel
+                    Back
                   </Button>
                 </div>
               </div>
             )}
-            
+
             <p className="micro-text text-center text-[#64748B] pt-8 border-t border-[#E2E8F0] font-semibold opacity-40 uppercase tracking-[0.15em]">
-               Academy Portal v2.4 
+               Academy System v2.4 
             </p>
           </CardContent>
         </Card>

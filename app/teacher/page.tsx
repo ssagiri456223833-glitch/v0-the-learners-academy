@@ -8,11 +8,9 @@ import {
   FileText, 
   CheckCircle2, 
   Clock, 
-  Send, 
   Plus, 
   Database,
   BarChart3,
-  CalendarCheck
 } from "lucide-react"
 import Link from "next/link"
 
@@ -28,10 +26,10 @@ export default function TeacherDashboard() {
   return (
     <DashboardLayout
       title="Teacher Portal"
-      subtitle="Classroom Management & Assessment Dashboard"
+      subtitle="Classroom Management & Test Dashboard"
     >
       <div className="space-y-12 pb-12">
-        {/* Assessed Actions */}
+        {/* Quick Actions */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <Link href="/teacher/create-test" className="group">
             <Card className="border border-border bg-white shadow-sm btn-interactive rounded-lg overflow-hidden h-full">
@@ -75,10 +73,10 @@ export default function TeacherDashboard() {
           </Link>
         </div>
 
-        {/* Assessment Cycle Tracking */}
+        {/* My Classes */}
         <div className="space-y-6">
           <div className="flex items-center justify-between border-b border-border pb-6">
-            <h2 className="text-[20px] font-semibold text-foreground tracking-tight">Active Classes & Assessments</h2>
+            <h2 className="text-[20px] font-semibold text-foreground tracking-tight">Active Classes & Tests</h2>
             <div className="flex items-center gap-4">
               <Badge variant="outline" className="text-[10px] font-semibold uppercase tracking-[0.2em] border-border opacity-60 px-3">TERM 2</Badge>
               <Badge className="btn-primary text-[10px] font-semibold uppercase tracking-widest px-4 h-6">Active</Badge>
@@ -144,7 +142,7 @@ export default function TeacherDashboard() {
               Academy Portal v2.4
            </p>
            <p className="micro-text text-muted-foreground font-semibold opacity-40 uppercase">
-              Cycle: 2026 Term 2
+              Academic Term: Spring 2026
            </p>
         </div>
       </div>

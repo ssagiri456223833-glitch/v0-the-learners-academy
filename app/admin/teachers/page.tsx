@@ -47,25 +47,25 @@ export default function TeachersPage() {
       subtitle="Registry of Teachers & Staff allocations"
     >
       <div className="space-y-10 pb-12">
-        {/* Institutional Search & Filter Bar */}
+        {/* Search & Filter Bar */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-2">
            <div className="flex items-center gap-4 flex-1 max-w-xl">
               <div className="relative flex-1">
                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground opacity-40" />
                  <Input className="pl-10 h-11 border-border bg-white rounded-md text-[14px]" placeholder="Search Teachers (ID or Name)..." />
               </div>
-              <Button variant="outline" className="h-11 px-5 gap-2 text-[12px] font-bold uppercase tracking-widest opacity-60 hover:opacity-100">
+              <Button variant="outline" className="h-11 px-5 gap-2 text-[12px] font-semibold uppercase tracking-widest opacity-60 hover:opacity-100">
                  <Filter className="h-4 w-4" />
                  Filters
               </Button>
            </div>
-           <Button className="btn-primary h-11 px-8 gap-3 text-[12px] font-bold uppercase tracking-widest">
+           <Button className="btn-primary h-11 px-8 gap-3 text-[12px] font-semibold uppercase tracking-widest">
               <Plus className="h-4 w-4" />
               Add New Teacher
            </Button>
         </div>
 
-        {/* High-Density Faculty Registry Table */}
+        {/* Faculty Registry Table */}
         <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden">
            <CardHeader className="bg-slate-50 border-b border-border py-6 px-10 flex flex-row items-center justify-between">
               <div className="flex items-center gap-3">
@@ -92,7 +92,7 @@ export default function TeachersPage() {
                       <TableCell className="pl-10 text-[12px] font-semibold text-muted-foreground opacity-40 tabular-nums">{teacher.id}</TableCell>
                       <TableCell>
                          <div className="flex flex-col py-1">
-                            <span className="text-[14px] font-bold text-foreground leading-tight">{teacher.name}</span>
+                            <span className="text-[14px] font-semibold text-foreground leading-tight">{teacher.name}</span>
                             <span className="text-[11px] font-medium text-muted-foreground italic flex items-center gap-1.5 mt-0.5">
                                <Mail className="h-3 w-3 opacity-30" />
                                {teacher.email}
@@ -100,14 +100,14 @@ export default function TeachersPage() {
                          </div>
                       </TableCell>
                       <TableCell className="text-center">
-                         <Badge variant="outline" className="text-[10px] font-bold border-border bg-white text-foreground opacity-60">
+                         <Badge variant="outline" className="text-[10px] font-semibold border-border bg-white text-foreground opacity-60">
                             {teacher.level}
                          </Badge>
                       </TableCell>
                       <TableCell>
                          <div className="flex flex-wrap gap-1.5">
                             {teacher.classes.map((cls, j) => (
-                               <span key={j} className="text-[11px] font-bold text-primary bg-primary/5 border border-primary/10 rounded-sm px-2 py-0.5 italic">
+                               <span key={j} className="text-[11px] font-semibold text-primary bg-primary/5 border border-primary/10 rounded-sm px-2 py-0.5 italic">
                                   {cls}
                                </span>
                             ))}
@@ -118,7 +118,7 @@ export default function TeachersPage() {
                             <div className={`h-1.5 w-1.5 rounded-full ${
                                teacher.status === 'In Session' ? 'bg-success' : teacher.status === 'Available' ? 'bg-primary' : 'bg-muted-foreground opacity-30'
                             }`} />
-                            <span className={`text-[12px] font-bold uppercase tracking-tighter ${
+                            <span className={`text-[12px] font-semibold uppercase tracking-tighter ${
                                teacher.status === 'In Session' ? 'text-success' : teacher.status === 'Available' ? 'text-primary' : 'text-muted-foreground opacity-40'
                             }`}>
                                {teacher.status}

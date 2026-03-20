@@ -20,7 +20,7 @@ export default function TeacherResults() {
       subtitle="Performance Analytics • Student Proficiency Overview • 2026 Term 2"
     >
       <div className="space-y-12 pb-12">
-        {/* Institutional Metrics Highlights */}
+        {/* Performance Highlights */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
              <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden group">
                 <CardContent className="p-8 flex flex-col items-center text-center gap-6">
@@ -31,7 +31,7 @@ export default function TeacherResults() {
                        <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60 truncate w-full">Average Score</h3>
                        <p className="text-4xl font-semibold text-primary tracking-tighter tabular-nums leading-none">77%</p>
                     </div>
-                    <Badge variant="outline" className="border-success/30 text-success bg-success/5 font-semibold text-[9px] tracking-widest uppercase py-1 px-4 truncate">+4.2% Delta</Badge>
+                    <Badge variant="outline" className="border-success/30 text-success bg-success/5 font-semibold text-[9px] tracking-widest uppercase py-1 px-4 truncate">+4.2% Change</Badge>
                 </CardContent>
              </Card>
 
@@ -44,7 +44,7 @@ export default function TeacherResults() {
                        <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60 truncate w-full">Completion Rate</h3>
                        <p className="text-4xl font-semibold text-success tracking-tighter tabular-nums leading-none">94.2%</p>
                     </div>
-                    <Badge variant="outline" className="border-border text-muted-foreground font-semibold text-[9px] tracking-widest uppercase py-1 px-4 truncate">Target Achieved</Badge>
+                    <Badge variant="outline" className="border-border text-muted-foreground font-semibold text-[9px] tracking-widest uppercase py-1 px-4 truncate">Target Reached</Badge>
                 </CardContent>
              </Card>
 
@@ -57,12 +57,12 @@ export default function TeacherResults() {
                      <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Tests Conducted</h3>
                      <p className="text-4xl font-semibold text-warning tracking-tighter tabular-nums leading-none">12 / 12</p>
                   </div>
-                  <Badge variant="outline" className="border-border text-muted-foreground font-bold text-[9px] tracking-widest uppercase py-1 px-4">Term Complete</Badge>
+                  <Badge variant="outline" className="border-border text-muted-foreground font-semibold text-[9px] tracking-widest uppercase py-1 px-4">Term Complete</Badge>
               </CardContent>
            </Card>
         </div>
 
-        {/* Audit Logs & Visual Logic */}
+        {/* Detailed Results */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
            <div className="space-y-8">
                <div className="flex items-center gap-4 border-b border-border pb-6">
@@ -73,7 +73,7 @@ export default function TeacherResults() {
                  {recentTests.map((test, i) => (
                    <div key={i} className="flex items-center justify-between p-6 bg-white border border-border shadow-sm rounded-lg transition-all hover:bg-slate-50 group">
                        <div className="flex flex-col gap-1.5">
-                          <span className="text-[14px] font-bold text-foreground leading-none tracking-tight">{test.title}</span>
+                          <span className="text-[14px] font-semibold text-foreground leading-none tracking-tight">{test.title}</span>
                           <span className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-60">{test.level} • {test.date}</span>
                        </div>
                       <div className="flex items-center gap-10">

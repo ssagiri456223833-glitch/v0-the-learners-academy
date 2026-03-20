@@ -1,70 +1,53 @@
+import { Card, CardContent } from "@/components/ui/card"
+import { Plus, BookOpen, GraduationCap, FileText, ChevronRight, Activity } from "lucide-react"
 import Link from "next/link"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { FilePlus, Library, FileText, BarChart3, ArrowRight } from "lucide-react"
 
 const actions = [
   {
-    title: "Deploy New Protocol",
-    description: "Initialize assessment configuration",
-    icon: FilePlus,
+    title: "Create New Test",
+    description: "Launch assessment setup",
+    icon: Plus,
     href: "/teacher/create-test",
-    primary: true,
+    color: "bg-primary text-white",
+    hoverColor: "group-hover:bg-primary group-hover:text-white"
   },
   {
-    title: "Question Bank Access",
-    description: "Manage institutional asset library",
-    icon: Library,
+    title: "Question Bank",
+    description: "Manage test questions",
+    icon: BookOpen,
     href: "/teacher/question-bank",
-    primary: false,
+    color: "bg-primary/5 text-primary",
+    hoverColor: "group-hover:bg-primary group-hover:text-white"
   },
   {
-    title: "Simulate Environment",
-    description: "Execute protocol as student",
-    icon: FileText,
-    href: "/test",
-    primary: false,
-  },
-  {
-    title: "Evaluation Metrics",
-    description: "Aggregate performance analytics",
-    icon: BarChart3,
-    href: "/teacher/results",
-    primary: false,
+    title: "Student Portal",
+    description: "Entrance for students",
+    icon: LayoutGrid, // I'll use LayoutGrid if available, but I'll stick to GraduationCap for now or similar
+    href: "/student",
+    color: "bg-primary/5 text-primary",
+    hoverColor: "group-hover:bg-primary group-hover:text-white"
   },
 ]
 
+import { LayoutGrid } from "lucide-react"
+
 export function QuickActions() {
   return (
-    <div className="space-y-4">
-      {actions.map((action) => (
-        <Link key={action.href} href={action.href} className="block group">
-          <Card className={`border border-border bg-white shadow-sm transition-all duration-200 overflow-hidden ${
-            action.primary 
-              ? "ring-1 ring-primary/20 border-primary/20 hover:shadow-primary/5" 
-              : "hover:bg-slate-50 hover:shadow-md"
-          }`}>
-            <CardContent className="p-6 flex items-center justify-between">
-              <div className="flex items-center gap-5">
-                <div className={`p-3 rounded-md border ${
-                  action.primary 
-                    ? "bg-primary/5 border-primary/20 text-primary" 
-                    : "bg-slate-50 border-border text-muted-foreground group-hover:text-primary group-hover:border-primary/20 group-hover:bg-primary/5 transition-all"
-                }`}>
-                  <action.icon className="h-4 w-4" />
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {actions.map((action, i) => (
+        <Link key={i} href={action.href} className="group h-full">
+          <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden group-hover:shadow-md transition-all h-full btn-interactive">
+            <CardContent className="p-10 flex items-center justify-between">
+              <div className="flex items-center gap-8">
+                <div className={`p-4 rounded-md border border-transparent shadow-sm ${action.color} group-hover:scale-110 transition-transform duration-500`}>
+                  <action.icon className="h-6 w-6" />
                 </div>
-                <div className="space-y-1">
-                  <p className="text-[14px] font-bold text-foreground leading-tight tracking-tight">
-                    {action.title}
-                  </p>
-                  <p className="micro-text text-muted-foreground font-medium uppercase tracking-tighter opacity-50">
-                    {action.description}
-                  </p>
+                <div className="space-y-2">
+                  <h4 className="text-[17px] font-semibold text-foreground tracking-tight underline-offset-4 decoration-primary/10 underline decoration-2">{action.title}</h4>
+                  <p className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-40">{action.description}</p>
                 </div>
               </div>
-              <ArrowRight className={`h-4 w-4 transition-all opacity-20 group-hover:opacity-100 group-hover:translate-x-1 ${
-                action.primary ? "text-primary" : "text-muted-foreground"
-              }`} />
+              <ChevronRight className="h-5 w-5 text-muted-foreground opacity-20 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
             </CardContent>
           </Card>
         </Link>

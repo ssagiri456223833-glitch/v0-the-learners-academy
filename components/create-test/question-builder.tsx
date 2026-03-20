@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import type { Question } from "@/lib/types"
 import { Plus, X, FileEdit } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
 
 interface QuestionBuilderProps {
   onAdd: (question: Omit<Question, "id">) => void
@@ -116,21 +117,21 @@ export function QuestionBuilder({ onAdd, editingQuestion, onCancelEdit }: Questi
                className={`flex-1 h-12 gap-3 text-[11px] font-semibold uppercase tracking-widest transition-all ${type === "mcq" ? "bg-primary shadow-md" : "border-border opacity-60 hover:opacity-100"}`}
                onClick={() => setType("mcq")}
              >
-                MCQ Matrix
+                Multiple Choice
              </Button>
              <Button 
                variant={type === "short" ? "default" : "outline"}
                className={`flex-1 h-12 gap-3 text-[11px] font-semibold uppercase tracking-widest transition-all ${type === "short" ? "bg-primary shadow-md" : "border-border opacity-60 hover:opacity-100"}`}
                onClick={() => setType("short")}
              >
-                Constructed Response
+                Short Answer
              </Button>
           </div>
         </div>
 
         {/* Question Text */}
         <div className="space-y-3">
-          <Label htmlFor="question" className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Item Prompt / Stimulus</Label>
+          <Label htmlFor="question" className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Question Text</Label>
           <Input
             id="question"
             placeholder={type === "mcq" ? "e.g., Identify the correctly conjugated verb..." : "e.g., Explain the role of the past participle in this sentence..."}
@@ -144,9 +145,9 @@ export function QuestionBuilder({ onAdd, editingQuestion, onCancelEdit }: Questi
           /* Options Matrix */
           <div className="space-y-6">
             <div className="flex items-center justify-between border-b border-border pb-3">
-              <Label className="text-[12px] font-semibold uppercase tracking-[0.15em] text-foreground">Response Matrix</Label>
+              <Label className="text-[12px] font-semibold uppercase tracking-[0.15em] text-foreground">Answer Options</Label>
               <span className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-40">
-                Identify Correct Asset
+                Select Correct Answer
               </span>
             </div>
             
@@ -164,7 +165,7 @@ export function QuestionBuilder({ onAdd, editingQuestion, onCancelEdit }: Questi
                   />
                   <div className="flex-1 relative">
                     <Input
-                      placeholder={`Response Label ${String.fromCharCode(65 + index)}`}
+                      placeholder={`Option ${String.fromCharCode(65 + index)}`}
                       value={option}
                       onChange={(e) => handleOptionChange(index, e.target.value)}
                       className={`h-11 rounded-md border-border focus-visible:ring-primary/10 text-[14px] font-medium pl-10 ${
@@ -200,7 +201,7 @@ export function QuestionBuilder({ onAdd, editingQuestion, onCancelEdit }: Questi
                 className="btn-secondary h-10 px-6 gap-3 text-[11px] font-semibold uppercase tracking-widest mt-2"
               >
                 <Plus className="h-4 w-4 opacity-50" />
-                Append Response Option
+                Add Option
               </Button>
             )}
           </div>
@@ -208,9 +209,9 @@ export function QuestionBuilder({ onAdd, editingQuestion, onCancelEdit }: Questi
           /* Short Answer Sample Area */
           <div className="space-y-6">
             <div className="flex items-center justify-between border-b border-border pb-3">
-              <Label className="text-[12px] font-semibold uppercase tracking-[0.15em] text-foreground">Reference Model</Label>
+              <Label className="text-[12px] font-semibold uppercase tracking-[0.15em] text-foreground">Sample Answer</Label>
               <span className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-40">
-                Subjective Validation
+                Manual Grading Guide
               </span>
             </div>
             <div className="space-y-3">
@@ -233,7 +234,7 @@ export function QuestionBuilder({ onAdd, editingQuestion, onCancelEdit }: Questi
         <div className="flex items-center justify-end gap-4 pt-8 border-t border-border">
           {editingQuestion && (
             <Button variant="ghost" onClick={handleCancel} className="text-[12px] font-semibold uppercase tracking-widest opacity-60 hover:bg-slate-50">
-              Abort Modification
+              Cancel
             </Button>
           )}
           <Button
@@ -248,4 +249,3 @@ export function QuestionBuilder({ onAdd, editingQuestion, onCancelEdit }: Questi
     </Card>
   )
 }
-import { Badge } from "@/components/ui/badge"

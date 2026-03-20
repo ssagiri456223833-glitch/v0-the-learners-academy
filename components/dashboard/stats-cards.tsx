@@ -1,59 +1,68 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { FileText, Users, CheckCircle, Clock } from "lucide-react"
+import { Users, FileText, CheckCircle2, Clock, Activity, FileStack } from "lucide-react"
 
 const stats = [
   {
-    title: "Assessments Deployed",
-    value: "24",
-    change: "Term Cycle Week 8",
-    icon: FileText,
-  },
-  {
-    title: "Authenticated Students",
-    value: "156",
-    change: "92% Attendance Rate",
+    title: "Active Students",
+    value: "1,284",
+    change: "+12.5%",
     icon: Users,
+    color: "text-primary",
+    bg: "bg-primary/5",
+    border: "border-primary/20"
   },
   {
-    title: "Protocols Completed",
-    value: "89",
-    change: "Verified & Evaluated",
-    icon: CheckCircle,
+    title: "Tests Conducted",
+    value: "42",
+    change: "+3.2%",
+    icon: FileText,
+    color: "text-primary",
+    bg: "bg-primary/5",
+    border: "border-primary/20"
   },
   {
-    title: "Institutional Phase",
-    value: "Month 2",
-    change: "Audit: Mar - May",
+    title: "Tests Completed",
+    value: "892",
+    change: "+18.4%",
+    icon: CheckCircle2,
+    color: "text-success",
+    bg: "bg-success/5",
+    border: "border-success/20"
+  },
+  {
+    title: "Avg. Duration",
+    value: "42m",
+    change: "-2.1%",
     icon: Clock,
+    color: "text-warning",
+    bg: "bg-warning/5",
+    border: "border-warning/20"
   },
 ]
 
 export function StatsCards() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      {stats.map((stat) => (
-        <Card 
-          key={stat.title} 
-          className="border border-border bg-white shadow-sm rounded-lg overflow-hidden transition-all hover:bg-slate-50/50"
-        >
-          <CardContent className="p-8">
-            <div className="flex items-start justify-between">
-              <div className="space-y-4">
-                <p className="micro-text text-muted-foreground font-bold uppercase tracking-widest opacity-60">
-                  {stat.title}
-                </p>
-                <div className="space-y-1">
-                  <p className="page-title text-[32px] font-semibold text-foreground italic decoration-primary/20 underline underline-offset-8 decoration-2">
-                    {stat.value}
-                  </p>
-                  <p className="label-text text-[11px] font-medium text-muted-foreground pt-2">
-                    {stat.change}
-                  </p>
-                </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {stats.map((stat, i) => (
+        <Card key={i} className="border border-border bg-white shadow-sm rounded-lg overflow-hidden group hover:shadow-md transition-all duration-300">
+          <CardContent className="p-8 space-y-8">
+            <div className="flex items-center justify-between">
+              <div className={`p-3 rounded-md border ${stat.bg} ${stat.color} ${stat.border} group-hover:scale-110 transition-transform duration-500`}>
+                <stat.icon className="h-6 w-6" />
               </div>
-              <div className="p-3 rounded-md bg-slate-50 border border-border">
-                <stat.icon className="h-4 w-4 text-primary opacity-60" />
+              <div className="flex flex-col items-end">
+                 <span className={`text-[11px] font-semibold flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-slate-50 ${
+                   stat.change.startsWith('+') ? 'text-success' : 'text-destructive'
+                 }`}>
+                   <Activity className="h-3.5 w-3.5" />
+                   {stat.change}
+                 </span>
+                 <span className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-30 mt-2">Comparison</span>
               </div>
+            </div>
+            <div>
+              <p className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-60 mb-2 truncate">{stat.title}</p>
+              <h3 className="text-[32px] font-semibold text-foreground tracking-tight tabular-nums italic decoration-primary/10 underline underline-offset-8 decoration-2">{stat.value}</h3>
             </div>
           </CardContent>
         </Card>

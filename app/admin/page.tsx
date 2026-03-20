@@ -52,7 +52,7 @@ export default function AdminDashboard() {
                       <span className="text-[14px] font-semibold text-primary">18 / 22</span>
                    </div>
                    <Progress value={82} className="h-1.5 bg-slate-100 rounded-full" />
-                   <p className="micro-text text-muted-foreground font-semibold opacity-60">Active sessions currently in system.</p>
+                   <p className="micro-text text-muted-foreground font-semibold opacity-60">Active teachers currently logged in.</p>
                 </div>
 
                 {/* Live Room Occupancy */}
@@ -65,13 +65,13 @@ export default function AdminDashboard() {
                       <span className="text-[14px] font-semibold text-primary">76%</span>
                    </div>
                    <Progress value={76} className="h-1.5 bg-slate-100 rounded-full" />
-                   <p className="micro-text text-muted-foreground font-semibold opacity-60">Classroom allocation at capacity.</p>
+                   <p className="micro-text text-muted-foreground font-semibold opacity-60">Classroom usage at capacity.</p>
                 </div>
              </div>
           </CardContent>
         </Card>
 
-        {/* Institutional Control Modules */}
+        {/* Management Tools */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <Link href="/admin/timetable" className="group">
             <Card className="border border-border bg-white shadow-sm btn-interactive rounded-lg overflow-hidden h-full">
@@ -114,18 +114,18 @@ export default function AdminDashboard() {
           </Link>
         </div>
 
-        {/* Live Term Deployment Summary */}
+        {/* Current Academic Term Summary */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 p-10 bg-white border border-border shadow-sm rounded-lg">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <Badge variant="outline" className="border-primary/30 text-primary uppercase font-semibold text-[10px] px-3 py-1">Term 2 Active</Badge>
             </div>
             <div>
-                  <p className="micro-text text-muted-foreground font-semibold uppercase tracking-[0.2em] opacity-40">Teacher Count</p>
-                  <div className="flex items-center gap-3">
-                    <p className="text-[28px] font-semibold tracking-tighter text-foreground">24</p>
-                    <Badge variant="outline" className="border-primary/20 text-primary bg-primary/5 font-semibold text-[9px] px-2 h-5 uppercase tracking-widest">Active Status</Badge>
-                  </div>
+                   <p className="micro-text text-muted-foreground font-semibold uppercase tracking-[0.2em] opacity-40">Teacher Count</p>
+                   <div className="flex items-center gap-3">
+                     <p className="text-[28px] font-semibold tracking-tighter text-foreground">24</p>
+                     <Badge variant="outline" className="border-primary/20 text-primary bg-primary/5 font-semibold text-[9px] px-2 h-5 uppercase tracking-widest">Active Status</Badge>
+                   </div>
             </div>
           </div>
           <div className="flex items-center gap-4">

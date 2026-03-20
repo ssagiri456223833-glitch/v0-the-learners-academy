@@ -12,7 +12,6 @@ import {
   CheckCircle2, 
   AlertCircle, 
   PauseCircle, 
-  PlayCircle,
   Search,
   ArrowLeft
 } from "lucide-react"
@@ -74,23 +73,23 @@ export default function LiveMonitoringPage() {
   return (
     <DashboardLayout 
       title="Live Test Monitoring" 
-      subtitle="Real-time surveillance of Level 3 • Slot 2 Assessment"
+      subtitle="Monitoring Level 3 • Slot 2 Test"
     >
       <div className="space-y-8 pb-12">
         {/* Header Actions */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <Link href="/teacher" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm font-semibold uppercase tracking-widest">
             <ArrowLeft className="h-4 w-4" />
-            Return to Portal
+            Back to Dashboard
           </Link>
           <div className="flex items-center gap-4">
              <div className="flex items-center gap-3 px-4 py-2 bg-success/5 border border-success/20 rounded-full">
                 <div className="h-2 w-2 rounded-full bg-success animate-pulse" />
-                <span className="text-[11px] font-bold text-success uppercase tracking-widest">Server Active</span>
+                <span className="text-[11px] font-bold text-success uppercase tracking-widest">Live Status</span>
              </div>
              <Button className="btn-primary h-11 gap-3 text-[11px] font-bold uppercase tracking-widest">
                 <PauseCircle className="h-4 w-4" />
-                Suspend Global Timer
+                Pause Test Timer
              </Button>
           </div>
         </div>
@@ -103,7 +102,7 @@ export default function LiveMonitoringPage() {
                    <Users className="h-6 w-6" />
                 </div>
                 <div>
-                   <p className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-60">Connected Candidates</p>
+                   <p className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-60">Active Students</p>
                    <p className="text-[28px] font-semibold text-foreground leading-none mt-1">{stats.total}</p>
                 </div>
              </CardContent>
@@ -114,7 +113,7 @@ export default function LiveMonitoringPage() {
                    <CheckCircle2 className="h-6 w-6" />
                 </div>
                 <div>
-                   <p className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-60">Successfully Submitted</p>
+                   <p className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-60">Tests Completed</p>
                    <p className="text-[28px] font-semibold text-foreground leading-none mt-1">{stats.completed}</p>
                 </div>
              </CardContent>
@@ -125,8 +124,8 @@ export default function LiveMonitoringPage() {
                    <Clock className="h-6 w-6" />
                 </div>
                 <div>
-                   <p className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-60">Avg. Remaining Time</p>
-                   <p className="text-[28px] font-semibold text-foreground leading-none mt-1">28:15</p>
+                   <p className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-60">Avg. Time Left</p>
+                   <p className="text-[28px] font-semibold text-foreground leading-none mt-1">28m</p>
                 </div>
              </CardContent>
            </Card>
@@ -135,11 +134,11 @@ export default function LiveMonitoringPage() {
         {/* Monitoring Grid */}
         <div className="space-y-6">
            <div className="flex items-center justify-between border-b border-border pb-6">
-              <h2 className="text-[20px] font-semibold text-foreground tracking-tight">Active Session Queue</h2>
+              <h2 className="text-[20px] font-semibold text-foreground tracking-tight">Live Student List</h2>
               <div className="relative w-72">
                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground opacity-40" />
                  <Input 
-                   placeholder="Filter by Student ID / Name..." 
+                   placeholder="Search by ID or Name..." 
                    className="pl-10 h-10 border-border bg-white rounded-md text-sm font-medium"
                    value={searchTerm}
                    onChange={(e) => setSearchTerm(e.target.value)}
@@ -175,7 +174,7 @@ export default function LiveMonitoringPage() {
 
                     <div className="space-y-2">
                        <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-widest opacity-40">
-                          <span>Task Progress</span>
+                          <span>Progress</span>
                           <span>{student.progress}%</span>
                        </div>
                        <Progress value={student.progress} className="h-1.5 bg-slate-100" />
@@ -191,17 +190,17 @@ export default function LiveMonitoringPage() {
                           <p className="text-[13px] font-semibold text-foreground mt-1 tabular-nums italic opacity-80">{student.lastActive}</p>
                        </div>
                        <div className="text-center">
-                          <p className="micro-text text-muted-foreground font-semibold opacity-40 tracking-wider">Warns</p>
+                          <p className="micro-text text-muted-foreground font-semibold opacity-40 tracking-wider">Warnings</p>
                           <p className={`text-[13px] font-semibold mt-1 tabular-nums ${student.warnings > 0 ? 'text-destructive' : 'text-foreground opacity-60'}`}>{student.warnings}</p>
                        </div>
                     </div>
 
                     <div className="flex gap-3 pt-2">
                        <Button size="sm" variant="outline" className="flex-1 h-10 border-border text-[10px] font-semibold uppercase tracking-[0.15em] opacity-60 hover:opacity-100 hover:bg-slate-50 transition-all">
-                          Force Halt
+                          Stop Test
                        </Button>
                        <Button size="sm" variant="outline" className="flex-1 h-10 border-border text-[10px] font-semibold uppercase tracking-[0.15em] opacity-60 hover:opacity-100 hover:bg-slate-50 transition-all">
-                          Inspect Logs
+                          Check Logs
                        </Button>
                     </div>
                   </CardContent>
@@ -210,12 +209,12 @@ export default function LiveMonitoringPage() {
            </div>
         </div>
 
-        {/* Active Test Activity Log */}
+        {/* Activity Log */}
         <Card className="border border-border bg-slate-50/50 shadow-inner rounded-lg overflow-hidden">
            <CardHeader className="py-6 px-10 border-b border-white">
               <CardTitle className="page-title text-[20px] text-foreground flex items-center gap-3">
                  <AlertCircle className="h-5 w-5 text-primary opacity-40" />
-                 Institutional Surveillance Log
+                 Live Activity Log
               </CardTitle>
            </CardHeader>
            <CardContent className="p-0">
@@ -223,16 +222,16 @@ export default function LiveMonitoringPage() {
                  <div className="flex gap-6 text-[13px] font-medium animate-in slide-in-from-left-2 duration-500">
                     <span className="text-muted-foreground opacity-30 tabular-nums">14:52:12</span>
                     <span className="text-success font-semibold">SUCCESS:</span>
-                    <p className="text-foreground opacity-70">Candidate L-2201 (Zubair Ali) has validated and committed assessment.</p>
+                    <p className="text-foreground opacity-70">Student L-2201 (Zubair Ali) has completed the test.</p>
                  </div>
                  <div className="flex gap-6 text-[13px] font-medium animate-in slide-in-from-left-2 duration-500 delay-75">
                     <span className="text-muted-foreground opacity-30 tabular-nums">14:48:05</span>
                     <span className="text-destructive font-semibold">WARNING:</span>
-                    <p className="text-foreground opacity-70">Candidate L-3012 (Bilal Hassan) detected focus-switch violation (Tab Switch #3).</p>
+                    <p className="text-foreground opacity-70">Student L-3012 (Bilal Hassan) switched tabs (3 times).</p>
                  </div>
                  <div className="flex gap-6 text-[13px] font-medium opacity-40">
                     <span className="text-muted-foreground opacity-30 tabular-nums">14:45:22</span>
-                    <p className="text-foreground">Batch Level 3 Assessment Initialized globally.</p>
+                    <p className="text-foreground">Level 3 Test started for all students.</p>
                  </div>
               </div>
            </CardContent>

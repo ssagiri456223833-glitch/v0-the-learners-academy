@@ -1,189 +1,128 @@
 "use client"
 
-import Link from "next/link"
-import Image from "next/image"
-import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { 
+  BarChart3, 
+  BookOpen, 
+  Calendar, 
+  CheckCircle2, 
+  ClipboardList, 
+  GraduationCap, 
   LayoutDashboard, 
-  FilePlus, 
-  Library, 
-  CalendarDays,
-  UserCircle,
-  Shapes,
-  History,
-  LogOut,
-  X,
-  Users
+  LogOut, 
+  Settings, 
+  ShieldCheck, 
+  Users,
+  ChevronRight,
+  Database
 } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 
-const adminItems = [
-  {
-    title: "Dashboard",
-    href: "/admin",
-    icon: LayoutDashboard,
-  },
-  {
-    title: "Faculty Registry",
-    href: "/admin/teachers",
-    icon: Users,
-  },
-  {
-    title: "Timetable",
-    href: "/admin/timetable",
-    icon: CalendarDays,
-  },
-  {
-    title: "Classes",
-    href: "/admin/classes",
-    icon: Shapes,
-  },
-  {
-    title: "Admin Profile",
-    href: "/admin/profile",
-    icon: UserCircle,
-  },
+const navigation = [
+  { name: "Global Dashboard", href: "/admin", icon: LayoutDashboard },
+  { name: "Teacher Registry", href: "/admin/teachers", icon: Users },
+  { name: "Class Management", href: "/admin/classes", icon: ShieldCheck },
+  { name: "Student Records", href: "/admin/students", icon: GraduationCap },
+  { name: "Assessment Center", href: "/teacher", icon: ClipboardList },
+  { name: "Student Portal", href: "/student", icon: BookOpen },
 ]
 
-const teacherItems = [
-  {
-    title: "Dashboard",
-    href: "/teacher",
-    icon: LayoutDashboard,
-  },
-  {
-    title: "Question Bank",
-    href: "/teacher/question-bank",
-    icon: Library,
-  },
-  {
-    title: "Create Test",
-    href: "/teacher/create-test",
-    icon: FilePlus,
-  },
-  {
-    title: "Results",
-    href: "/teacher/results",
-    icon: History,
-  },
-  {
-    title: "My Profile",
-    href: "/teacher/profile",
-    icon: UserCircle,
-  },
-]
-
-interface SidebarProps {
-  isOpen: boolean
-  onClose: () => void
-}
-
-export function Sidebar({ isOpen, onClose }: SidebarProps) {
+export function Sidebar() {
   const pathname = usePathname()
-  const navItems = pathname.startsWith('/admin') ? adminItems : teacherItems
 
   return (
-    <>
-      {/* Mobile Backdrop Overlay */}
-      {isOpen && (
-        <div 
-          className="fixed inset-0 bg-slate-900/40 z-40 md:hidden backdrop-blur-sm transition-opacity duration-300"
-          onClick={onClose}
-        />
-      )}
+    <div className="w-80 border-r border-border bg-white flex flex-col sticky top-0 h-screen z-50">
+      {/* Academy Brand Identity */}
+      <div className="p-10 border-b border-border flex items-center gap-5 group transition-all">
+        <div className="p-2.5 rounded-md bg-primary text-white shadow-lg group-hover:scale-110 transition-transform duration-500">
+           <ShieldCheck className="h-6 w-6" />
+        </div>
+        <div>
+           <h1 className="text-[20px] font-semibold text-foreground tracking-tighter leading-none italic">Learners Academy</h1>
+           <p className="micro-text text-muted-foreground font-semibold uppercase tracking-[0.25em] opacity-40 mt-2">English Excellence</p>
+        </div>
+      </div>
 
-      {/* Sidebar Container */}
-      <aside
-        className={cn(
-          "fixed left-0 top-0 bottom-0 z-50 w-[260px] bg-white border-r border-border transition-transform duration-300 ease-in-out md:translate-x-0 md:static md:h-full",
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        )}
-      >
-        <div className="flex h-full flex-col">
-          {/* Header Area (Branding) */}
-          <div className="flex items-center justify-between px-8 py-10 border-b border-border bg-slate-50/50">
-            <div className="flex items-center gap-3">
-              <div className="p-1 rounded-md bg-white border border-border shadow-sm">
-                <Image
-                  src="/logo.jpeg"
-                  alt="The Learners Academy"
-                  width={32}
-                  height={32}
-                  className="rounded-sm"
-                />
-              </div>
-              <div className="flex flex-col">
-                <span className="page-title text-[16px] leading-none text-foreground tracking-tight underline underline-offset-4 decoration-primary/20">
-                  Institutional
-                </span>
-                <span className="micro-text text-muted-foreground font-semibold mt-1 uppercase tracking-widest opacity-40">
-                   {pathname.startsWith('/admin') ? "Admin" : "Teacher"}
-                </span>
-              </div>
-            </div>
-            
-            {/* Close Button (Mobile Only) */}
-            <Button variant="ghost" size="icon" className="md:hidden -mr-2" onClick={onClose}>
-              <X className="h-5 w-5 opacity-40" />
-            </Button>
-          </div>
-
-          {/* Navigation Matrix */}
-          <nav className="flex-1 px-4 py-8 overflow-y-auto">
-            <ul className="space-y-1.5">
-              <li className="px-4 pb-4">
-                 <span className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-30">
-                   Navigation Protocol
-                 </span>
-              </li>
-
-              {navItems.map((item) => {
-                const isActive = pathname === item.href
-                return (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      onClick={onClose}
-                      className={cn(
-                        "flex items-center gap-4 px-4 py-3.5 rounded-md font-semibold transition-all duration-200 group relative",
-                        isActive
-                          ? "bg-slate-50 text-primary shadow-sm border border-border/60"
-                          : "text-muted-foreground hover:bg-slate-50/50 hover:text-foreground hover:translate-x-1"
-                      )}
-                    >
-                      {/* Active Notch */}
-                      {isActive && (
-                        <div className="absolute left-0 top-2 bottom-2 w-[3px] bg-primary rounded-r-full" />
-                      )}
-                      
-                      <item.icon className={cn(
-                        "h-4 w-4 transition-colors duration-200",
-                        isActive ? "text-primary opacity-100 scale-110" : "text-muted-foreground opacity-40 group-hover:opacity-100 group-hover:text-primary"
-                      )} />
-                      <span className="text-[13px] font-bold tracking-tight uppercase tracking-widest">{item.title}</span>
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
-          </nav>
-
-          {/* Institutional Footer Area */}
-          <div className="px-6 py-6 border-t border-border mt-auto bg-slate-50/50">
-             <Link 
-               href="/"
-               className="flex items-center gap-4 px-4 py-3 rounded-md font-bold uppercase text-[10px] tracking-widest text-muted-foreground hover:text-destructive hover:bg-destructive/5 transition-all group"
-             >
-                <LogOut className="h-3.5 w-3.5 opacity-40 group-hover:opacity-100 transition-all" />
-                <span>Terminate Session</span>
-             </Link>
-             <p className="text-[9px] font-bold text-muted-foreground opacity-20 text-center mt-6 tracking-widest uppercase">
-                © 2026 Learners Academy
-             </p>
+      <nav className="flex-1 p-8 space-y-10">
+        <div className="space-y-3">
+          <p className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-30 px-4">Management</p>
+          <div className="space-y-1.5">
+            {navigation.slice(0, 4).map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "flex items-center gap-4 px-5 h-12 rounded-md text-[14px] font-semibold transition-all group",
+                  pathname === item.href
+                    ? "bg-primary/5 text-primary border border-primary/10 shadow-sm shadow-primary/5"
+                    : "text-muted-foreground hover:bg-slate-50 hover:text-foreground"
+                )}
+              >
+                <item.icon className={cn(
+                  "h-4 w-4 transition-colors",
+                  pathname === item.href ? "text-primary" : "text-muted-foreground group-hover:text-foreground"
+                )} />
+                <span className="tracking-tight">{item.name}</span>
+                {pathname === item.href && (
+                   <ChevronRight className="ml-auto h-3.5 w-3.5 text-primary/40 animate-in slide-in-from-left-2" />
+                )}
+              </Link>
+            ))}
           </div>
         </div>
-      </aside>
-    </>
+
+        <div className="space-y-3">
+          <p className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-30 px-4">Evaluation</p>
+          <div className="space-y-1.5">
+            {navigation.slice(4).map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "flex items-center gap-4 px-5 h-12 rounded-md text-[14px] font-semibold transition-all group",
+                  pathname === item.href
+                    ? "bg-primary/5 text-primary border border-primary/10 shadow-sm shadow-primary/5"
+                    : "text-muted-foreground hover:bg-slate-50 hover:text-foreground"
+                )}
+              >
+                <item.icon className={cn(
+                  "h-4 w-4 transition-colors",
+                  pathname === item.href ? "text-primary" : "text-muted-foreground group-hover:text-foreground"
+                )} />
+                <span className="tracking-tight">{item.name}</span>
+                {pathname === item.href && (
+                   <ChevronRight className="ml-auto h-3.5 w-3.5 text-primary/40 animate-in slide-in-from-left-2" />
+                )}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </nav>
+
+      {/* Persistence Interface */}
+      <div className="p-8 mt-auto border-t border-border bg-slate-50/50">
+        <div className="space-y-2">
+           <p className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-30 px-2 mb-3">System</p>
+           <button className="flex items-center gap-4 px-5 h-12 w-full text-muted-foreground hover:bg-white hover:text-foreground transition-all rounded-md group">
+              <LogOut className="h-4 w-4 opacity-40 group-hover:text-destructive group-hover:opacity-100 transition-colors" />
+              <span className="text-[14px] font-semibold tracking-tight group-hover:text-destructive transition-colors">Terminate Session</span>
+           </button>
+        </div>
+        
+        <div className="mt-8 flex items-center gap-4 p-5 rounded-md bg-white border border-border shadow-sm">
+           <div className="relative">
+              <div className="h-2 w-2 rounded-full bg-success absolute -top-1 -right-1 border border-white" />
+              <div className="p-2 rounded-md bg-primary/5 text-primary">
+                 <Database className="h-4 w-4" />
+              </div>
+           </div>
+           <div className="flex flex-col min-w-0">
+              <span className="text-[11px] font-semibold text-foreground uppercase tracking-widest truncate">Academy Mainframe</span>
+              <span className="text-[9px] font-semibold text-success uppercase tracking-widest mt-0.5">Live Connection</span>
+           </div>
+        </div>
+      </div>
+    </div>
   )
 }

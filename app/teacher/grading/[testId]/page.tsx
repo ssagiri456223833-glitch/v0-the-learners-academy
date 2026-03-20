@@ -105,14 +105,14 @@ export default function GradingDetailPage({ params }: { params: { testId: string
 
   return (
     <DashboardLayout 
-      title="Protocol Evaluation" 
-      subtitle={`Level 4 Assessment • ID: ${params.testId}`}
+      title="Grade Submissions" 
+      subtitle={`Level 4 Test • ID: ${params.testId}`}
     >
       <div className="space-y-8 pb-12">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <Link href="/teacher/grading" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm font-semibold uppercase tracking-widest">
             <ArrowLeft className="h-4 w-4" />
-            Back to Queue
+            Back to List
           </Link>
           <div className="flex items-center gap-6">
              <div className="flex bg-slate-100 p-1 rounded-md">
@@ -126,7 +126,7 @@ export default function GradingDetailPage({ params }: { params: { testId: string
                    <ChevronLeft className="h-4 w-4" />
                 </Button>
                 <div className="px-4 flex items-center gap-2 border-x border-slate-200">
-                   <span className="text-[12px] font-bold tabular-nums tabular-nums">ITEM {currentIndex + 1} OF {submissions.length}</span>
+                   <span className="text-[12px] font-semibold tabular-nums">STUDENT {currentIndex + 1} OF {submissions.length}</span>
                 </div>
                 <Button 
                    size="icon" 
@@ -138,8 +138,8 @@ export default function GradingDetailPage({ params }: { params: { testId: string
                    <ChevronRight className="h-4 w-4" />
                 </Button>
              </div>
-             <Button className="btn-primary h-11 px-8 gap-3 text-[11px] font-bold uppercase tracking-widest shadow-md">
-                Commit Protocol
+             <Button className="btn-primary h-11 px-8 gap-3 text-[11px] font-semibold uppercase tracking-widest shadow-md">
+                Save & Continue
              </Button>
           </div>
         </div>
@@ -149,9 +149,9 @@ export default function GradingDetailPage({ params }: { params: { testId: string
            <div className="lg:col-span-1 space-y-4">
               <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden">
                  <CardHeader className="bg-slate-50 border-b border-border py-6 px-10">
-                    <CardTitle className="text-[14px] font-bold uppercase tracking-widest text-foreground flex items-center gap-4">
+                    <CardTitle className="text-[14px] font-semibold uppercase tracking-widest text-foreground flex items-center gap-4">
                        <TableOfContents className="h-4 w-4 text-primary opacity-40" />
-                       Queue
+                       Student List
                     </CardTitle>
                  </CardHeader>
                  <CardContent className="p-0">
@@ -166,7 +166,7 @@ export default function GradingDetailPage({ params }: { params: { testId: string
                          >
                             <div className="flex justify-between items-start mb-4">
                                <p className={`micro-text font-semibold uppercase tracking-widest ${sub.status === 'graded' ? 'text-success' : 'text-warning'}`}>
-                                  {sub.status === 'graded' ? 'Validated' : 'Pending'}
+                                  {sub.status === 'graded' ? 'Graded' : 'Pending'}
                                </p>
                                {sub.status === 'graded' && <CheckCircle2 className="h-3.5 w-3.5 text-success" />}
                             </div>
@@ -184,28 +184,28 @@ export default function GradingDetailPage({ params }: { params: { testId: string
               <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden">
                  <CardHeader className="p-12 border-b border-slate-50 flex flex-col md:flex-row md:items-center justify-between gap-8">
                     <div className="flex gap-6 items-center">
-                       <div className="w-16 h-16 rounded-full bg-slate-50 flex items-center justify-center text-[24px] font-serif font-bold text-primary shadow-inner">
+                       <div className="w-16 h-16 rounded-full bg-slate-50 flex items-center justify-center text-[24px] font-serif font-semibold text-primary shadow-inner">
                           {currentSubmission.studentName.charAt(0)}
                        </div>
                        <div>
                           <h2 className="text-[28px] font-semibold text-foreground tracking-tight leading-none">{currentSubmission.studentName}</h2>
-                          <p className="micro-text text-muted-foreground font-semibold uppercase tracking-widest mt-3 opacity-60">{currentSubmission.studentId} • Batch Level 4</p>
+                          <p className="micro-text text-muted-foreground font-semibold uppercase tracking-widest mt-3 opacity-60">{currentSubmission.studentId} • Level 4</p>
                        </div>
                     </div>
                     {currentSubmission.status === 'graded' && (
-                       <Badge variant="outline" className="border-success/30 bg-success/5 text-success text-[12px] font-bold px-6 py-2.5 h-12 uppercase tracking-[0.2em] rounded-md tabular-nums">
+                       <Badge variant="outline" className="border-success/30 bg-success/5 text-success text-[12px] font-semibold px-6 py-2.5 h-12 uppercase tracking-[0.2em] rounded-md tabular-nums">
                           SCORE: {currentAnswer.score} / 5
                        </Badge>
                     )}
                  </CardHeader>
                  <CardContent className="p-12 space-y-12">
-                    {/* Prompt Side by Side */}
+                    {/* Question Reference */}
                     <div className="space-y-6">
-                       <Label className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60 scale-90 origin-left block">Stimulus & Model Response</Label>
+                       <Label className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60 scale-90 origin-left block">Question & Sample Answer</Label>
                        <div className="p-10 rounded-md bg-slate-50 border border-slate-100 italic space-y-6">
                           <p className="text-[16px] text-foreground leading-relaxed font-semibold italic">"{currentAnswer.question}"</p>
                           <div className="pt-6 border-t border-slate-200">
-                             <p className="micro-text text-primary font-bold uppercase tracking-widest mb-3 opacity-60">Faculty Reference Pattern</p>
+                             <p className="micro-text text-primary font-semibold uppercase tracking-widest mb-3 opacity-60">Sample Answer Reference</p>
                              <p className="text-[14px] text-muted-foreground leading-relaxed font-medium">{currentAnswer.sample}</p>
                           </div>
                        </div>
@@ -214,8 +214,8 @@ export default function GradingDetailPage({ params }: { params: { testId: string
                     {/* Student Response */}
                     <div className="space-y-6">
                        <div className="flex items-center justify-between">
-                          <Label className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60 scale-90 origin-left block">Candidate Construct</Label>
-                          <div className="text-[11px] font-semibold uppercase tracking-widest text-primary bg-primary/5 px-4 h-7 flex items-center rounded-sm">Protocol ID: ASM-4412</div>
+                          <Label className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60 scale-90 origin-left block">Student's Answer</Label>
+                          <div className="text-[11px] font-semibold uppercase tracking-widest text-primary bg-primary/5 px-4 h-7 flex items-center rounded-sm">Test ID: ASM-4412</div>
                        </div>
                        <div className="p-12 rounded-md border-2 border-primary/10 bg-white relative overflow-hidden group">
                           <MessageSquareQuote className="absolute top-6 right-6 h-12 w-12 text-primary opacity-[0.03] group-hover:opacity-[0.08] transition-opacity" />
@@ -228,15 +228,15 @@ export default function GradingDetailPage({ params }: { params: { testId: string
                     {/* Feedback & Score Input */}
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-12 pt-12 border-t border-slate-100">
                        <div className="md:col-span-3 space-y-6">
-                          <Label className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60 scale-90 origin-left block">Constructive Feedback / Remarks</Label>
+                          <Label className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60 scale-90 origin-left block">Teacher's Feedback</Label>
                           <textarea 
-                            placeholder="Identify specific syntactic errors or provide formative feedback..."
+                            placeholder="Provide feedback on the student's response..."
                             className="w-full h-24 p-8 rounded-md border border-slate-200 bg-slate-50/30 focus:border-primary/30 focus:ring-primary/5 text-[14px] font-medium resize-none transition-all"
                             defaultValue={currentAnswer.feedback}
                           />
                        </div>
                        <div className="md:col-span-1 space-y-6">
-                          <Label className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60 scale-90 origin-left block">Quant. Score (0-5)</Label>
+                          <Label className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60 scale-90 origin-left block">Score (0-5)</Label>
                           <div className="flex gap-4">
                              <Input 
                                type="number" 
@@ -245,7 +245,7 @@ export default function GradingDetailPage({ params }: { params: { testId: string
                                placeholder="-"
                                value={currentScore}
                                onChange={(e) => setCurrentScore(e.target.value)}
-                               className="h-24 text-center text-[24px] font-bold border-2 border-slate-200 focus:border-primary rounded-md"
+                               className="h-24 text-center text-[24px] font-semibold border-2 border-slate-200 focus:border-primary rounded-md"
                              />
                              <Button 
                                onClick={handleScoreSubmit}
