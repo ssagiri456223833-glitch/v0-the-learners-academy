@@ -27,8 +27,8 @@ export default function TeacherDashboard() {
 
   return (
     <DashboardLayout 
-      title="Teacher Assessor Portal" 
-      subtitle={`Authenticated Environment: ${teacherName} • Term 2 Cycle`}
+      title="Teacher Dashboard" 
+      subtitle={`Authenticated: ${teacherName} • Term 2 Semester`}
     >
       <div className="space-y-12 pb-12">
         {/* Assessor Action Modules */}
@@ -39,7 +39,7 @@ export default function TeacherDashboard() {
                 <div className="p-4 rounded-md bg-primary/5 text-primary border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                   <Plus className="h-6 w-6" />
                 </div>
-                <h3 className="micro-text font-black uppercase tracking-widest text-muted-foreground opacity-60">Initialize New Protocol</h3>
+                <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Create New Test</h3>
               </CardContent>
             </Card>
           </Link>
@@ -49,7 +49,7 @@ export default function TeacherDashboard() {
                 <div className="p-4 rounded-md bg-primary/5 text-primary border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                   <Database className="h-6 w-6" />
                 </div>
-                <h3 className="micro-text font-black uppercase tracking-widest text-muted-foreground opacity-60">Asset Repository Access</h3>
+                <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Question Bank</h3>
               </CardContent>
             </Card>
           </Link>
@@ -59,7 +59,7 @@ export default function TeacherDashboard() {
                 <div className="p-4 rounded-md bg-primary/5 text-primary border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                   <BarChart3 className="h-6 w-6" />
                 </div>
-                <h3 className="micro-text font-black uppercase tracking-widest text-muted-foreground opacity-60">Evaluation Analytics</h3>
+                <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Test Results</h3>
               </CardContent>
             </Card>
           </Link>
@@ -69,7 +69,7 @@ export default function TeacherDashboard() {
                 <div className="p-4 rounded-md bg-slate-200 text-slate-400 border border-slate-300">
                   <CalendarCheck className="h-6 w-6" />
                 </div>
-                <h3 className="micro-text font-black uppercase tracking-widest text-slate-500">Master Schedule Log</h3>
+                <h3 className="micro-text font-semibold uppercase tracking-widest text-slate-500">Semester Schedule</h3>
               </CardContent>
             </Card>
           </div>
@@ -78,10 +78,10 @@ export default function TeacherDashboard() {
         {/* Assessment Cycle Tracking */}
         <div className="space-y-6">
           <div className="flex items-center justify-between border-b border-border pb-6">
-            <h2 className="text-[20px] font-semibold text-foreground italic decoration-primary/10 underline underline-offset-8 decoration-2">Assigned Evaluation Cycle</h2>
+            <h2 className="text-[20px] font-semibold text-foreground">Assigned Assessment Term</h2>
             <div className="flex items-center gap-4">
-              <Badge variant="outline" className="text-[10px] font-bold uppercase tracking-[0.2em] border-border opacity-50 px-3">SPRING-AUDIT-26</Badge>
-              <Badge className="btn-primary text-[10px] font-black uppercase tracking-widest px-4 h-6">Live Protocol</Badge>
+              <Badge variant="outline" className="text-[10px] font-bold uppercase tracking-[0.2em] border-border opacity-60 px-3">SPRING-26</Badge>
+              <Badge className="btn-primary text-[10px] font-semibold uppercase tracking-widest px-4 h-6">Active Term</Badge>
             </div>
           </div>
 
@@ -103,9 +103,9 @@ export default function TeacherDashboard() {
                         <FileText className="h-4 w-4" />
                       </div>
                       <div className="flex flex-col gap-0.5">
-                        <span className="text-[14px] font-bold text-foreground tracking-tight">Mid-Term Phase</span>
-                        <span className="micro-text text-muted-foreground font-bold uppercase tracking-tighter opacity-50">
-                          {item.midTerm === 'published' ? 'Validated Protocol' : 'Drafting Phase'}
+                        <span className="text-[14px] font-semibold text-foreground tracking-tight">Mid-Term Phase</span>
+                        <span className="micro-text text-muted-foreground font-semibold uppercase tracking-tighter opacity-60">
+                          {item.midTerm === 'published' ? 'Test Published' : 'Drafting Phase'}
                         </span>
                       </div>
                     </div>
@@ -125,8 +125,8 @@ export default function TeacherDashboard() {
                         <Clock className="h-4 w-4" />
                       </div>
                       <div className="flex flex-col gap-0.5 text-slate-600">
-                        <span className="text-[14px] font-bold tracking-tight">Terminal Evaluation</span>
-                        <span className="micro-text font-bold uppercase tracking-tighter italic">LOCKED: WEEK 12</span>
+                        <span className="text-[14px] font-semibold tracking-tight">Final Assessment</span>
+                        <span className="micro-text font-semibold uppercase tracking-tighter italic">LOCKED: WEEK 12</span>
                       </div>
                     </div>
                     <Badge variant="outline" className="text-[10px] font-bold border-slate-300 tracking-tighter">SECURE</Badge>
@@ -138,11 +138,11 @@ export default function TeacherDashboard() {
         </div>
 
         <div className="pt-8 border-t border-border flex items-center justify-between">
-           <p className="micro-text text-muted-foreground font-black uppercase tracking-[0.2em] opacity-30">
-              Institutional Gateway: AUTH-7342
+           <p className="micro-text text-muted-foreground font-semibold uppercase tracking-[0.2em] opacity-40">
+              Academy Portal: AUTH-7342
            </p>
-           <p className="micro-text text-muted-foreground font-bold italic opacity-40">
-              Assessor Timestamp: Mar 19, 21:26 GMT
+           <p className="micro-text text-muted-foreground font-semibold opacity-40">
+              Updated: Mar 19, 21:26 GMT
            </p>
         </div>
       </div>

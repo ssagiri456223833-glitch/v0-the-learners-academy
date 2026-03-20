@@ -20,8 +20,8 @@ import {
 } from "@/components/ui/alert-dialog"
 
 const mockTest = {
-  title: "English Proficiency Protocol 101",
-  subject: "Institutional Assessment",
+  title: "English Proficiency Test 101",
+  subject: "Academy Assessment",
   duration: 45, // minutes
   questions: [
     {
@@ -159,7 +159,7 @@ function TestContent() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-primary/10">
-      {/* Institutional Assessment Header */}
+      {/* Assessment Header */}
       <TestHeader 
         title={mockTest.title}
         timeLeft={timeLeft}
@@ -173,29 +173,29 @@ function TestContent() {
           {/* Primary Assessment Matrix Area */}
           <div className="lg:col-span-3 space-y-12">
             
-            {/* Context Heading Fragment */}
+            {/* Section Heading */}
             <div className="flex items-center justify-between border-b border-border pb-6">
                <div className="space-y-1">
-                  <h2 className="page-title text-[32px] text-foreground italic underline decoration-primary/10 underline-offset-8">Evaluation Protocol</h2>
-                  <p className="micro-text text-muted-foreground font-black uppercase tracking-widest opacity-40 mt-1.5 italic">Institutional Assessment Environment • Alpha Cycle</p>
+                  <h2 className="page-title text-[32px] text-foreground underline decoration-primary/10 underline-offset-8">Test Content</h2>
+                  <p className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-60 mt-1.5">Academy Assessment • Spring Term</p>
                </div>
                <div className="flex flex-col items-end gap-1.5 grayscale opacity-30 sm:flex sm:items-end">
-                  <span className="micro-text text-muted-foreground font-black uppercase tracking-widest text-[9px]">Encryption Status</span>
+                  <span className="micro-text text-muted-foreground font-semibold uppercase tracking-widest text-[9px]">Secure Connection</span>
                   <div className="flex items-center gap-2">
                      <ShieldCheck className="h-3 w-3 text-success" />
-                     <span className="text-[10px] font-bold text-foreground">TLS 1.3 Active</span>
+                     <span className="text-[10px] font-semibold text-foreground">TLS 1.3 Active</span>
                   </div>
                </div>
             </div>
 
-            {/* Tactical Progress Trace */}
+            {/* Progress Trace */}
             <TestProgress 
               current={currentQuestion + 1}
               total={mockTest.questions.length}
               answered={answeredCount}
             />
 
-            {/* Question Card Context Matrix */}
+            {/* Question Card */}
             <div className="space-y-10 animate-in fade-in slide-in-from-bottom-2 duration-500">
               <QuestionCard
                 questionNumber={currentQuestion + 1}
@@ -215,7 +215,7 @@ function TestContent() {
                   className="btn-secondary h-12 px-8 gap-3 w-full sm:w-auto"
                 >
                   <ChevronLeft className="h-4 w-4 opacity-40" />
-                  <span className="text-[12px] font-black uppercase tracking-widest">Previous Node</span>
+                  <span className="text-[12px] font-semibold uppercase tracking-widest">Previous Question</span>
                 </Button>
 
                 <div className="flex items-center gap-6 w-full sm:w-auto">
@@ -225,14 +225,14 @@ function TestContent() {
                       className="btn-primary h-14 px-10 gap-3 w-full shadow-md active:scale-95 transition-all"
                     >
                       <Send className="h-4 w-4 opacity-40" />
-                      <span className="text-[13px] font-black uppercase tracking-widest">Finalize Assessment</span>
+                      <span className="text-[13px] font-semibold uppercase tracking-widest">Finalize Test</span>
                     </Button>
                   ) : (
                     <Button
                       onClick={() => setCurrentQuestion((prev) => Math.min(mockTest.questions.length - 1, prev + 1))}
                       className="btn-primary h-14 px-12 gap-3 w-full shadow-md active:scale-95 transition-all"
                     >
-                      <span className="text-[13px] font-black uppercase tracking-widest">Advance Execution</span>
+                      <span className="text-[13px] font-semibold uppercase tracking-widest">Next Question</span>
                       <ChevronRight className="h-4 w-4 opacity-40" />
                     </Button>
                   )}
@@ -258,25 +258,25 @@ function TestContent() {
       <AlertDialog open={showSubmitDialog} onOpenChange={setShowSubmitDialog}>
         <AlertDialogContent className="max-w-md rounded-lg border-border">
           <AlertDialogHeader>
-            <AlertDialogTitle className="page-title text-[26px] text-foreground italic decoration-primary/20 underline underline-offset-[10px] decoration-2">Protocol Finalization</AlertDialogTitle>
-            <AlertDialogDescription className="text-[16px] leading-[1.7] text-muted-foreground mt-6 italic font-medium">
-              You have formulated <span className="text-foreground font-black tabular-nums">{answeredCount}</span> responses out of <span className="text-foreground font-black tabular-nums">{mockTest.questions.length}</span> assigned nodes.
+            <AlertDialogTitle className="page-title text-[26px] text-foreground underline underline-offset-[10px] decoration-2">Submit Assessment</AlertDialogTitle>
+            <AlertDialogDescription className="text-[16px] leading-[1.7] text-muted-foreground mt-6 font-medium">
+              You have answered <span className="text-foreground font-semibold tabular-nums">{answeredCount}</span> questions out of <span className="text-foreground font-semibold tabular-nums">{mockTest.questions.length}</span>.
               {answeredCount < mockTest.questions.length && (
                 <div className="mt-6 flex gap-4 p-5 rounded-md bg-destructive/5 border border-destructive/20 items-start">
                    <Clock className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
                    <div className="space-y-1">
-                      <p className="micro-text text-destructive font-black uppercase tracking-widest leading-none">Incomplete Matrix</p>
-                      <p className="text-[13px] font-bold text-destructive/80 leading-relaxed italic">Warning: {mockTest.questions.length - answeredCount} evaluation points remain unallocated.</p>
+                      <p className="micro-text text-destructive font-semibold uppercase tracking-widest leading-none">Incomplete Test</p>
+                      <p className="text-[13px] font-semibold text-destructive/80 leading-relaxed italic">Warning: {mockTest.questions.length - answeredCount} questions remain unanswered.</p>
                    </div>
                 </div>
               )}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter className="mt-10 border-t border-border pt-6 gap-4">
-            <AlertDialogCancel className="btn-secondary h-11 px-6 text-[11px] font-black uppercase tracking-widest border-border hover:bg-slate-50">Correction Phase</AlertDialogCancel>
+            <AlertDialogCancel className="btn-secondary h-11 px-6 text-[11px] font-semibold uppercase tracking-widest border-border hover:bg-slate-50">Back to Test</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleSubmit}
-              className="btn-primary h-11 px-8 text-[11px] font-black uppercase tracking-widest shadow-md"
+              className="btn-primary h-11 px-8 text-[11px] font-semibold uppercase tracking-widest shadow-md"
             >
               Confirm Submission
             </AlertDialogAction>
@@ -297,8 +297,8 @@ export default function TestPage() {
              <ShieldCheck className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-6 w-6 text-primary animate-pulse" />
           </div>
           <div className="space-y-2">
-             <h2 className="page-title text-[24px] text-foreground italic decoration-primary/10 underline underline-offset-4 tracking-tight">Constructing Environment</h2>
-             <p className="micro-text text-muted-foreground font-black uppercase tracking-[0.25em] opacity-40">Verifying Institutional Registry v2.4...</p>
+             <h2 className="page-title text-[24px] text-foreground underline underline-offset-4 tracking-tight">Setting up Test</h2>
+             <p className="micro-text text-muted-foreground font-semibold uppercase tracking-[0.25em] opacity-60">Verifying Registry v2.4...</p>
           </div>
         </div>
       </div>
