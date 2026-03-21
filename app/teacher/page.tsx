@@ -1,151 +1,109 @@
 "use client"
 
-import { DashboardLayout } from "@/components/dashboard-layout"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { TEACHER_ASSESSMENTS } from "@/lib/mock-data"
 import { 
+  PlusCircle, 
+  Database, 
+  MonitorPlay, 
+  BarChart3, 
   FileText, 
   CheckCircle2, 
   Clock, 
-  Plus, 
-  Database,
-  BarChart3,
+  ArrowRight 
 } from "lucide-react"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
 
 export default function TeacherDashboard() {
-  const teacherName = "Sir Abbas Ali"
-
-  const assessments = [
-    { level: "Level One", slot: 1, midTerm: "published", final: "pending" },
-    { level: "Level Three", slot: 2, midTerm: "published", final: "pending" },
-    { level: "Level Six", slot: 3, midTerm: "draft", final: "pending" },
-  ]
-
   return (
-    <DashboardLayout
-      title="Teacher Portal"
-      subtitle="Classroom Management & Test Dashboard"
-    >
-      <div className="space-y-12 pb-12">
-        {/* Quick Actions */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          <Link href="/teacher/create-test" className="group">
-            <Card className="border border-border bg-white shadow-sm btn-interactive rounded-lg overflow-hidden h-full">
-              <CardContent className="p-8 flex flex-col items-center text-center gap-5">
-                <div className="p-4 rounded-md bg-primary/5 text-primary border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                  <Plus className="h-6 w-6" />
-                </div>
-                <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Create New Test</h3>
-              </CardContent>
+    <div className="space-y-10 animate-in fade-in duration-700">
+      {/* Page Header */}
+      <div className="flex flex-col gap-2">
+        <h1 className="text-3xl font-bold tracking-tight text-slate-900">Teacher Central</h1>
+        <p className="text-slate-500 font-medium">Manage your classes, assessments, and monitor student progress.</p>
+      </div>
+
+      {/* Quick Actions Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { name: "Create New Test", icon: PlusCircle, href: "/teacher/create-test" },
+          { name: "Question Bank", icon: Database, href: "/teacher/question-bank" },
+          { name: "Live Monitoring", icon: MonitorPlay, href: "/teacher/monitoring" },
+          { name: "View Analytics", icon: BarChart3, href: "/teacher/analytics" },
+        ].map((action) => (
+          <Link key={action.name} href={action.href}>
+            <Card variant="action" className="p-6 flex flex-col items-center text-center gap-4">
+              <div className="p-3 rounded-xl bg-primary/5 text-primary">
+                <action.icon className="h-6 w-6" />
+              </div>
+              <span className="text-xs font-bold uppercase tracking-widest text-slate-500">{action.name}</span>
             </Card>
           </Link>
-          <Link href="/teacher/question-bank" className="group">
-            <Card className="border border-border bg-white shadow-sm btn-interactive rounded-lg overflow-hidden h-full">
-              <CardContent className="p-8 flex flex-col items-center text-center gap-5">
-                <div className="p-4 rounded-md bg-primary/5 text-primary border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                  <Database className="h-6 w-6" />
-                </div>
-                <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Question Bank</h3>
-              </CardContent>
-            </Card>
-          </Link>
-          <Link href="/teacher/monitoring" className="group">
-            <Card className="border border-border bg-white shadow-sm btn-interactive rounded-lg overflow-hidden h-full">
-              <CardContent className="p-8 flex flex-col items-center text-center gap-5">
-                <div className="p-4 rounded-md bg-primary/5 text-primary border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                  <Clock className="h-6 w-6" />
-                </div>
-                <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Live Monitoring</h3>
-              </CardContent>
-            </Card>
-          </Link>
-          <Link href="/teacher/grading" className="group">
-            <Card className="border border-border bg-white shadow-sm btn-interactive rounded-lg overflow-hidden h-full">
-              <CardContent className="p-8 flex flex-col items-center text-center gap-5">
-                <div className="p-4 rounded-md bg-primary/5 text-primary border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                  <BarChart3 className="h-6 w-6" />
-                </div>
-                <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Manual Grading</h3>
-              </CardContent>
-            </Card>
-          </Link>
+        ))}
+      </div>
+
+      {/* Active Assessments Section */}
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+            Active Assessments
+            <Badge variant="outline" className="text-[10px] font-bold border-slate-200">Term 2</Badge>
+          </h2>
         </div>
 
-        {/* My Classes */}
-        <div className="space-y-6">
-          <div className="flex items-center justify-between border-b border-border pb-6">
-            <h2 className="text-[20px] font-semibold text-foreground tracking-tight">Active Classes & Tests</h2>
-            <div className="flex items-center gap-4">
-              <Badge variant="outline" className="text-[10px] font-semibold uppercase tracking-[0.2em] border-border opacity-60 px-3">TERM 2</Badge>
-              <Badge className="btn-primary text-[10px] font-semibold uppercase tracking-widest px-4 h-6">Active</Badge>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {assessments.map((item, index) => (
-              <Card key={index} className="border border-border bg-white shadow-sm rounded-lg overflow-hidden group hover:shadow-md transition-all duration-300">
-                <CardHeader className="bg-slate-50 border-b border-border p-8">
-                  <div className="flex justify-between items-center mb-6">
-                    <Badge variant="outline" className="text-[10px] font-semibold border-primary/30 text-primary uppercase tracking-widest px-3 h-6">SLOT {item.slot}</Badge>
-                    <span className="micro-text text-muted-foreground font-semibold opacity-40 tracking-[0.2em] uppercase">ROOM L5</span>
-                  </div>
-                  <CardTitle className="page-title text-[28px] text-foreground leading-none">{item.level}</CardTitle>
-                </CardHeader>
-                <CardContent className="p-8 space-y-4">
-                  {/* Test 1 - Mid-Term */}
-                  <div className="flex items-center justify-between p-5 rounded-md border border-border bg-white transition-all group-hover:border-primary/20">
-                    <div className="flex items-center gap-5">
-                      <div className={`p-2.5 rounded-md border ${item.midTerm === 'published' ? 'bg-success/5 border-success/20 text-success' : 'bg-warning/5 border-warning/20 text-warning'}`}>
-                        <FileText className="h-4 w-4" />
-                      </div>
-                      <div className="flex flex-col gap-0.5">
-                        <span className="text-[14px] font-semibold text-foreground tracking-tight">Mid-Term Test</span>
-                        <span className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-60">
-                          {item.midTerm === 'published' ? 'Published' : 'Drafting'}
-                        </span>
-                      </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          {TEACHER_ASSESSMENTS.map((assessment) => (
+            <Card key={assessment.id} variant="content" className="premium-card-hover group">
+              <div className="p-6 border-b border-slate-100 flex items-center justify-between">
+                <div>
+                  <h3 className="text-lg font-bold text-slate-900">{assessment.level}</h3>
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Room {assessment.room} • Slot {assessment.slot}</p>
+                </div>
+                <div className="h-8 w-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+                  <ArrowRight className="h-4 w-4" />
+                </div>
+              </div>
+              <div className="p-6 space-y-3">
+                {/* Mid-Term Status */}
+                <div className="flex items-center justify-between p-4 rounded-xl border border-slate-100 bg-slate-50/50">
+                  <div className="flex items-center gap-3">
+                    <div className={cn(
+                      "p-2 rounded-lg border",
+                      assessment.midTerm === 'published' 
+                        ? "bg-emerald-50 border-emerald-100 text-emerald-600" 
+                        : "bg-amber-50 border-amber-100 text-amber-600"
+                    )}>
+                      <FileText className="h-4 w-4" />
                     </div>
-                    {item.midTerm === 'published' ? (
-                      <CheckCircle2 className="h-4 w-4 text-success opacity-60" />
-                    ) : (
-                      <Link href="/teacher/create-test">
-                        <Button variant="outline" size="icon" className="h-8 w-8 btn-secondary border-border opacity-60 hover:opacity-100">
-                          <Plus className="h-3 w-3" />
-                        </Button>
-                      </Link>
-                    )}
-                  </div>
-
-                  {/* Test 2 - Final */}
-                  <div className="flex items-center justify-between p-5 rounded-md border border-slate-100 bg-slate-50/50 grayscale opacity-40">
-                    <div className="flex items-center gap-5">
-                      <div className="p-2.5 rounded-md bg-slate-200 border border-slate-300 text-slate-400">
-                        <Clock className="h-4 w-4" />
-                      </div>
-                      <div className="flex flex-col gap-0.5 text-slate-600">
-                        <span className="text-[14px] font-semibold tracking-tight">Final Assessment</span>
-                        <span className="micro-text font-semibold uppercase tracking-widest">LOCKED</span>
-                      </div>
+                    <div className="flex flex-col">
+                      <span className="text-sm font-bold text-slate-800">Mid-Term</span>
+                      <span className="text-[10px] font-bold uppercase text-slate-400 tracking-tighter">
+                        {assessment.midTerm === 'published' ? 'Published' : 'Draft'}
+                      </span>
                     </div>
-                    <Badge variant="outline" className="text-[10px] font-semibold border-slate-300 tracking-tighter">SECURE</Badge>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
+                  {assessment.midTerm === 'published' && <CheckCircle2 className="h-4 w-4 text-emerald-500" />}
+                </div>
 
-        <div className="pt-8 border-t border-border flex items-center justify-between">
-           <p className="micro-text text-muted-foreground font-semibold uppercase tracking-[0.2em] opacity-30">
-              Academy Portal v2.4
-           </p>
-           <p className="micro-text text-muted-foreground font-semibold opacity-40 uppercase">
-              Academic Term: Spring 2026
-           </p>
+                {/* Final Assessment Status (Locked) */}
+                <div className="flex items-center justify-between p-4 rounded-xl border border-slate-100 bg-white opacity-40 grayscale">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-slate-100 border border-slate-200 text-slate-400">
+                      <Clock className="h-4 w-4" />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-sm font-bold text-slate-800">Final Exam</span>
+                      <span className="text-[10px] font-bold uppercase text-slate-400 tracking-tighter">Locked</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          ))}
         </div>
       </div>
-    </DashboardLayout>
+    </div>
   )
 }

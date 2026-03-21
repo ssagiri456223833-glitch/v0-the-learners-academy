@@ -1,128 +1,129 @@
 "use client"
 
 import { useState } from "react"
-import { DashboardLayout } from "@/components/dashboard-layout"
-import { TestDetailsForm } from "@/components/create-test/test-details-form"
-import { QuestionBuilder } from "@/components/create-test/question-builder"
-import { QuestionList } from "@/components/create-test/question-list"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Save, Eye, FilePlus } from "lucide-react"
-import type { Question, SkillConfig, TestDetails } from "@/lib/types"
-
+import { Badge } from "@/components/ui/badge"
+import { 
+  PlusCircle, 
+  Save, 
+  Eye, 
+  Settings2,
+  FilePlus,
+  Rocket
+} from "lucide-react"
+import { QuestionBlock } from "@/components/portal/question-block"
+import { Input } from "@/components/ui/input"
+import type { Question } from "@/lib/types"
 
 export default function TeacherCreateTest() {
-  const [testDetails, setTestDetails] = useState<TestDetails>({
-    title: "",
-    subject: "",
-    teacher: "Sir Abbas Ali",
-    room: "",
-    duration: 30,
-    description: "",
-    selectedSkills: [],
-    shuffleQuestions: false,
-    shuffleOptions: false,
-    preventTabSwitch: false,
-  })
-  const [questions, setQuestions] = useState<Question[]>([])
-  const [editingQuestion, setEditingQuestion] = useState<Question | null>(null)
+  const [testTitle, setTestTitle] = useState("")
+  const [questions, setQuestions] = useState<any[]>([])
 
-  const handleAddQuestion = (question: Omit<Question, "id">) => {
-    if (editingQuestion) {
-      setQuestions(questions.map(q => 
-        q.id === editingQuestion.id 
-          ? { ...question, id: editingQuestion.id } 
-          : q
-      ))
-      setEditingQuestion(null)
-    } else {
-      setQuestions([...questions, { ...question, id: crypto.randomUUID() }])
+  const addQuestion = () => {
+    const newQuestion = {
+      id: crypto.randomUUID(),
+      type: 'mcq',
+      text: '',
+      options: ['', '', '', ''],
+      correctAnswer: 0,
+      difficulty: 'medium',
+      category: 'Grammar',
+      sampleAnswer: ''
     }
+    setQuestions([...questions, newQuestion])
   }
 
-  const handleEditQuestion = (question: Question) => {
-    setEditingQuestion(question)
+  const updateQuestion = (id: string, updated: any) => {
+    setQuestions(questions.map(q => q.id === id ? updated : q))
   }
 
-  const handleDeleteQuestion = (id: string) => {
+  const deleteQuestion = (id: string) => {
     setQuestions(questions.filter(q => q.id !== id))
-    if (editingQuestion?.id === id) {
-      setEditingQuestion(null)
-    }
-  }
-
-  const handleCancelEdit = () => {
-    setEditingQuestion(null)
   }
 
   return (
-    <DashboardLayout 
-      title="Create Assessment" 
-      subtitle="Assemble an English MCQ test for the term."
-    >
-      <div className="space-y-8">
-        {/* Action Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-8 bg-white shadow-sm rounded-lg border border-border">
-           <div className="flex items-center gap-4">
-              <div className="bg-[#1d8ae2] p-3 rounded-2xl text-white shadow-lg shadow-[#1d8ae2]/20">
-                 <FilePlus className="h-6 w-6" />
-              </div>
-               <div>
-                  <h2 className="text-[20px] font-semibold text-foreground">Drafting: {testDetails.title || "New Unnamed Test"}</h2>
-                  <p className="micro-text text-muted-foreground mt-1 uppercase tracking-widest font-medium opacity-60">Assessment Mode • 2026 Term 2</p>
-               </div>
-           </div>
-               <div className="flex items-center gap-3">
-                  <Button variant="outline" className="h-12 px-6 rounded-2xl border-white bg-white hover:bg-slate-50 shadow-sm transition-all gap-2 text-slate-600 font-medium uppercase text-[10px] tracking-widest">
-                    <Eye className="h-4 w-4" />
-                    Live Preview
-                  </Button>
-                   <Button className="h-12 px-8 rounded-md bg-primary hover:bg-primary/90 shadow-md gap-3 font-medium uppercase text-[11px] tracking-widest">
-                     <Save className="h-4 w-4" />
-                     Save & Publish
-                   </Button>
-               </div>
+    <div className="space-y-10 animate-in fade-in duration-700 pb-24">
+      {/* Builder Header */}
+      <Card variant="content" className="p-10 bg-white border-slate-200">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
+          <div className="flex items-center gap-6">
+            <div className="p-4 rounded-2xl bg-primary text-white shadow-xl shadow-primary/20">
+              <FilePlus className="h-7 w-7" />
+            </div>
+            <div className="space-y-1">
+              <Input 
+                value={testTitle}
+                onChange={(e) => setTestTitle(e.target.value)}
+                placeholder="Enter Assessment Title..."
+                className="text-2xl font-bold bg-transparent border-transparent px-0 h-auto focus:border-b-primary rounded-none shadow-none focus:ring-0 placeholder:text-slate-300"
+              />
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Assessment Builder Mode • Term 2</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <Button variant="outline" className="gap-2 h-11 px-6 font-bold text-slate-600">
+              <Eye className="h-4 w-4" />
+              Preview
+            </Button>
+            <Button className="gap-2 h-11 px-8 font-bold shadow-lg shadow-primary/20">
+              <Rocket className="h-4 w-4" />
+              Publish Test
+            </Button>
+          </div>
+        </div>
+      </Card>
+
+      {/* Main Builder Area */}
+      <div className="max-w-[1000px] mx-auto space-y-8">
+        <div className="flex items-center justify-between border-b border-slate-100 pb-6">
+          <h2 className="text-xl font-bold text-slate-900 flex items-center gap-3">
+            Question Sequence
+            <Badge variant="outline" className="text-[10px] font-bold border-slate-200 px-3">{questions.length} Items</Badge>
+          </h2>
+          <Button variant="ghost" size="sm" className="gap-2 text-slate-500 font-bold uppercase tracking-widest text-[10px]">
+            <Settings2 className="h-3.5 w-3.5" />
+            Shuffle Logic
+          </Button>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content Area */}
-          <div className="lg:col-span-2 space-y-8">
-            <TestDetailsForm 
-              details={testDetails} 
-              onChange={setTestDetails} 
-            />
-            <QuestionBuilder 
-              onAdd={handleAddQuestion}
-              editingQuestion={editingQuestion}
-              onCancelEdit={handleCancelEdit}
-            />
+        {questions.length === 0 ? (
+          <div className="p-20 text-center space-y-6 bg-white border-2 border-dashed border-slate-100 rounded-2xl">
+            <div className="h-20 w-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto">
+               <PlusCircle className="h-10 w-10 text-slate-200" />
+            </div>
+            <div className="space-y-1">
+              <h3 className="text-lg font-bold text-slate-900">Start Building Your Assessment</h3>
+              <p className="text-sm text-slate-400 font-medium">Add your first question to begin crafting this test.</p>
+            </div>
+            <Button onClick={addQuestion} className="h-12 px-8 font-bold gap-2">
+               <PlusCircle className="h-4 w-4" />
+               Add First Question
+            </Button>
           </div>
-
-          {/* Sticky List Column */}
+        ) : (
           <div className="space-y-6">
-            <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden sticky top-24">
-              <CardHeader className="bg-slate-50/50 pb-6 border-b border-white">
-                <CardTitle className="text-[14px] font-semibold uppercase tracking-widest text-foreground flex items-center justify-between">
-                  Inventory
-                  <span className="text-[10px] font-semibold uppercase text-primary tracking-widest bg-primary/5 py-1 px-3 rounded-full">
-                    {questions.length} Items
-                  </span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-0">
-                <div className="max-h-[500px] overflow-y-auto custom-scrollbar p-6">
-                   <QuestionList
-                     questions={questions}
-                     onEdit={handleEditQuestion}
-                     onDelete={handleDeleteQuestion}
-                     editingId={editingQuestion?.id}
-                   />
-                </div>
-              </CardContent>
-            </Card>
+            {questions.map((q, i) => (
+              <QuestionBlock 
+                key={q.id}
+                index={i}
+                question={q}
+                onUpdate={(updated) => updateQuestion(q.id, updated)}
+                onDelete={() => deleteQuestion(q.id)}
+              />
+            ))}
+            
+            <Button 
+               onClick={addQuestion}
+               variant="outline"
+               className="w-full h-16 border-dashed border-2 bg-slate-50/50 hover:bg-slate-50 hover:border-primary/50 text-slate-400 hover:text-primary transition-all rounded-2xl gap-3 font-bold"
+            >
+               <PlusCircle className="h-5 w-5" />
+               Insert New Question Block
+            </Button>
           </div>
-        </div>
+        )}
       </div>
-    </DashboardLayout>
+    </div>
   )
 }

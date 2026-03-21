@@ -1,17 +1,12 @@
 "use client"
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { Flag, HelpCircle, ShieldCheck } from "lucide-react"
 import { cn } from "@/lib/utils"
-
-interface Question {
-  id: string
-  text: string
-  options: string[]
-}
+import { Question } from "@/lib/types"
 
 interface QuestionCardProps {
   questionNumber: number
@@ -31,93 +26,90 @@ export function QuestionCard({
   onToggleReview,
 }: QuestionCardProps) {
   return (
-    <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden relative">
-      <CardHeader className="py-4 px-8 bg-slate-50 border-b border-border">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center justify-center w-10 h-10 rounded-md bg-foreground text-background text-[16px] font-semibold italic shadow-inner">
-              {questionNumber}
-            </div>
-            <div className="flex flex-col">
-               <span className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-40">Item Progress</span>
-               <span className="text-[13px] font-semibold text-foreground">Question {questionNumber} of 10</span>
-            </div>
+    <Card variant="content" className="p-0 border-slate-200 overflow-hidden shadow-2xl shadow-slate-200/50">
+      {/* Question Header */}
+      <div className="py-6 px-10 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+        <div className="flex items-center gap-4">
+          <div className="h-10 w-10 rounded-xl bg-slate-900 flex items-center justify-center text-white text-sm font-bold shadow-lg shadow-slate-200">
+             {questionNumber}
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onToggleReview}
-            className={cn(
-              "h-9 px-4 gap-3 text-[11px] font-semibold uppercase tracking-widest transition-all rounded-md border border-transparent",
-              isMarkedForReview
-                ? "bg-warning/5 border-warning/20 text-warning hover:bg-warning/10"
-                : "text-muted-foreground hover:text-foreground hover:bg-white hover:border-border"
-            )}
-          >
-            <Flag className={cn("h-3.5 w-3.5", isMarkedForReview && "fill-current")} />
-            {isMarkedForReview ? "Pinned for Review" : "Mark for Review"}
-          </Button>
+          <div className="space-y-0.5">
+             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Question Sequence</span>
+             <h4 className="text-sm font-bold text-slate-900">Item {questionNumber} of 15</h4>
+          </div>
         </div>
-      </CardHeader>
-      <CardContent className="p-8 sm:p-10 space-y-10">
-        {/* Question Text */}
-        <div className="flex gap-5">
-           <HelpCircle className="h-5 w-5 text-primary opacity-20 shrink-0 mt-1" />
-           <h3 className="text-[20px] sm:text-[22px] font-semibold text-foreground leading-[1.4] tracking-tight">
+        
+        <Button
+          variant="ghost"
+          onClick={onToggleReview}
+          className={cn(
+            "h-10 px-5 rounded-xl font-bold text-[10px] uppercase tracking-widest gap-2 transition-all",
+            isMarkedForReview 
+              ? "bg-amber-50 text-amber-600 border border-amber-100" 
+              : "text-slate-400 hover:bg-slate-100"
+          )}
+        >
+          <Flag className={cn("h-3.5 w-3.5", isMarkedForReview && "fill-current")} />
+          {isMarkedForReview ? "Marked for Review" : "Flag Question"}
+        </Button>
+      </div>
+
+      <CardContent className="p-10 md:p-12 space-y-12">
+        {/* The Question */}
+        <div className="space-y-6">
+           <div className="flex items-center gap-2">
+              <span className="h-1.5 w-8 bg-primary rounded-full" />
+              <span className="text-[10px] font-bold text-primary uppercase tracking-[0.3em]">Knowledge Assessment</span>
+           </div>
+           <h3 className="text-2xl md:text-3xl font-serif text-slate-900 leading-tight">
              {question.text}
            </h3>
         </div>
 
-        {/* Answer Options */}
+        {/* Answer Selection */}
         <RadioGroup
           value={selectedAnswer?.toString() ?? ""}
-          onValueChange={(value) => onSelectAnswer(parseInt(value))}
+          onValueChange={(val) => onSelectAnswer(parseInt(val))}
           className="grid grid-cols-1 gap-4"
         >
-          {question.options.map((option, index) => {
-            const isSelected = selectedAnswer === index
+          {question.options.map((option, idx) => {
+            const isSelected = selectedAnswer === idx
             return (
               <Label
-                key={index}
-                htmlFor={`option-${index}`}
+                key={idx}
                 className={cn(
-                  "relative flex items-center justify-between p-4 px-6 rounded-lg cursor-pointer transition-all duration-300 border border-border group overflow-hidden",
+                  "relative flex items-center justify-between p-6 px-8 rounded-2xl cursor-pointer transition-all duration-300 border-2",
                   isSelected 
-                    ? "bg-primary text-white border-primary shadow-lg -translate-y-0.5" 
-                    : "bg-slate-50/30 hover:bg-white hover:border-primary/20 hover:shadow-sm"
+                    ? "bg-primary border-primary text-white shadow-xl shadow-primary/20 scale-[1.01]" 
+                    : "bg-white border-slate-100 text-slate-600 hover:border-slate-300 hover:bg-slate-50"
                 )}
               >
-                <div className="flex items-center gap-5 z-10">
-                  <span className={cn(
-                    "flex items-center justify-center min-w-[32px] h-8 rounded-md border text-[13px] font-semibold tabular-nums transition-all duration-300 group-hover:scale-105",
-                    isSelected 
-                      ? "bg-white/20 text-white border-white/20" 
-                      : "bg-white text-muted-foreground border-border group-hover:text-primary group-hover:border-primary/20"
-                  )}>
-                    {String.fromCharCode(65 + index)}
-                  </span>
-                  <span className="text-[15px] font-semibold tracking-tight">{option}</span>
+                <div className="flex items-center gap-6">
+                   <div className={cn(
+                     "h-10 w-10 flex items-center justify-center rounded-xl border-2 font-bold transition-all",
+                     isSelected ? "bg-white/20 border-white/20 text-white" : "bg-slate-50 border-slate-100 text-slate-400"
+                   )}>
+                     {String.fromCharCode(65 + idx)}
+                   </div>
+                   <span className="text-lg font-bold tracking-tight">{option}</span>
                 </div>
                 
-                {isSelected && (
-                   <ShieldCheck className="h-5 w-5 text-white/40 animate-in zoom-in-50 duration-300 z-10" />
-                )}
-
-                <RadioGroupItem
-                  value={index.toString()}
-                  id={`option-${index}`}
-                  className="sr-only"
-                />
+                {isSelected && <ShieldCheck className="h-5 w-5 text-white animate-in zoom-in-50 duration-500" />}
+                
+                <RadioGroupItem value={idx.toString()} className="sr-only" />
               </Label>
             )
           })}
         </RadioGroup>
       </CardContent>
-      
-      {/* Footer (Subtle) */}
-      <div className="px-8 py-4 bg-slate-50/30 border-t border-border/50 flex items-center justify-between">
-         <span className="micro-text text-muted-foreground font-semibold opacity-30 uppercase tracking-widest text-[9px]">Assessment Engine v2.4</span>
-         <span className="micro-text text-muted-foreground font-semibold opacity-30 uppercase tracking-widest text-[9px]">Environment Secure</span>
+
+      {/* Security Footer */}
+      <div className="px-10 py-5 bg-slate-50/50 border-t border-slate-100 flex items-center justify-between">
+         <div className="flex items-center gap-2 opacity-30">
+            <HelpCircle className="h-3 w-3 text-slate-400" />
+            <span className="text-[9px] font-bold uppercase tracking-widest text-slate-400">Contextual help unavailable during exam</span>
+         </div>
+         <span className="text-[9px] font-bold uppercase tracking-widest text-slate-300">Section 1.A • Assessment Secure</span>
       </div>
     </Card>
   )

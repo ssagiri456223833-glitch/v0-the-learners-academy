@@ -1,145 +1,126 @@
-"use client"
-
-import { DashboardLayout } from "@/components/dashboard-layout"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Calendar, UserCheck, Settings, Save, RotateCcw, Plus, Shapes, Activity, ShieldCheck, Users, MapPin } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import Link from "next/link"
+import { ADMIN_STATS, SYSTEM_HEALTH } from "@/lib/mock-data"
+import { 
+  Users, 
+  ShieldCheck, 
+  Activity, 
+  Building2, 
+  ArrowUpRight, 
+  ArrowRight,
+  MonitorPlay
+} from "lucide-react"
 import { Progress } from "@/components/ui/progress"
 
 export default function AdminDashboard() {
   return (
-    <DashboardLayout 
-      title="Academy Dashboard" 
-      subtitle="Administrative Overview • Academy Management Status"
-    >
-      <div className="space-y-10 pb-12">
-        {/* System Health Analytics */}
-        <Card className="border border-border bg-white shadow-sm rounded-lg overflow-hidden">
-          <CardHeader className="bg-slate-50 border-b border-border py-8 px-10">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <Activity className="h-5 w-5 text-primary opacity-60" />
-                <CardTitle className="text-[18px] font-semibold text-foreground">Active Staff</CardTitle>
+    <div className="space-y-8 animate-in fade-in duration-700">
+      {/* Page Header */}
+      <div className="flex flex-col gap-2">
+        <h1 className="text-3xl font-bold tracking-tight text-slate-900">Academy Overview</h1>
+        <p className="text-slate-500 font-medium">Monitoring system performance and operational metrics.</p>
+      </div>
+
+      {/* Primary Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {ADMIN_STATS.map((stat) => (
+          <Card key={stat.label} variant="stat" className="premium-card-hover group">
+            <div className="flex items-start justify-between">
+              <div className="space-y-2">
+                <span className="text-[11px] font-bold uppercase tracking-widest text-slate-400">{stat.label}</span>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-3xl font-bold text-slate-900">{stat.value}</span>
+                  <span className="text-[11px] font-bold text-emerald-500 flex items-center gap-0.5">
+                    {stat.change} <ArrowUpRight className="h-3 w-3" />
+                  </span>
+                </div>
               </div>
-              <Badge variant="outline" className="text-success border-success/30 bg-success/5 font-semibold text-[10px] tracking-widest px-4 h-7 uppercase">Term Active</Badge>
+              <div className="p-2.5 rounded-xl bg-slate-50 text-slate-400 group-hover:bg-primary group-hover:text-white transition-all">
+                {stat.label.includes('Teachers') && <Users className="h-5 w-5" />}
+                {stat.label.includes('Classes') && <ShieldCheck className="h-5 w-5" />}
+                {stat.label.includes('Sessions') && <MonitorPlay className="h-5 w-5" />}
+                {stat.label.includes('Students') && <Building2 className="h-5 w-5" />}
+              </div>
             </div>
-            <CardDescription className="micro-text text-muted-foreground font-semibold uppercase tracking-widest opacity-60 mt-1">Personnel Overview</CardDescription>
-          </CardHeader>
-          <CardContent className="p-10">
-             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                {/* Staff:Student Ratio */}
-                <div className="space-y-5">
-                   <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                         <Users className="h-3.5 w-3.5 opacity-40" />
-                         <span className="text-[12px] font-semibold uppercase tracking-widest text-foreground opacity-80">Teacher Load</span>
-                      </div>
-                      <span className="text-[14px] font-semibold text-primary">1 : 12</span>
-                   </div>
-                   <Progress value={65} className="h-1.5 bg-slate-100 rounded-full" />
-                   <p className="micro-text text-muted-foreground font-semibold opacity-60">Optimization target reached for Term 2.</p>
-                </div>
+          </Card>
+        ))}
+      </div>
 
-                {/* Total Faculty Presence */}
-                <div className="space-y-5">
-                   <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                         <UserCheck className="h-3.5 w-3.5 opacity-40" />
-                         <span className="text-[12px] font-semibold uppercase tracking-widest text-foreground opacity-80">Teacher Presence</span>
-                      </div>
-                      <span className="text-[14px] font-semibold text-primary">18 / 22</span>
-                   </div>
-                   <Progress value={82} className="h-1.5 bg-slate-100 rounded-full" />
-                   <p className="micro-text text-muted-foreground font-semibold opacity-60">Active teachers currently logged in.</p>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* System Health Analysis */}
+        <Card variant="content" className="lg:col-span-2">
+          <div className="p-8 border-b border-slate-100 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+              <h3 className="text-lg font-bold text-slate-900">Resource Utilization</h3>
+            </div>
+            <Badge variant="outline" className="text-[10px] font-bold uppercase tracking-widest text-primary border-primary/20 bg-primary/5">Real-time Data</Badge>
+          </div>
+          <CardContent className="p-8">
+            <div className="space-y-10">
+              {/* Teacher Load */}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="space-y-1">
+                    <span className="text-sm font-bold text-slate-800">Average Teacher Load</span>
+                    <p className="text-xs text-slate-500 font-medium italic opacity-60">Optimization target based on Term 2 enrollment.</p>
+                  </div>
+                  <span className="text-sm font-bold text-primary">{SYSTEM_HEALTH.teacherLoad.ratio}</span>
                 </div>
+                <Progress value={SYSTEM_HEALTH.teacherLoad.progress} className="h-1.5 bg-slate-100" />
+              </div>
 
-                {/* Live Room Occupancy */}
-                <div className="space-y-5">
-                   <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                         <MapPin className="h-3.5 w-3.5 opacity-40" />
-                         <span className="text-[12px] font-semibold uppercase tracking-widest text-foreground opacity-80">Room Occupancy</span>
-                      </div>
-                      <span className="text-[14px] font-semibold text-primary">76%</span>
-                   </div>
-                   <Progress value={76} className="h-1.5 bg-slate-100 rounded-full" />
-                   <p className="micro-text text-muted-foreground font-semibold opacity-60">Classroom usage at capacity.</p>
+              {/* Presence */}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="space-y-1">
+                    <span className="text-sm font-bold text-slate-800">Faculty Presence</span>
+                    <p className="text-xs text-slate-500 font-medium italic opacity-60">Percentage of teaching staff currently active on campus.</p>
+                  </div>
+                  <span className="text-sm font-bold text-primary">{SYSTEM_HEALTH.teacherPresence.count}</span>
                 </div>
-             </div>
+                <Progress value={SYSTEM_HEALTH.teacherPresence.progress} className="h-1.5 bg-slate-100" />
+              </div>
+
+              {/* Occupancy */}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="space-y-1">
+                    <span className="text-sm font-bold text-slate-800">Physical Room Occupancy</span>
+                    <p className="text-xs text-slate-500 font-medium italic opacity-60">Live feed monitor from wing B and wing C sensors.</p>
+                  </div>
+                  <span className="text-sm font-bold text-primary">{SYSTEM_HEALTH.roomOccupancy.percentage}</span>
+                </div>
+                <Progress value={SYSTEM_HEALTH.roomOccupancy.progress} className="h-1.5 bg-slate-100" />
+              </div>
+            </div>
           </CardContent>
         </Card>
 
-        {/* Management Tools */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <Link href="/admin/timetable" className="group">
-            <Card className="border border-border bg-white shadow-sm btn-interactive rounded-lg overflow-hidden h-full">
-              <CardContent className="p-8 flex items-center gap-6">
-                <div className="p-3.5 rounded-md bg-primary/5 text-primary border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                  <Calendar className="h-5 w-5" />
-                </div>
-                <div>
-                   <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Schedule</h3>
-                   <p className="text-[18px] font-semibold text-foreground mt-1 tracking-tight">System Timetable</p>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-          <Link href="/admin/classes" className="group">
-            <Card className="border border-border bg-white shadow-sm btn-interactive rounded-lg overflow-hidden h-full">
-              <CardContent className="p-8 flex items-center gap-6">
-                <div className="p-3.5 rounded-md bg-primary/5 text-primary border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                  <Shapes className="h-5 w-5" />
-                </div>
-                <div>
-                   <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Curriculum</h3>
-                   <p className="text-[18px] font-semibold text-foreground mt-1 tracking-tight">Class & Level Manager</p>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-          <Link href="/admin/students/bulk" className="group">
-            <Card className="border border-border bg-white shadow-sm btn-interactive rounded-lg overflow-hidden h-full">
-              <CardContent className="p-8 flex items-center gap-6">
-                <div className="p-3.5 rounded-md bg-primary/5 text-primary border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                  <Users className="h-5 w-5" />
-                </div>
-                <div>
-                   <h3 className="micro-text font-semibold uppercase tracking-widest text-muted-foreground opacity-60">Registry</h3>
-                   <p className="text-[18px] font-semibold text-foreground mt-1 tracking-tight">Student Records</p>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-        </div>
+        {/* Quick Summary / Status */}
+        <div className="space-y-6">
+          <Card variant="default" className="p-8 bg-primary text-white border-0 shadow-lg shadow-primary/20">
+            <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] opacity-60 mb-6">Academic Period</h4>
+            <div className="space-y-2">
+              <span className="text-2xl font-bold">Spring Term 2026</span>
+              <p className="text-sm font-medium opacity-80 italic">74% progress through the current term. Mid-assessments finalized.</p>
+            </div>
+            <div className="mt-10 h-10 w-10 rounded-full bg-white/10 flex items-center justify-center border border-white/20">
+              <ArrowRight className="h-4 w-4" />
+            </div>
+          </Card>
 
-        {/* Current Academic Term Summary */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 p-10 bg-white border border-border shadow-sm rounded-lg">
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <Badge variant="outline" className="border-primary/30 text-primary uppercase font-semibold text-[10px] px-3 py-1">Term 2 Active</Badge>
+          <Card variant="content" className="p-1 border-slate-200">
+            <div className="p-6 space-y-4">
+              <span className="text-[11px] font-bold uppercase tracking-widest text-slate-400">System Notification</span>
+              <div className="flex gap-4">
+                <div className="h-2 w-2 mt-1.5 rounded-full bg-amber-500 shrink-0" />
+                <p className="text-[13px] font-medium text-slate-600 leading-relaxed">System maintenance scheduled for <span className="text-slate-900 font-bold">Sunday, 02:00 AM</span>. Database backups will be performed.</p>
+              </div>
             </div>
-            <div>
-                   <p className="micro-text text-muted-foreground font-semibold uppercase tracking-[0.2em] opacity-40">Teacher Count</p>
-                   <div className="flex items-center gap-3">
-                     <p className="text-[28px] font-semibold tracking-tighter text-foreground">24</p>
-                     <Badge variant="outline" className="border-primary/20 text-primary bg-primary/5 font-semibold text-[9px] px-2 h-5 uppercase tracking-widest">Active Status</Badge>
-                   </div>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-             <Button variant="outline" className="btn-secondary h-12 px-6 gap-2">
-                <RotateCcw className="h-4 w-4" />
-                Restart Term
-             </Button>
-             <Button className="btn-primary h-12 px-8 gap-2">
-                <Save className="h-4 w-4" />
-                Save Settings
-             </Button>
-          </div>
+          </Card>
         </div>
       </div>
-    </DashboardLayout>
+    </div>
   )
 }

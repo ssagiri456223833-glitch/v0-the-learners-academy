@@ -1,10 +1,12 @@
 export interface Question {
   id: string
-  type: "mcq" | "short"
+  type: "mcq" | "short" | "paragraph"
   text: string
   options?: string[]
-  correctAnswer?: number
+  correctAnswer?: number | string
   sampleAnswer?: string
+  difficulty?: "easy" | "medium" | "hard"
+  category?: string
 }
 
 export interface SkillConfig {

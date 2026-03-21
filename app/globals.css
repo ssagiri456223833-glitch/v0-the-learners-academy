@@ -23,138 +23,88 @@
   --border: #E2E8F0;
   --input: #E2E8F0;
   --ring: #1d8ae2;
-  --radius: 0.5rem; /* 8px rounding per instruction */
+  --radius: 0.5rem; /* 8px rounding */
+  
+  /* 8px Spacing System */
+  --space-1: 0.5rem;   /* 8px */
+  --space-2: 1rem;     /* 16px */
+  --space-3: 1.5rem;   /* 24px */
+  --space-4: 2rem;     /* 32px */
+  --space-6: 3rem;     /* 48px */
+  --space-8: 4rem;     /* 64px */
+
   --sidebar: #0F172A;
   --sidebar-foreground: #F8FAFC;
-  --sidebar-primary: #1d8ae2;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #1E293B;
-  --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: #1E293B;
-  --sidebar-ring: #1d8ae2;
   --success: #10B981;
-  --success-foreground: #FFFFFF;
   --warning: #F59E0B;
-  --warning-foreground: #FFFFFF;
 }
 
 @theme inline {
-  --font-serif: var(--font-serif), 'Cormorant Garamond', serif;
-  --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
-  --color-success: var(--success);
-  --color-success-foreground: var(--success-foreground);
-  --color-warning: var(--warning);
-  --color-warning-foreground: var(--warning-foreground);
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
+  --color-primary: var(--primary);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --radius-sm: calc(var(--radius) - 2px);
-  --radius-md: var(--radius);
-  --radius-lg: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  
+  --spacing-1: var(--space-1);
+  --spacing-2: var(--space-2);
+  --spacing-3: var(--space-3);
+  --spacing-4: var(--space-4);
+  --spacing-6: var(--space-6);
+  --spacing-8: var(--space-8);
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-  * {
-    @apply border-border outline-ring/50;
-  }
   body {
-    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary font-sans;
+    @apply bg-background text-foreground antialiased font-sans selection:bg-primary/10 selection:text-primary;
   }
 
-  /* Typography Hierarchy */
-  h1 {
-    @apply font-serif font-medium text-[48px] leading-[1.2] tracking-tight;
-  }
-  h2 {
-    @apply font-sans font-semibold text-[32px] leading-[1.3] tracking-tight;
-  }
-  h3 {
-    @apply font-sans font-medium text-[24px] leading-[1.4];
-  }
-  p {
-    @apply font-sans font-normal text-[16px] leading-[1.6] text-muted-foreground;
-  }
-
-  /* Section and Classification Titles (Serif) */
-  .page-title, .classification-label {
-    @apply font-serif;
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight text-foreground font-semibold;
   }
 }
 
 @layer components {
-  /* Controlled Institutional Container */
-  .institutional-container {
-    @apply max-w-[1100px] mx-auto;
+  /* Premium Minimal Card */
+  .premium-card {
+    @apply bg-white border border-border shadow-[0_2px_4px_rgba(0,0,0,0.02)] rounded-lg;
   }
 
-  .question-container {
-    @apply max-w-[800px] mx-auto border border-border bg-white p-8 rounded-lg;
+  .premium-card-hover {
+    @apply transition-all duration-200 hover:shadow-[0_8px_16px_rgba(0,0,0,0.04)] hover:-translate-y-0.5;
   }
 
-  /* Answer Options */
-  .answer-option {
-    @apply w-full text-left p-4 border border-border bg-white rounded-md transition-all duration-200 hover:bg-slate-50 relative overflow-hidden text-[16px] font-normal leading-[1.7];
+  /* Typography Utilities */
+  .text-serif {
+    @apply font-serif;
   }
 
-  .answer-option-selected {
-    @apply border-primary bg-primary text-white hover:bg-primary;
+  .label-sm {
+    @apply text-[12px] font-semibold uppercase tracking-widest text-muted-foreground opacity-60;
   }
 
-  .answer-option-locked {
-    @apply opacity-60 cursor-not-allowed hover:bg-white;
-  }
-
-  /* Buttons */
-  .btn-primary {
-    @apply bg-primary text-white font-medium py-3 px-6 rounded-md hover:opacity-90 transition-all duration-200 active:scale-[0.98];
-  }
-
-  .btn-secondary {
-    @apply border border-border bg-white text-foreground font-medium py-3 px-6 rounded-md hover:bg-slate-50 transition-all duration-200 active:scale-[0.98];
-  }
-
-  /* Labels and Micro */
-  .label-text {
-    @apply text-[14px] font-medium text-muted-foreground leading-[1.5];
-  }
-
-  .micro-text {
-    @apply text-[12px] font-semibold uppercase tracking-wider leading-[1.5];
-  }
-
-  /* Sidebar secondary feel */
-  .sidebar-secondary {
-    @apply opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all;
-  }
-
-  /* Institutional Interactive Utilities */
-  .btn-interactive {
-    @apply transition-all duration-300;
-  }
-
-  .btn-interactive:hover {
-    @apply -translate-y-1 shadow-md;
+  .heading-serif {
+    @apply font-serif italic tracking-tighter;
   }
 }
+
+/* 8px Scale Grid Layouts */
+.grid-8 {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.grid-16 {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.grid-24 {
+  display: grid;
+  gap: var(--space-3);
+}
+
